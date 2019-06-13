@@ -2,6 +2,7 @@
  * Definition for a binary tree node. public class TreeNode { int val; TreeNode
  * left; TreeNode right; TreeNode(int x) { val = x; } }
  */
+// time O(n) space O(log(n))
 class Solution {
     int max = Integer.MIN_VALUE;
 
