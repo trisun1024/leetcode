@@ -42,7 +42,7 @@ class Solution {
 }
 
 // Bidirectional BFS
-class Solution1 {
+class Solution2 {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Set<String> dict = new HashSet<>();
         for (String word : wordList)
@@ -93,4 +93,3 @@ class Solution1 {
         return 0;
     }
 }
-
