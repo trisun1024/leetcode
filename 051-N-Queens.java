@@ -1,47 +1,33 @@
-// dfs
+// backtracking
 class Solution {
     public List<List<String>> solveNQueens(int n) {
-        char[][] board = new char[n][n];
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-                board[i][j] = '.';
-        List<List<String>> res = new ArrayList<List<String>>();
-        dfs(board, 0, res);
-        return res;
+        List<List<String>> result = new ArrayList<List<String>>();
+        helper(result, new ArrayList<String>(), 0, new boolean[n], new boolean[2 * n], new boolean[2 * n], n);
+        return result;
     }
 
-    private void dfs(char[][] board, int colIndex, List<List<String>> res) {
-        if (colIndex == board.length) {
-            res.add(construct(board));
-            return;
+    private void helper(List<List<String>> result, List<String> board, int row, boolean[] cols, boolean[] d1,
+            boolean[] d2, int n) {
+        if (row == n) {
+            result.add(new ArrayList<String>(board));
         }
-
-        for (int i = 0; i < board.length; i++) {
-            if (validate(board, i, colIndex)) {
-                board[i][colIndex] = 'Q';
-                dfs(board, colIndex + 1, res);
-                board[i][colIndex] = '.';
+        for (int col = 0; col < n; col++) {
+            int id1 = col - row + n;
+            int id2 = col + row;
+            if (!cols[col] && !d1[id1] && !d2[id2]) {
+                char[] r = new char[n];
+                Arrays.fill(r, '.');
+                r[col] = 'Q';
+                board.add(new String(r));
+                cols[col] = true;
+                d1[id1] = true;
+                d2[id2] = true;
+                helper(result, board, row + 1, cols, d1, d2, n);
+                board.remove(board.size() - 1);
+                cols[col] = false;
+                d1[id1] = false;
+                d2[id2] = false;
             }
         }
-    }
-
-    private boolean validate(char[][] board, int x, int y) {
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < y; j++) {
-                if (board[i][j] == 'Q' && (x + j == y + i || x + y == i + j || x == i))
-                    return false;
-            }
-        }
-
-        return true;
-    }
-
-    private List<String> construct(char[][] board) {
-        List<String> res = new LinkedList<String>();
-        for (int i = 0; i < board.length; i++) {
-            String s = new String(board[i]);
-            res.add(s);
-        }
-        return res;
     }
 }
