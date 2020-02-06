@@ -1,6 +1,9 @@
 import java.util.*;
 
 class Solution {
+
+    // Time O(K) K is the number of valid permutations
+    // Space O(N) because visited size is N+1
     public int countArrangement(int N) {
         boolean[] visited = new boolean[N + 1];
         int[] count = new int[1];
