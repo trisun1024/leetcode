@@ -1,8 +1,10 @@
+import java.util.*;
+
 /**
  * Definition for singly-linked list. public class ListNode { int val; ListNode
  * next; ListNode(int x) { val = x; } }
  */
-public class Solution {
+class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode c1 = l1;
         ListNode c2 = l2;
@@ -25,5 +27,14 @@ public class Solution {
         if (sum / 10 == 1)
             d.next = new ListNode(1);
         return res.next;
+    }
+
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+        }
     }
 }

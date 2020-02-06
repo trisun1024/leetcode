@@ -1,4 +1,13 @@
 class Solution {
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
+
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode newL = new ListNode(-1);
         ListNode temp = newL;

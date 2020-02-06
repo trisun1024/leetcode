@@ -1,4 +1,4 @@
-public class Solution {
+ class Solution {
     public int reverse(int x) {
         int flag;
         if (x < 0) {

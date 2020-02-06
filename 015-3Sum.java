@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 
 // My work 984ms
 class Solution {
@@ -28,12 +28,9 @@ class Solution {
         }
         return res;
     }
-}
 
-/* 
-// 30ms
-class Solution {
-    public List<List<Integer>> threeSum(int[] num) {
+    // 30 ms
+    public List<List<Integer>> threeSumII(int[] num) {
         Arrays.sort(num);
         List<List<Integer>> res = new LinkedList<>();
         for (int i = 0; i < num.length - 2; i++) {
@@ -58,4 +55,3 @@ class Solution {
         return res;
     }
 }
-*/

@@ -12,11 +12,9 @@ public class Solution1 {
             }
         return prefix;
     }
-}
 
-// Vertical scanning
-public class Solution2 {
-    public String longestCommonPrefix(String[] strs) {
+    // Vertical scanning
+    public String longestCommonPrefixII(String[] strs) {
         if (strs == null || strs.length == 0)
             return "";
         for (int i = 0; i < strs[0].length(); i++) {
@@ -28,11 +26,9 @@ public class Solution2 {
         }
         return strs[0];
     }
-}
 
-// Divide and conquer
-public class Solution3 {
-    public String longestCommonPrefix(String[] strs) {
+    // Divide and conquer
+    public String longestCommonPrefixIII(String[] strs) {
         if (strs == null || strs.length == 0)
             return "";
         return longestCommonPrefix(strs, 0, strs.length - 1);
@@ -57,11 +53,9 @@ public class Solution3 {
         }
         return left.substring(0, min);
     }
-}
 
-// Binary search 
-public class Solution4 {
-    public String longestCommonPrefix(String[] strs) {
+    // Binary search
+    public String longestCommonPrefixIV(String[] strs) {
         if (strs == null || strs.length == 0)
             return "";
         int minLen = Integer.MAX_VALUE;
@@ -87,4 +81,3 @@ public class Solution4 {
         return true;
     }
 }
-

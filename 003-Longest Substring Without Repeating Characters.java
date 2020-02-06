@@ -1,4 +1,6 @@
-public class Solution {
+import java.util.*;
+
+class Solution {
     public int lengthOfLongestSubstring(String s) {
         int len = s.length();
         int i = 0, j = 0, res = 0;

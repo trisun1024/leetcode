@@ -1,8 +1,19 @@
+import java.util.*;
+
 /**
  * Definition for singly-linked list. public class ListNode { int val; ListNode
  * next; ListNode(int x) { val = x; } }
  */
 class Solution {
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
+
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode temp = new ListNode(0);
         temp.next = head;
@@ -23,11 +34,8 @@ class Solution {
 
         return temp.next;
     }
-}
 
-/**
-class Solution {
-    public ListNode removeNthFromEnd(ListNode head, int n) {
+    public ListNode removeNthFromEndII(ListNode head, int n) {
         ListNode temp = new ListNode(0);
         temp.next = head;
         ListNode first = temp;
@@ -44,4 +52,3 @@ class Solution {
         return temp.next;
     }
 }
-*/
