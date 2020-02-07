@@ -1,7 +1,7 @@
 import java.util.*;
 
-// Brute Force
 class Solution {
+    // Brute Force
     public int[] twoSum(int[] nums, int target) {
         for (int i = 0; i < nums.length; i++) {
             for (int j = i + 1; j < nums.length; j++) {
@@ -22,7 +22,7 @@ class Solution {
         for (int i = 0; i < nums.length; i++) {
             int request = target - nums[i];
             if (numsMap.containsKey(request) && numsMap.get(request) != i) {
-                return new int[] { i, numsMap.get(request) };
+                return new int[] { numsMap.get(request), i };
             }
         }
         throw new IllegalArgumentException("No two sum solution");

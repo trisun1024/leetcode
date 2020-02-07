@@ -1,50 +1,73 @@
 import java.util.*;
-class Solution {
-    public String longestPalindrome(String s) {
-        if (s == null || s.length() < 1)
-            return "";
-        
-        StringBuilder newStr = new StringBuilder();
-        newStr.append('#');
-        for (int i = 0; i < s.length(); i++) {
-            newStr.append(s.charAt(i));
-            newStr.append('#');
-        }
 
-        int rightIndex = 0;
-        int centerIndex = 0;
-        //求len中的最大
-        int answer = 0;
-        //answer最大时的中心
+class Solution {
+
+    // DP
+    // m[i][j] represents the longest palindromic substring in s[i:j], is
+    // paldinrome, and m[i][j] represent maximum length
+    // base case m[i][j] = 1
+    // induction rule:
+    // case 1: s[i:j] is not palindrome m[i][j] = 0
+    // case 2: s[i:j] is palindrome m[i][j] = m[i+1][j-1] if(j-i==1 ||
+    // m[i+1][j-1]>0)
+    // Time O(N^2) Space O(N^2)
+
+    public String longestPalindrome(String s) {
+        if (s == null || s.length() == 0) {
+            return "";
+        }
+        int len = s.length();
+        int[][] dp = new int[len][len];
+        int max = 1;
         int index = 0;
-        int len[] = new int[newStr.length() ];
-        for (int i = 1; i < newStr.length(); i++) {
-            //当rightIndex > i，那么我们就在rightIndex - i 与len[2 * centerIndex - i](len[j])，取得最小值
-            //因为当i + len[j] < rightIndex时，我们就把len[i]更新为len[j]
-            //但是如果i + len[j] >= rightIndex时，我们暂且将len[i]定更新为rightIndex - i,超出的部分需要我们一个一个的匹配
-            if (rightIndex > i) {
-                len[i] = Math.min(rightIndex - i, len[2 * centerIndex - i]);
-            } else {
-                len[i] = 1;
-            }
-            //一个一个匹配
-            //要么是超出的部分，要么是i > rightIndex
-            while(i - len[i] >= 0 && i + len[i] < newStr.length() && newStr.charAt(i - len[i]) == newStr.charAt(i + len[i])) {
-                len[i]++;
-            }
-            //当 len[i] + i > rightIndex,我们需要更新centerIndex和rightIndex
-            //至于为什么会这样做，理解一下rightIndex和centerIndex的含义
-            if(len[i] + i > rightIndex) {
-                rightIndex = len[i] + i;
-                centerIndex = i;
-            }
-            if(len[i] > answer) {
-                answer = len[i];
-                index = i;
+        for (int i = len - 1; i >= 0; i++) {
+            dp[i][i] = 1;
+            for (int j = i + 1; j < len; j++) {
+                if (s.charAt(i) == s.charAt(j) && (j - i == 1 || dp[i + 1][j - 1] > 0)) {
+                    dp[i][j] = dp[i + 1][j - 1] + 2;
+                }
+                if (dp[i][j] > max) {
+                    max = dp[i][j];
+                    index = i;
+                }
             }
         }
-        //截取字符串
-        //为什么index - answer + 1,因为len[i] - 1才是原来的回文字符串长度，而answer记录的是len中最大值
-        return newStr.substring(index - answer, index + answer - 1).replace("#", "");
+        return s.substring(index, index + max);
+    }
+
+    // traverse and expand
+    // Time O(N^2) Space O(1)
+    public String longestPalindromeII(String s) {
+        if (s == null || s.length() == 0) {
+            return "";
+        }
+        int len = s.length();
+        if (len == 1) {
+            return s;
+        }
+        int[] max = { 1 };
+        int[] index = { 0 };
+        for (int i = 0; i < len - 1; i++) {
+            if ((len - i) * 2 <= max[0]) {
+                break;
+            }
+            expand(s, i, i, index, max);
+            expand(s, i, i + 1, index, max);
+        }
+        return s.substring(index[0], index[0] + max[0]);
+    }
+
+    private void expand(String s, int i, int j, int[] index, int[] max) {
+        if (s.charAt(i) != s.charAt(j)) {
+            return;
+        }
+        while (i > 0 && j < s.length() - 1 && s.charAt(i - 1) == s.charAt(j + 1)) {
+            i--;
+            j++;
+        }
+        if (j - i + 1 > max[0]) {
+            max[0] = j - i + 1;
+            index[0] = i;
+        }
     }
 }
