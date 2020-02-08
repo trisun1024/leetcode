@@ -1,48 +1,40 @@
-/*
-// Definition for a Node.
-class Node {
-    public int val;
-    public Node next;
-    public Node random;
+import java.util.*;
 
-    public Node() {}
-
-    public Node(int _val,Node _next,Node _random) {
-        val = _val;
-        next = _next;
-        random = _random;
-    }
-};
-*/
 class Solution {
     public Node copyRandomList(Node head) {
-        if (head == null)
+        if (head == null) {
             return null;
-
-        Node cur = head;
-        while (cur != null) {
-            Node n = new Node(cur.val);
-            n.next = cur.next;
-            cur.next = n;
-            cur = n.next;
         }
-
-        cur = head;
-        while (cur != null) {
-            cur.next.random = (cur.random != null) ? cur.random.next : null;
-            cur = cur.next.next;
+        Map<Node, Node> mapper = new HashMap<>();
+        // use dummy node to start with
+        Node dummy = new Node(0);
+        Node cur = dummy;
+        while (head != null) {
+            if (!mapper.containsKey(head)) {
+                mapper.put(head, new Node(head.val));
+            }
+            cur.next = mapper.get(head);
+            if (head.random != null) {
+                if (!mapper.containsKey(head.random)) {
+                    mapper.put(head.random, new Node(head.random.val));
+                }
+                cur.next.random = mapper.get(head.random);
+            }
+            head = head.next;
+            cur = cur.next;
         }
+        return dummy.next;
+    }
 
-        Node curOld = head;
-        Node curNew = head.next;
-        Node headOld = head.next;
-        while (curOld != null) {
-            curOld.next = curOld.next.next;
-            curNew.next = curNew.next != null ? curNew.next.next : null;
-            curOld = curOld.next;
-            curNew = curNew.next;
+    static class Node {
+        int val;
+        Node next;
+        Node random;
+
+        public Node(int val) {
+            this.val = val;
+            this.next = null;
+            this.random = null;
         }
-
-        return headOld;
     }
 }

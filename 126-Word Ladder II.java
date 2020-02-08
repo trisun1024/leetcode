@@ -1,24 +1,26 @@
+import java.util.*;
+
 class Solution {
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
-        List<List<String>> res = new ArrayList();
-        Set<String> words = new HashSet(wordList);
+        List<List<String>> res = new ArrayList<>();
+        Set<String> words = new HashSet<>(wordList);
 
-        Set<String> start = new HashSet();
+        Set<String> start = new HashSet<>();
         start.add(beginWord);
         boolean found = false;
 
         // use hashMap to store all possible route ending at key
-        Map<String, List<List<String>>> map = new HashMap();
-        List<String> init = new ArrayList();
+        Map<String, List<List<String>>> map = new HashMap<>();
+        List<String> init = new ArrayList<>();
         init.add(beginWord);
-        map.put(beginWord, new ArrayList());
+        map.put(beginWord, new ArrayList<>());
         map.get(beginWord).add(init);
 
         while (!words.isEmpty() && !found && !start.isEmpty()) {
             // eliminate all previous layer words from dict
             words.removeAll(start);
             // use another set to record next layers' words
-            Set<String> newStart = new HashSet();
+            Set<String> newStart = new HashSet<>();
 
             // iterate through all new starts
             for (String s : start) {
@@ -36,9 +38,9 @@ class Solution {
                         if (words.contains(word)) {
                             newStart.add(word);
                             for (List<String> path : endPath) {
-                                List<String> nextPath = new ArrayList(path);
+                                List<String> nextPath = new ArrayList<>(path);
                                 nextPath.add(word);
-                                map.putIfAbsent(word, new ArrayList());
+                                map.putIfAbsent(word, new ArrayList<>());
                                 map.get(word).add(nextPath);
                                 if (word.equals(endWord)) {
                                     found = true;
