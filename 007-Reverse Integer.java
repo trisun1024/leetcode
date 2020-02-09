@@ -1,23 +1,30 @@
- class Solution {
+class Solution {
     public int reverse(int x) {
-        int flag;
-        if (x < 0) {
-            x = Math.abs(x);
-            flag = -1;
-        } else {
-            flag = 1;
+        long y = 0;
+        boolean flag = x < 0;
+        x = Math.abs(x);
+        while (x > 0) {
+            y = y * 10 + x % 10;
+            x = x / 10;
         }
-        int res = 0;
-        while (x != 0) {
-            int digit = x % 10;
-            x /= 10;
-            if (res > Integer.MAX_VALUE / 10 || (res == Integer.MAX_VALUE / 10 && digit > 7))
-                return 0;
-            if (res < Integer.MIN_VALUE / 10 || (res == Integer.MIN_VALUE / 10 && digit < -8))
-                return 0;
-            res = res * 10 + digit;
+        y = flag ? y *= -1 : y;
+        return y > Integer.MAX_VALUE || y < Integer.MIN_VALUE ? 0 : (int) y;
+    }
 
+    // early stop version
+    public int reverseII(int x) {
+        int y = 0;
+        while (x != 0) {
+            int p = x % 10;
+            x = x / 10;
+            if (y > Integer.MAX_VALUE / 10) {
+                return 0;
+            }
+            if (y < Integer.MIN_VALUE / 10) {
+                return 0;
+            }
+            y = y * 10 + p;
         }
-        return res * flag;
+        return y;
     }
 }
