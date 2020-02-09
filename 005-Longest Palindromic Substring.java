@@ -38,36 +38,27 @@ class Solution {
     // traverse and expand
     // Time O(N^2) Space O(1)
     public String longestPalindromeII(String s) {
-        if (s == null || s.length() == 0) {
+        if (s == null || s.length() < 1)
             return "";
-        }
-        int len = s.length();
-        if (len == 1) {
-            return s;
-        }
-        int[] max = { 1 };
-        int[] index = { 0 };
-        for (int i = 0; i < len - 1; i++) {
-            if ((len - i) * 2 <= max[0]) {
-                break;
+        int start = 0, end = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int len1 = expandAroundCenter(s, i, i);
+            int len2 = expandAroundCenter(s, i, i + 1);
+            int len = Math.max(len1, len2);
+            if (len > end - start) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
             }
-            expand(s, i, i, index, max);
-            expand(s, i, i + 1, index, max);
         }
-        return s.substring(index[0], index[0] + max[0]);
+        return s.substring(start, end + 1);
     }
 
-    private void expand(String s, int i, int j, int[] index, int[] max) {
-        if (s.charAt(i) != s.charAt(j)) {
-            return;
+    private int expandAroundCenter(String s, int left, int right) {
+        int L = left, R = right;
+        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
+            L--;
+            R++;
         }
-        while (i > 0 && j < s.length() - 1 && s.charAt(i - 1) == s.charAt(j + 1)) {
-            i--;
-            j++;
-        }
-        if (j - i + 1 > max[0]) {
-            max[0] = j - i + 1;
-            index[0] = i;
-        }
+        return R - L - 1;
     }
 }
