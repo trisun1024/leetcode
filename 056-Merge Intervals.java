@@ -1,11 +1,21 @@
+import java.util.*;
+
 class Solution {
     public int[][] merge(int[][] intervals) {
-        // condition 
+        // condition
         if (intervals.length <= 1)
             return intervals;
 
         // sort arrays
-        Arrays.sort(intervals, (i1, i2) -> Integer.compare(i1[0], i2[0]));
+        Arrays.sort(intervals, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] a, int[] b) {
+                if (a[0] == b[0]) {
+                    return 0;
+                }
+                return a[0] < b[0] ? -1 : 1;
+            }
+        });
 
         // setup loop
         List<int[]> result = new LinkedList<>();
@@ -22,6 +32,7 @@ class Solution {
         return result.toArray(new int[result.size()][]);
     }
 }
+
 // 1ms
 class Solution1 {
     public int[][] merge(int[][] intervals) {

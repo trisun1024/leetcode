@@ -1,3 +1,15 @@
+import java.util.*;
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int v) {
+        this.val = v;
+    }
+}
+
 /**
  * Definition for a binary tree node. public class TreeNode { int val; TreeNode
  * left; TreeNode right; TreeNode(int x) { val = x; } }
@@ -53,10 +65,11 @@ class Solution2 {
         return true;
     }
 }
+
 // Inorder time:O(n) space:O(n)
 class Solution3 {
     public boolean isValidBST(TreeNode root) {
-        Stack<TreeNode> stack = new Stack();
+        <TreeNode> stack = new Stack();
         double val = -Double.MAX_VALUE;
 
         while (!stack.Empty() || root != null) {
