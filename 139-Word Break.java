@@ -1,3 +1,5 @@
+import java.util.*;
+
 // 6ms DP
 class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
