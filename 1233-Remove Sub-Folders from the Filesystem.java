@@ -63,7 +63,7 @@ class Solution {
                 res.add(folder[cur.index]);
             }
             for (int i = 0; i < 27; i++) {
-                if (cur.children[i] != null || (i == 26 && cur.index >= 0)) {
+                if (cur.children[i] != null && !(i == 26 && cur.index >= 0)) {
                     queue.offer(cur.children[i]);
                 }
             }
@@ -80,12 +80,5 @@ class Solution {
             index = -1;
         }
     }
-
-    public static void main(String[] args) {
-        String[] test = new String[] { "/a", "/a/b", "/c/d", "/c/d/e", "/c/f" };
-        Solution sol = new Solution();
-        List<String> res = sol.removeSubfoldersIII(test);
-        System.out.println(res.toString());
-        ;
-    }
+    
 }
