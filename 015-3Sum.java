@@ -30,28 +30,37 @@ class Solution {
     }
 
     // 30 ms
-    public List<List<Integer>> threeSumII(int[] num) {
-        Arrays.sort(num);
-        List<List<Integer>> res = new LinkedList<>();
-        for (int i = 0; i < num.length - 2; i++) {
-            if (i == 0 || (i > 0 && num[i] != num[i - 1])) {
-                int lo = i + 1, hi = num.length - 1, sum = 0 - num[i];
-                while (lo < hi) {
-                    if (num[lo] + num[hi] == sum) {
-                        res.add(Arrays.asList(num[i], num[lo], num[hi]));
-                        while (lo < hi && num[lo] == num[lo + 1])
-                            lo++;
-                        while (lo < hi && num[hi] == num[hi - 1])
-                            hi--;
-                        lo++;
-                        hi--;
-                    } else if (num[lo] + num[hi] < sum)
-                        lo++;
-                    else
-                        hi--;
-                }
-            }
+    public List<List<Integer>> threeSumII(int[] nums) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (i > 0 && nums[i] == nums[i - 1])
+                continue; // to exclude the duplicated number
+            twoSum(0 - nums[i], nums, i + 1, nums.length - 1, res);
         }
         return res;
+    }
+
+    private void twoSum(int target, int[] nums, int start, int end, List<List<Integer>> res) {
+        int i = start, j = end;
+        while (i < j) {
+            List<Integer> subres = new ArrayList<Integer>();
+            int sum = nums[i] + nums[j];
+            if (sum == target) {
+                subres.add(0 - target);
+                subres.add(nums[i]);
+                subres.add(nums[j]);
+                res.add(subres);
+                do {
+                    i++;
+                } while (i < end && nums[i] == nums[i - 1]); // to exclude the duplicated number
+                do {
+                    j--;
+                } while (j >= 0 && nums[j] == nums[j + 1]); // to exclude the duplicated number
+            } else if (sum < target)
+                i++;
+            else
+                j--;
+        }
     }
 }

@@ -1,51 +1,93 @@
+
 /**
  * Definition for a binary tree node. public class TreeNode { int val; TreeNode
  * left; TreeNode right; TreeNode(int x) { val = x; } }
  */
+import java.util.*;
+
 class Solution {
-    public void flatten(TreeNode root) {
-        if (root == null)
-            return;
-        flatten(root.left);
-        flatten(root.right);
-        TreeNode left = root.left;
-        TreeNode right = root.right;
-        root.left = null;
-        root.right = left;
-        while (root.right != null)
-            root = root.right;
-        root.right = right;
-    }
-}
 
-// 
-class Solution1 {
+    // recursion
+    // Time O(N) Space O(N)
     public void flatten(TreeNode root) {
-        helper(root);
+        flat(root);
     }
 
-    private TreeNode helper(TreeNode root) {
+    private TreeNode flat(TreeNode root) {
         if (root == null) {
-            return null;
+            return root;
         }
-
-        TreeNode leftLast = helper(root.left);
-        TreeNode rightLast = helper(root.right);
-
-        if (leftLast != null) {
-            leftLast.right = root.right;
+        if (root.left == null && root.right == null) {
+            return root;
+        }
+        TreeNode left = flat(root.left);
+        TreeNode right = flat(root.right);
+        if (left != null) {
+            left.right = root.right;
             root.right = root.left;
             root.left = null;
         }
+        return right == null ? left : right;
+    }
 
-        if (rightLast != null) {
-            return rightLast;
+    // iteration using Stack
+    // Time O(N) Space O(N)
+    public void flattenII(TreeNode root) {
+        if (root == null || (root.left == null && root.right == null)) {
+            return;
         }
-
-        if (leftLast != null) {
-            return leftLast;
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode dupliRoot = root;
+        helper(dupliRoot, stack);
+        TreeNode node = stack.pop();
+        root = node;
+        while (!stack.isEmpty()) {
+            node.right = stack.pop();
+            node.left = null;
+            node = node.right;
         }
+        node.left = null;
+        node.right = null;
+    }
 
-        return root;
+    private void helper(TreeNode root, Deque<TreeNode> stack) {
+        if (root == null) {
+            return;
+        }
+        helper(root.right, stack);
+        helper(root.left, stack);
+        // System.out.println(root.val);
+        stack.offerFirst(root);
+    }
+
+    // iteration
+    // Time O(N) Space O(1)
+    public void flattenIII(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        while (root != null) {
+            if (root.left != null) {
+                TreeNode rightMost = root.left;
+                while (rightMost.right != null) {
+                    rightMost = rightMost.right;
+                }
+                rightMost.right = root.right;
+                root.right = root.left;
+                root.left = null;
+            }
+            root = root.right;
+        }
+    }
+
+}
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
     }
 }

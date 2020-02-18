@@ -1,4 +1,4 @@
-import java.util.*;
+// import java.util.*;
 
 /**
  * Definition for singly-linked list. public class ListNode { int val; ListNode
@@ -36,5 +36,42 @@ class Solution {
         ListNode(int val) {
             this.val = val;
         }
+    }
+
+    // use dummy node
+    public ListNode addTwoNumbersII(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(-1);
+        ListNode cur = dummy;
+        int carry = 0;
+        while (l1 != null && l2 != null) {
+            int sum = l1.val + l2.val + carry;
+            carry = sum / 10;
+            sum = sum % 10;
+            ListNode node = new ListNode(sum);
+            cur.next = node;
+            cur = cur.next;
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+        while (l1 != null) {
+            int sum = l1.val + carry;
+            carry = sum / 10;
+            sum = sum % 10;
+            cur.next = new ListNode(sum);
+            cur = cur.next;
+            l1 = l1.next;
+        }
+        while (l2 != null) {
+            int sum = l2.val + carry;
+            carry = sum / 10;
+            sum = sum % 10;
+            cur.next = new ListNode(sum);
+            cur = cur.next;
+            l2 = l2.next;
+        }
+        if (carry != 0) {
+            cur.next = new ListNode(carry);
+        }
+        return dummy.next;
     }
 }
