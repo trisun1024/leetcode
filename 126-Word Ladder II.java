@@ -75,7 +75,7 @@ class Solution {
     }
 
     // two set 
-    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+    public List<List<String>> findLaddersII(String beginWord, String endWord, List<String> wordList) {
         List<List<String>> res = new ArrayList<>();
         Set<String> words = new HashSet<>(wordList);
 
