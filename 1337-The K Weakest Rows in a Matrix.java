@@ -44,7 +44,7 @@ class Solution {
 
     public int[] kWeakestRowsII(int[][] mat, int k) {
         int m = mat.length;
-        int n = mat[0].length;
+        // int n = mat[0].length;
 
         // Create a Priority Queue that measures firstly on strength and then indexes.
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> {
