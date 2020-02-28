@@ -1,16 +1,14 @@
 import java.util.*;
 
 class Solution {
-
-    // DFS Space O(1)
-    public List<List<String>> solveNQueens(int n) {
+    public int totalNQueens(int n) {
         List<List<String>> res = new ArrayList<>();
         int[] cur = new int[n];
         boolean[] col = new boolean[n];
         boolean[] dig = new boolean[2 * n - 1];
         boolean[] rev = new boolean[2 * n - 1];
         dfs(n, 0, cur, res, col, dig, rev);
-        return res;
+        return res.size();
     }
 
     private void dfs(int n, int row, int[] cur, List<List<String>> res, boolean[] col, boolean[] dig, boolean[] rev) {

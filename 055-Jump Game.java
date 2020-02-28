@@ -1,33 +1,42 @@
-// Greedy time: O(n) space: O(1)
 class Solution {
+
+    // DP
     public boolean canJump(int[] nums) {
-        int lastPos = nums.length - 1;
-        for (int i = nums.length - 1; i >= 0; i--) {
-            if (i + nums[i] >= lastPos) {
-                lastPos = i;
-            }
-        }
-        return lastPos == 0;
-    }
-}
-// Backtracking
-public class Solution {
-    public boolean canJumpFromPosition(int position, int[] nums) {
-        if (position == nums.length - 1) {
+        if (nums.length == 1) {
             return true;
         }
-
-        int furthestJump = Math.min(position + nums[position], nums.length - 1);
-        for (int nextPosition = position + 1; nextPosition <= furthestJump; nextPosition++) {
-            if (canJumpFromPosition(nextPosition, nums)) {
-                return true;
+        boolean[] can = new boolean[nums.length];
+        for (int i = nums.length - 2; i >= 0; i--) {
+            if (i + nums[i] >= nums.length - 1) {
+                can[i] = true;
+            } else {
+                for (int j = nums[i]; j >= 1; j--) {
+                    if (can[j + i]) {
+                        can[i] = true;
+                        break;
+                    }
+                }
             }
         }
-
-        return false;
+        return can[0];
     }
 
-    public boolean canJump(int[] nums) {
-        return canJumpFromPosition(0, nums);
+    // Greedy
+    public boolean canJumpII(int[] nums) {
+        if (nums.length == 1) {
+            return true;
+        }
+        int cur = 0;
+        int next = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (i > cur) {
+                if (cur == next) {
+                    return false;
+                }
+                cur = next;
+            }
+            next = Math.max(next, i + nums[i]);
+        }
+        return true;
     }
 }
