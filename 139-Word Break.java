@@ -1,7 +1,8 @@
 import java.util.*;
 
-// 6ms DP
 class Solution {
+
+    // DP
     public boolean wordBreak(String s, List<String> wordDict) {
         Set<String> newWordDict = new HashSet<String>(wordDict);
 
@@ -17,11 +18,9 @@ class Solution {
         }
         return dp[s.length()];
     }
-}
 
-//
-class Solution2 {
-    public boolean wordBreak(String s, List<String> wordDict) {
+    // DFS
+    public boolean wordBreakII(String s, List<String> wordDict) {
         return dfs(s, wordDict, 0, new int[s.length()]);
     }
 
