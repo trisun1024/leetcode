@@ -2,8 +2,9 @@
  * Definition for a binary tree node. public class TreeNode { int val; TreeNode
  * left; TreeNode right; TreeNode(int x) { val = x; } }
  */
-// Recursive
-public class Solution {
+
+class Solution {
+    // Recursive
     public int closestValue(TreeNode root, double target) {
         int a = root.val;
         if (a == target)
@@ -14,10 +15,9 @@ public class Solution {
         int b = closestValue(kid, target);
         return Math.abs(a - target) < Math.abs(b - target) ? a : b;
     }
-}
-// Iterative
-class Solution1 {
-    public int closestValue(TreeNode root, double target) {
+
+    // Iterative
+    public int closestValueII(TreeNode root, double target) {
         int ret = root.val;
         while (root != null) {
             if (Math.abs(target - root.val) < Math.abs(target - ret)) {
@@ -26,5 +26,15 @@ class Solution1 {
             root = root.val > target ? root.left : root.right;
         }
         return ret;
+    }
+}
+
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
     }
 }

@@ -1,14 +1,15 @@
 class Solution {
+
+    // return the length of new array
     public int removeDuplicates(int[] nums) {
-        if (nums.length == 0)
-            return 0;
-        int count = 0;
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] != nums[count]) {
-                count++;
-                nums[count] = nums[i];
+        int f = 1;
+        int s = 1;
+        while (f < nums.length) {
+            if (nums[f] != nums[f - 1]) {
+                nums[s++] = nums[f];
             }
+            f++;
         }
-        return count + 1;
+        return s;
     }
 }
