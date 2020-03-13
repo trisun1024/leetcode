@@ -18,7 +18,6 @@ class Solution {
         Queue<Integer> queue = new LinkedList<>();
         int[] res = new int[numCourses];
         int index = 0;
-        int count = 0;
         for (int i = 0; i < numCourses; i++) {
             if (inDegrees[i] == 0) {
                 queue.offer(i);
@@ -34,8 +33,7 @@ class Solution {
                 }
             }
             res[index++] = course;
-            count++;
         }
-        return count == numCourses ? res : new int[0];
+        return index == numCourses ? res : new int[0];
     }
 }
