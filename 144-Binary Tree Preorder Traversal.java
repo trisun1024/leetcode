@@ -12,24 +12,29 @@ class Solution {
     }
 
     // Iteration
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
         Deque<TreeNode> stack = new ArrayDeque<>();
-        while (!stack.isEmpty() || root != null) {
-            while (root != null) {
-                stack.offerFirst(root);
-                root = root.left;
+        stack.offerFirst(root);
+        while (!stack.isEmpty()) {
+            TreeNode cur = stack.pollFirst();
+            res.add(cur.val);
+            if (cur.right != null) {
+                stack.offerFirst(cur.right);
             }
-            root = stack.pollFirst();
-            res.add(root.val);
-            root = root.right;
+            if (cur.left != null) {
+                stack.offerFirst(cur.left);
+            }
         }
         return res;
     }
 
-    // Recursion
-    public List<Integer> inorder(TreeNode root) {
-        List<Integer> res = new LinkedList<>();
+    // recursion
+    public List<Integer> preorder(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
         helper(root, res);
         return res;
     }
@@ -38,8 +43,9 @@ class Solution {
         if (root == null) {
             return;
         }
-        helper(root.left, res);
         res.add(root.val);
+        helper(root.left, res);
         helper(root.right, res);
     }
+
 }

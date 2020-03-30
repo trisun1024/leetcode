@@ -21,4 +21,8 @@ class Solution {
         return matches;
     }
 
+    static interface Master {
+        public int guest(String word){
+        }
+    }
 }
