@@ -1,24 +1,23 @@
+import java.util.*;
+
 class Solution {
     public boolean backspaceCompare(String S, String T) {
         return build(S).equals(build(T));
     }
 
     private String build(String str) {
-        Stack<Character> result = new Stack();
+        Deque<Character> result = new ArrayDeque<>();
         for (char c : str.toCharArray()) {
             if (c != '#') {
                 result.push(c);
-            } else if (!result.empty()) {
+            } else if (!result.isEmpty()) {
                 result.pop();
             }
         }
         return String.valueOf(result);
     }
-}
 
-// two pointer
-class Solution1 {
-    public boolean backspaceCompare(String S, String T) {
+    public boolean backspaceCompareII(String S, String T) {
         int i = S.length() - 1, j = T.length() - 1;
         int skipS = 0, skipT = 0;
 
