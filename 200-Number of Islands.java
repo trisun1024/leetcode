@@ -1,3 +1,5 @@
+import java.util.*;
+
 // DFS time O(m*n) space O(m*n)
 class SolutionDFS {
     // assumption:
@@ -37,11 +39,9 @@ class SolutionDFS {
             dfs(grid, innerX, innerY, rows, cols);
         }
     }
-}
 
-// BFS time O(m*n) space O(min(m,n))
-class SolutionBFS {
-    public int numIslands(char[][] grid) {
+    // BFS time O(m*n) space O(min(m,n))
+    public int numIslandsII(char[][] grid) {
         if (grid == null || grid.length == 0) {
             return 0;
         }
