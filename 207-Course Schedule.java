@@ -35,4 +35,32 @@ class Solution {
         visited[course] = false;
         return true;
     }
+
+    // Topological Algorithm
+    public boolean canFinishII(int numCourses, int[][] prerequisites) {
+        int[] topologicalOrder = new int[numCourses];
+        int[] incomingEdges = new int[numCourses];
+        for (int i = 0; i < prerequisites.length; i++) {
+            incomingEdges[prerequisites[i][0]] += 1;
+        }
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < incomingEdges.length; i++) {
+            if (incomingEdges[i] == 0) {
+                queue.offer(i);
+            }
+        }
+        int index = 0;
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            topologicalOrder[index++] = cur;
+            for (int i = 0; i < prerequisites.length; i++) {
+                if (prerequisites[i][1] == cur) {
+                    if (--incomingEdges[prerequisites[i][0]] == 0) {
+                        queue.offer(prerequisites[i][0]);
+                    }
+                }
+            }
+        }
+        return index == numCourses;
+    }
 }

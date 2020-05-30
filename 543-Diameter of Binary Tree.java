@@ -11,22 +11,18 @@ class Solution {
 
     // DFS T = O(N) S = O(N)
     public int diameterOfBinaryTree(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        int leftHeight = height(root.left);
-        int rightHeight = height(root.right);
-        int leftDiameter = diameterOfBinaryTree(root.left);
-        int rightDiameter = diameterOfBinaryTree(root.right);
-        return leftHeight != 0 && rightHeight != 0
-                ? Math.max(leftHeight + rightHeight + 1, Math.max(leftDiameter, rightDiameter))
-                : 0;
+        int[] max = new int[] { 1 };
+        height(root, max);
+        return max[0] - 1;
     }
 
-    private int height(TreeNode root) {
+    private int height(TreeNode root, int[] max) {
         if (root == null) {
             return 0;
         }
-        return Math.max(height(root.left), height(root.right)) + 1;
+        int l = height(root.left, max);
+        int r = height(root.right, max);
+        max[0] = Math.max(max[0], l + r + 1);
+        return Math.max(l, r) + 1;
     }
 }
