@@ -1,5 +1,8 @@
 import java.util.*;
 
+/* 
+* create a new node class to store the current information. Because we want to use linked list and hashmap to store the data; then the new node class should include a prev and next pointers to identify the nodes
+*/
 class Node {
     int key;
     int value;
