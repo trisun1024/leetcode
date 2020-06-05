@@ -25,14 +25,14 @@ class Solution {
         }
         // set all the negative value to zero, and move
         for(int j = 0; j < col; j++) {
-            int right = row-1;
+            int bottom = row-1;
             for(int i = row-1; i >=0 ; i--) {
                 if(board[i][j] >0) {
-                    board[right--][j] = board[i][j];
+                    board[bottom--][j] = board[i][j];
                 }
             }
-            while(right >=0) {
-                board[right--][j] =0;
+            while(bottom >=0) {
+                board[bottom--][j] =0;
             }
         }
         return flag ? candyCrush(board) : board;
