@@ -1,88 +1,65 @@
 import java.util.*;
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+class Solution {
 
-    TreeNode(int v) {
-        this.val = v;
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int v) {
+            this.val = v;
+        }
     }
-}
 
-/**
- * Definition for a binary tree node. public class TreeNode { int val; TreeNode
- * left; TreeNode right; TreeNode(int x) { val = x; } }
- */
-// Recursive time:O(n) space:O(n)
-class Solution1 {
+    // recursion Time = O(N) Space = O(N)
     public boolean isValidBST(TreeNode root) {
-        return checker(root, null, null);
+        if (root == null) {
+            return true;
+        }
+        return helper(root, null, null);
     }
 
-    private boolean checker(TreeNode node, Integer lower, Integer upper) {
-        if (node == null)
+    private boolean helper(TreeNode root, Integer left, Integer right) {
+        if (root == null) {
             return true;
-
-        int i = node.val;
-        if ((lower != null && i <= lower) || (upper != null && i >= upper))
+        }
+        int val = root.val;
+        if (left != null && val <= left)
+            return false;
+        if (right != null && val >= right)
             return false;
 
-        return checker(node.right, i, upper) && checker(node.left, lower, i);
-    }
-}
-
-// Iterative time:O(n) space:O(n)
-class Solution2 {
-    LinkedList<TreeNode> stack = new LinkedList();
-    LinkedList<Integer> uppers = new LinkedList(), lowers = new LinkedList();
-
-    public void update(TreeNode root, Integer lower, Integer upper) {
-        stack.add(root);
-        lowers.add(lower);
-        uppers.add(upper);
-    }
-
-    public boolean isValidBST(TreeNode root) {
-        Integer lower = null, upper = null, val;
-        update(root, lower, upper);
-
-        while (!stack.isEmpty()) {
-            root = stack.poll();
-            lower = lowers.poll();
-            upper = uppers.poll();
-
-            if (root == null)
-                continue;
-            val = root.val;
-            if (lower != null && val <= lower)
-                return false;
-            if (upper != null && val >= upper)
-                return false;
-            update(root.right, val, upper);
-            update(root.left, lower, val);
-        }
+        if (!helper(root.right, val, right))
+            return false;
+        if (!helper(root.left, left, val))
+            return false;
         return true;
     }
-}
 
-// Inorder time:O(n) space:O(n)
-class Solution3 {
-    public boolean isValidBST(TreeNode root) {
-        <TreeNode> stack = new Stack();
-        double val = -Double.MAX_VALUE;
-
-        while (!stack.Empty() || root != null) {
-            while (root != null) {
-                stack.push(root);
-                root = root.left;
+    // iteration inorder traversal Time = O(N) Space = O(N)
+    public boolean isValidBSTII(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        // here we use inorder traversal
+        long left = Long.MIN_VALUE;
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode prev = root;
+        while (!stack.isEmpty() || prev != null) {
+            if (prev != null) {
+                stack.offerFirst(prev);
+                prev = prev.left;
+            } else {
+                prev = stack.pollFirst();
+                if (prev.val <= left) {
+                    return false;
+                }
+                left = (long) prev.val;
+                prev = prev.right;
             }
-            root = stack.pop();
-            if (root.val <= val)
-                return false;
-            val = root.val;
-            root = root.right;
         }
         return true;
     }
+
 }

@@ -1,6 +1,7 @@
 import java.util.*;
 
 class Solution {
+
     public String frequencySort(String s) {
         if (s.length() <= 1) {
             return s;

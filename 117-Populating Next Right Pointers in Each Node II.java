@@ -1,6 +1,8 @@
 import java.util.*;
 
 class Solution {
+
+    // level order
     public Node connect(Node root) {
         if (root == null) {
             return root;
@@ -20,6 +22,29 @@ class Solution {
                 if (cur.left != null) {
                     queue.offer(cur.left);
                 }
+            }
+        }
+        return root;
+    }
+
+    // recursion
+    public Node connectII(Node root) {
+        Node cur = root;
+        Node tail = new Node(0);
+        Node dummy = tail;
+        while (cur != null) {
+            tail.next = cur.left;
+            if (tail.next != null) {
+                tail = tail.next;
+            }
+            tail.next = cur.right;
+            if (tail.next != null) {
+                tail = tail.next;
+            }
+            cur = cur.next;
+            if (cur == null) {
+                tail = dummy;
+                cur = dummy.next;
             }
         }
         return root;

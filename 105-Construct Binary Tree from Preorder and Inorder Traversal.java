@@ -1,29 +1,56 @@
-/**
- * Definition for a binary tree node. public class TreeNode { int val; TreeNode
- * left; TreeNode right; TreeNode(int x) { val = x; } }
- */
+import java.util.*;
+
 class Solution {
-    int preIndex = 0;
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
-        HashMap<Integer, Integer> inorderMap = new HashMap<>();
-        for (int i = 0; i < inorder.length; i++) {
-            inorderMap.put(inorder[i], i);
+        TreeNode(int v) {
+            this.val = v;
         }
-        TreeNode root = constructor(preorder, inorder, 0, inorder.length, inorderMap);
+    }
+
+    // utilizing inorder sequence to determine the size of left or right subtrees
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        // inorder node and position mapping
+        Map<Integer, Integer> inMap = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++) {
+            inMap.put(inorder[i], i);
+        }
+        return construct(preorder, inMap, 0, inorder.length - 1, 0, preorder.length - 1);
+    }
+
+    private TreeNode construct(int[] preorder, Map<Integer, Integer> inMap, int inLeft, int inRight, int preLeft,
+            int preRight) {
+        if (inLeft > inRight) {
+            return null;
+        }
+        TreeNode root = new TreeNode(preorder[preLeft]);
+        int inRoot = inMap.get(root.val);
+        root.left = construct(preorder, inMap, inLeft, inRoot - 1, preLeft + 1, preLeft + inRoot - inLeft);
+        root.right = construct(preorder, inMap, inRoot + 1, inRight, preRight + inRoot - inRight + 1, preRight);
         return root;
     }
 
-    private TreeNode constructor(int[] preorder, int[] inorder, int inLeft, int inRight,
-            HashMap<Integer, Integer> inorderMap) {
-        if (inLeft == inRight)
+    // method 2. traverse and construct the binary tree at the same time
+    public TreeNode buildTreeII(int[] preorder, int[] inorder) {
+        int[] pre = new int[] { 0 };
+        int[] in = new int[] { 0 };
+        return helper(preorder, inorder, pre, in, Integer.MAX_VALUE);
+    }
+
+    private TreeNode helper(int[] preorder, int[] inorder, int[] pre, int[] in, int target) {
+        if (in[0] >= inorder.length || inorder[in[0]] == target) {
             return null;
-        int rootVal = preorder[preIndex];
-        TreeNode root = new TreeNode(rootVal);
-        int index = inorderMap.get(rootVal);
-        preIndex++;
-        root.left = constructor(preorder, inorder, inLeft, index, inorderMap);
-        root.right = constructor(preorder, inorder, index + 1, inRight, inorderMap);
+        }
+        TreeNode root = new TreeNode(preorder[pre[0]]);
+        pre[0]++;
+        root.left = helper(preorder, inorder, pre, in, root.val);
+        in[0]++;
+        root.right = helper(preorder, inorder, pre, in, target);
         return root;
     }
+ 
+   
 }
