@@ -1,17 +1,18 @@
-import java.util.Stack;
+import java.util.*;
 
 class Solution {
     public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<Character>();
+        Deque<Character> stack = new ArrayDeque<>();
         for (char c : s.toCharArray()) {
-            if (c == '(')
-                stack.push(')');
-            else if (c == '{')
-                stack.push('}');
-            else if (c == '[')
-                stack.push(']');
-            else if (stack.isEmpty() || stack.pop() != c)
+            if (c == '(') {
+                stack.offerFirst(')');
+            } else if (c == '[') {
+                stack.offerFirst(']');
+            } else if (c == '{') {
+                stack.offerFirst('}');
+            } else if (stack.isEmpty() || stack.pollFirst() != c) {
                 return false;
+            }
         }
         return stack.isEmpty();
     }

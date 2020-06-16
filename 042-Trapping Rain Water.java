@@ -1,42 +1,59 @@
-// Stack Solution 6ms
 class Solution {
-    public int trap(int[] height) {
-        if(height.length==0) return 0;
-        Stack<Integer> stack = new Stack<>();
-        int i =0, maxWater = 0, maxBarWater=0;
-        while(i<height.length) {
-            if(stack.isEmpty() || height[i]<=height[stack.peek()]) {
-                stack.push(i++);
-            } else {
-                int bar = stack.pop();
-                maxBarWater = stack.isEmpty() ? 0: (Math.min(height[stack.peek()],height[i])-height[bar])*(i-stack.peek()-1);
-                maxWater += maxBarWater;
-            }
+
+    // DP Time = O(N); Space = O(N);
+    /*
+     * DP idea is to find all leftmax and rightmax for each index points
+     * eg. 
+     * input = 4, 1, 3, 4, 5, 2, 6
+     * lMax  = 4, 4, 4, 4, 5, 5, 6
+     * rMax  = 6, 6, 6, 6, 6, 6, 6
+     * for each index i 
+     * sum += (min(lmax[i], rmax[i]) - input[i]);
+     */
+
+    public int trapDP(int[] height) {
+        int n = height.length;
+        if (n == 0) {
+            return 0;
         }
-        return maxWater;
+        int[] leftMax = new int[n];
+        leftMax[0] = height[0];
+        int[] rightMax = new int[n];
+        rightMax[n - 1] = height[n - 1];
+        for (int i = 1; i < n; i++) {
+            leftMax[i] = Math.max(height[i], leftMax[i - 1]);
+        }
+        for (int i = n - 2; i >= 0; i--) {
+            rightMax[i] = Math.max(height[i], rightMax[i + 1]);
+        }
+        int max = 0;
+        for (int i = 0; i < n; i++) {
+            max += Math.min(leftMax[i], rightMax[i]) - height[i];
+        }
+        return max;
     }
-}
 
-// Min(left boundary, right boundary) * length - any smaller bar in between
-class Solution2 {
-    public int trap(int[] A) {
-        int res = 0, left = 0, right = A.length - 1, prevHeight = 0;
-
+    // Two Pointers
+    public int trap(int[] height) {
+        if (height.length == 0) {
+            return 0;
+        }
+        int left = 0;
+        int right = height.length - 1;
+        int max = 0;
+        int lmax = height[left];
+        int rmax = height[right];
         while (left < right) {
-            int height = (A[left] < A[right] ? A[left] : A[right]);
-            if (height > prevHeight) {
-                res -= prevHeight;
-                res += (right - left - 1) * (height - prevHeight);
-                prevHeight = height;
-            } else {
-                res -= height;
-            }
-            if (A[left] <= A[right]) {
+            if (height[left] <= height[right]) {
+                max += Math.max(0, lmax - height[left]);
+                lmax = Math.max(lmax, height[left]);
                 left++;
             } else {
+                max += Math.max(0, rmax - height[right]);
+                rmax = Math.max(rmax, height[right]);
                 right--;
             }
         }
-        return res;
+        return max;
     }
 }

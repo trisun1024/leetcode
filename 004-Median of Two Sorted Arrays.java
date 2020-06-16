@@ -1,44 +1,32 @@
-import java.util.*;
-
 class Solution {
-    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        int m = nums1.length;
-        int n = nums2.length;
-        if (m > n) {
-            findMedianSortedArrays(nums2, nums1);
-        } else {
-            int leftMin = 0, leftMax = m, mid = (m + n + 1) / 2;
-            while (leftMin <= leftMax) {
-                int i = (leftMin + leftMax) / 2;
-                int j = mid - 1;
-                if (i < leftMax && nums2[j - 1] > nums1[i]) {
-                    leftMin = i + 1; // i is too small, increase i
-                } else if (i > leftMin && nums1[i - 1] > nums2[j]) {
-                    leftMax = i - 1; // i is too big, decrease i
-                } else { // i is perfect
-                    int midLeft = 0;
-                    if (i == 0) {
-                        midLeft = nums2[j - 1];
-                    } else if (j == 0) {
-                        midLeft = nums1[i - 1];
-                    } else {
-                        midLeft = Math.max(nums1[i - 1], nums2[j - 1]);
-                    }
-                    if ((m + n) % 2 == 1)
-                        return midLeft;
 
-                    int midRight = 0;
-                    if (i == m) {
-                        midRight = nums2[j];
-                    } else if (j == n) {
-                        midRight = nums1[i];
-                    } else {
-                        midRight = Math.max(nums2[j], nums1[i]);
-                    }
-                    return (midLeft + midRight) / 2.0;
-                }
-            }
-            return 0.0;
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int len = nums1.length + nums2.length;
+        if (len % 2 == 0) {
+            return (kth(nums1, nums2, 0, 0, len / 2) + kth(nums1, nums2, 0, 0, len / 2 + 1)) / 2.0;
+        } else {
+            return (double) kth(nums1, nums2, 0, 0, len / 2 + 1);
+        }
+    }
+
+    private int kth(int[] nums1, int[] nums2, int l1, int l2, int k) {
+        if (l1 >= nums1.length) {
+            return nums2[l2 + k - 1];
+        }
+        if (l2 >= nums2.length) {
+            return nums1[l1 + k - 1];
+        }
+        if (k == 1) {
+            return Math.min(nums1[l1], nums2[l2]);
+        }
+        int m1 = l1 + k / 2 - 1;
+        int m2 = l2 + k / 2 - 1;
+        int val1 = m1 >= nums1.length ? Integer.MAX_VALUE : nums1[m1];
+        int val2 = m2 >= nums2.length ? Integer.MAX_VALUE : nums2[m2];
+        if (val1 <= val2) {
+            return kth(nums1, nums2, m1 + 1, l2, k - k / 2);
+        } else {
+            return kth(nums1, nums2, l1, m2 + 1, k - k / 2);
         }
     }
 }
