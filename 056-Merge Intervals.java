@@ -1,17 +1,19 @@
 import java.util.*;
 
 class Solution {
+
+    // sort array and combine
     public int[][] merge(int[][] intervals) {
         // condition
         if (intervals.length <= 1)
             return intervals;
 
-        // sort arrays
+        // sort arrays based on starting time 
         Arrays.sort(intervals, new Comparator<int[]>() {
             @Override
             public int compare(int[] a, int[] b) {
                 if (a[0] == b[0]) {
-                    return 0;
+                    return a[1] - b[1];
                 }
                 return a[0] < b[0] ? -1 : 1;
             }
@@ -31,43 +33,5 @@ class Solution {
         }
         return result.toArray(new int[result.size()][]);
     }
-}
-
-// 1ms
-class Solution1 {
-    public int[][] merge(int[][] intervals) {
-        // corner case check
-        if (intervals == null || intervals.length <= 1 || intervals[0].length == 0) {
-            return intervals;
-        }
-
-        boolean[] invalid = new boolean[intervals.length];
-        int validCount = intervals.length; // count for result array's length
-
-        for (int i = 0; i < intervals.length; i++) {
-            for (int j = i + 1; j < intervals.length; j++) {
-                if ((intervals[i][1] >= intervals[j][1] && intervals[i][0] <= intervals[j][1])
-                        || (intervals[j][1] >= intervals[i][1] && intervals[j][0] <= intervals[i][1])) {
-                    invalid[i] = true;
-                    intervals[j][0] = Math.min(intervals[i][0], intervals[j][0]);
-                    intervals[j][1] = Math.max(intervals[i][1], intervals[j][1]);
-                    break;
-                }
-            }
-            if (invalid[i]) {
-                validCount--;
-            }
-        }
-
-        int[][] result = new int[validCount][2];
-        int index = 0;
-        for (int i = 0; i < intervals.length; i++) {
-            if (!invalid[i]) {
-                result[index] = intervals[i];
-                index++;
-            }
-        }
-
-        return result;
-    }
+ 
 }

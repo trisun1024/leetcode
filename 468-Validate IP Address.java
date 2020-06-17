@@ -43,7 +43,8 @@ class Solution {
             return validateIPv4(IP);
         } else if (IP.chars().filter(ch -> ch == ':').count() == 7) {
             return validateIPv6(IP);
-        } else
+        } else {
             return "Neither";
+        }
     }
 }
