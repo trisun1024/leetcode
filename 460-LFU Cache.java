@@ -144,11 +144,11 @@ class LFUCacheII {
     private Map<Integer, Integer> vals;
     private Map<Integer, Integer> counts;
     private Map<Integer, LinkedHashSet<Integer>> freqlists; // REMEMBER Integer please.
-    private final int cap;
+    private final int CAPACITY;
     private int min;
 
-    public LFUCache(int capacity) {
-        cap = capacity;
+    public LFUCacheII(int capacity) {
+        this.CAPACITY = capacity;
         min = -1;
         vals = new HashMap<>();
         counts = new HashMap<>();
@@ -185,7 +185,7 @@ class LFUCacheII {
         // ok put needs capacity check first. then 2 conditions, if the key already
         // exists then update (everywhere - need to call get again).
         // if it does not exist we have to check for eviction before adding it.
-        if (cap <= 0)
+        if (CAPACITY <= 0)
             return;
 
         if (vals.containsKey(key)) {
@@ -195,7 +195,7 @@ class LFUCacheII {
             return; // IMPORTANT - return right away.
         }
 
-        if (vals.size() >= cap) { // eviction time.
+        if (vals.size() >= CAPACITY) { // eviction time.
             // what do we remove. we use min as our key (count), gets its list from
             // freqlists and remove its first element. Remember LinkedHashSet
             // maintains order, first in first out, so the first key in the min list will be

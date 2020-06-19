@@ -2,6 +2,50 @@ import java.util.*;
 
 class Solution {
 
+    // TrieNode Time = O()
+    public boolean wordBreakIII(String s, List<String> wordDict) {
+        TrieNode root = buildTrie(wordDict);
+        int n = s.length();
+        boolean[] visited = new boolean[n + 1];
+        visited[n] = true;
+        for (int i = n - 1; i >= 0; i--) {
+            TrieNode cur = root;
+            for (int j = i; j < n && cur != null; j++) {
+                cur = cur.children[s.charAt(j) - 'a'];
+                if (cur != null && cur.isWord && visited[j + 1]) {
+                    visited[i] = true;
+                    break;
+                }
+            }
+        }
+        return visited[0];
+    }
+
+    private TrieNode buildTrie(List<String> wordDict) {
+        TrieNode root = new TrieNode();
+        for (String word : wordDict) {
+            TrieNode cur = root;
+            for (char c : word.toCharArray()) {
+                if (cur.children[c - 'a'] == null) {
+                    cur.children[c - 'a'] = new TrieNode();
+                }
+                cur = cur.children[c - 'a'];
+            }
+            cur.isWord = true;
+        }
+        return root;
+    }
+
+    static class TrieNode {
+        boolean isWord;
+        TrieNode[] children;
+
+        TrieNode() {
+            isWord = false;
+            children = new TrieNode[128];
+        }
+    }
+
     // DP
     public boolean wordBreak(String s, List<String> wordDict) {
         Set<String> newWordDict = new HashSet<String>(wordDict);
