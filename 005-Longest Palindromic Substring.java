@@ -46,7 +46,7 @@ class Solution {
         int[][] dp = new int[len][len];
         int max = 1;
         int index = 0;
-        for (int i = len - 1; i >= 0; i++) {
+        for (int i = len - 1; i >= 0; i--) {
 
             for (int j = i; j < len; j++) {
                 if (i == j) {
