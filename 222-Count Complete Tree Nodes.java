@@ -6,51 +6,65 @@
 
 // DFS time O(n)
 class SolutionDFS {
-    public int countNodes(TreeNode root) {
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-        int leftDepth = leftDepth(root);
-        int rightDepth = rightDepth(root);
-
-        if (leftDepth == rightDepth)
-            return (1 << leftDepth) - 1;
-        else
-            return 1 + countNodes(root.left) + countNodes(root.right);
-
-    }
-
-    private int rightDepth(TreeNode root) {
-        // TODO Auto-generated method stub
-        int dep = 0;
-        while (root != null) {
-            root = root.right;
-            dep++;
+        TreeNode(int x) {
+            val = x;
         }
-        return dep;
     }
 
-    private int leftDepth(TreeNode root) {
-        // TODO Auto-generated method stub
-        int dep = 0;
-        while (root != null) {
+    // Linear Time = O(N)
+    public int countNodes(TreeNode root) {
+        return root == null ? 0 : 1 + countNodes(root.right) + countNodes(root.left);
+    }
+
+    // Binary Time = O(log^2(N))
+    public int countNodesII(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int depth = computeDepth(root);
+        if (depth == 0) {
+            return 1;
+        }
+        int left = 1;
+        int right = (int) Math.pow(2, depth) - 1;
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (exists(mid, depth, root)) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return (int) Math.pow(2, depth) - 1 + left;
+    }
+
+    private int computeDepth(TreeNode root) {
+        int depth = 0;
+        while (root.left != null) {
             root = root.left;
-            dep++;
+            ++depth;
         }
-        return dep;
-    }
-}
-
-// shortest answer time O(log(n))
-// Answer used a idea of complete tree is binary. So only need find out the
-// deepest subtrees in left or right, it can reduce search range in half.
-class Solution {
-    int height(TreeNode root) {
-        return root == null ? -1 : 1 + height(root.left);
+        return depth;
     }
 
-    public int countNodes(TreeNode root) {
-        int h = height(root);
-        return h < 0 ? 0
-                : height(root.right) == h - 1 ? (1 << h) + countNodes(root.right)
-                        : (1 << h - 1) + countNodes(root.left);
+    private boolean exists(int index, int depth, TreeNode root) {
+        int left = 0;
+        int right = (int) Math.pow(2, depth) - 1;
+        for (int i = 0; i < depth; i++) {
+            int mid = left + (right - left) / 2;
+            if (index <= mid) {
+                root = root.left;
+                right = mid;
+            } else {
+                root = root.right;
+                left = mid + 1;
+            }
+        }
+        return root != null;
     }
 }

@@ -1,5 +1,7 @@
-// Mathematical Deduction C_n
+
 class Solution1 {
+
+    // Mathematical Deduction C_n
     public int numTrees(int n) {
         long C = 1;
         for (int i = 0; i < n; ++i) {
@@ -7,18 +9,24 @@ class Solution1 {
         }
         return (int) C;
     }
-}
-// DP
-class Solution2 {
-    public int numTrees(int n) {
-        int[] G = new int[n+1];
-        G[0] = 1;
-        G[1] = 1;
-        for (int i=2; i<=n; ++i){
-            for(int j=1; j<=i; ++j){
-                G[i] += G[j-1]*G[i-j];
+
+    // DP
+    /*
+    * base case 
+    * M[0] = 1; 
+    * M[1] = 1;
+    * induction rule:
+    * M[i] represents number of combinations of tree; we use j and i-j to check the previous numbers, and do math
+    */
+    public int numTreesII(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                dp[i] += dp[j - 1] * dp[i - j];
             }
         }
-        return G[n];
+        return dp[n];
     }
 }
