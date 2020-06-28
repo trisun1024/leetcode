@@ -1,9 +1,7 @@
-/**
- * Definition for singly-linked list. public class ListNode { int val; ListNode
- * next; ListNode(int x) { val = x; } }
- */
-// Recursive
+
 class Solution {
+
+    // Recursion
     public ListNode swapPairs(ListNode head) {
         if (head == null || head.next == null)
             return head;
@@ -15,11 +13,9 @@ class Solution {
         head.next.next = swapPairs(tempNext);
         return head;
     }
-}
-// Iterative
-/* 
-class Solution {
-    public ListNode swapPairs(ListNode head) {
+
+    // Iteration
+    public ListNode swapPairsII(ListNode head) {
         if (head == null || head.next == null) return head;
         ListNode cur = head;
         ListNode newHead = head.next;

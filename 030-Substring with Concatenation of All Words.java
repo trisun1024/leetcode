@@ -1,8 +1,10 @@
-// Consider two-map solution
-// use wordSet as our checking list, seen as our result list. 
-// compare both list to retrieve the output.
+import java.util.*;
 
 class Solution {
+
+    // Consider two-map solution
+    // use wordSet as our checking list, seen as our result list.
+    // compare both list to retrieve the output.
     public List<Integer> findSubstring(String s, String[] words) {
         List<Integer> res = new LinkedList<Integer>();
         if (s.length() == 0 || words.length == 0 || words == null)

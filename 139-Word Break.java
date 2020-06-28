@@ -46,7 +46,7 @@ class Solution {
         }
     }
 
-    // DP
+    // DP Time = O(N^2);
     public boolean wordBreak(String s, List<String> wordDict) {
         Set<String> newWordDict = new HashSet<String>(wordDict);
 

@@ -1,3 +1,5 @@
+import java.util.*;
+
 // extreme case Integer.MAX_VALUE
 class Solution {
     public List<String> findMissingRanges(int[] nums, int lower, int upper) {

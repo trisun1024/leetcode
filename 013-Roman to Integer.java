@@ -1,4 +1,4 @@
-public class Solution {
+class Solution {
     public int romanToInt(String s) {
         char[] charArray = s.toCharArray();
         int res = 0;
