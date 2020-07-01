@@ -1,4 +1,4 @@
-class Solution {
+class SearchInsertPosition {
 
     // loop for all Time = O(N)
     public int searchInsert(int[] nums, int target) {

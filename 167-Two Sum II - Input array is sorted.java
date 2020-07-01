@@ -1,4 +1,4 @@
-class Solution {
+class TwoSumII {
 
     // return index of two values (not zero based)
     public int[] twoSum(int[] numbers, int target) {

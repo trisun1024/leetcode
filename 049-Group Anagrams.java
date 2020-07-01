@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class GroupAnagrams {
 
     // Time O(N*K*log(K)) Space O(N*K)
     public List<List<String>> groupAnagrams(String[] strs) {

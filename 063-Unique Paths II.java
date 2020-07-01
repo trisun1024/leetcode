@@ -1,4 +1,4 @@
-class Solution {
+class UniquePathsII {
 
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
         if (obstacleGrid.length == 0 || obstacleGrid[0][0] == 1) {

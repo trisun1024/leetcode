@@ -1,4 +1,4 @@
-class Solution {
+class ReverseLinkedListII {
 
     static class ListNode {
         int val;

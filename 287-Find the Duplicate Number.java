@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class FindDuplicateNumber {
 
     // sorting
     // Time O(N*log(N)) Space O(1)

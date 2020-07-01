@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class KthSmallestInBST {
 
     // inorder traversal to solve. Time = O(N); Space = O(N)
     public int kthSmallest(TreeNode root, int k) {

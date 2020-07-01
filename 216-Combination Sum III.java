@@ -1,5 +1,5 @@
 import java.util.*;
-class Solution {
+class CombiantionSumIII {
 
     // DFS
     public List<List<Integer>> combinationSum3(int k, int n) {

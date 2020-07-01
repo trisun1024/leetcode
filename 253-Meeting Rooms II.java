@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class MeetingRoomsII {
 
     // sort array in order of the first
     // use min heap to store the end of time. maintain the minimum on the top.

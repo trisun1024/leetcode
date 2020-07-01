@@ -1,4 +1,4 @@
-class Solution {
+class FindFirstLast {
     public int[] searchRange(int[] nums, int target) {
         int[] res = new int[2];
 

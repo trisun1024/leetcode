@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class MaxPointsOnALine {
 
     // Greatest Common Divisor. Time = O(N^2);
     public int maxPointsII(int[][] points) {

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class MajorityElementII {
 
     // HashMap. Time = O(N); Space = O(N);
     public List<Integer> majorityElement(int[] nums) {

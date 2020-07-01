@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class ContainsDuplicateIII {
 
     // Brute Force. Time = O(N^2);
     public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {

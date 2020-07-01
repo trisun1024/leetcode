@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class MeetingRooms {
 
     // idea is sort the array then compare the previous and current one 
     // Time O(N*log(N)) Space O(1)

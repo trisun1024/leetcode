@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class PerfectSquares {
 
     // DP. Time = O(N); Space = O(N);
     public int numSquares(int n) {

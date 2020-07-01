@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class GrayCode {
 
     // Bit Operator
     // The operator >> is shift right. The operator ^ is exclusive or.

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class SurroundedRegions {
 
     // DFS solution
     public void solve(char[][] board) {

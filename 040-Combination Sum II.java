@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class CombinationSumII {
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> cur = new ArrayList<>();

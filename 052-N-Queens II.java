@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class NQueensII {
     public int totalNQueens(int n) {
         List<List<String>> res = new ArrayList<>();
         int[] cur = new int[n];

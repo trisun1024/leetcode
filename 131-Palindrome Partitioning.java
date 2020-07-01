@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class PalindromePartitioning {
     public List<List<String>> partition(String s) {
         List<List<String>> res = new ArrayList<>();
         if (s == null || s.length() == 0) {
@@ -8,6 +8,7 @@ class Solution {
         }
         List<String> cur = new ArrayList<>();
         dfs(s, 0, cur, res);
+        dfsII(s,cur,res);
         return res;
     }
 

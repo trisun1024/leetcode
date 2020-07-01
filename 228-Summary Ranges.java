@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class SummaryRanges {
     public List<String> summaryRanges(int[] nums) {
         List<String> res = new ArrayList<>();
         if (nums.length == 0) {

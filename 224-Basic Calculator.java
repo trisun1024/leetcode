@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class BasicCalculator {
     public int calculate(String s) {
         Deque<Integer> stack = new ArrayDeque<>();
         int val = 0;

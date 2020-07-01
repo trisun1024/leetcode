@@ -1,8 +1,8 @@
 // DP i i-1 i-2
 // time O(n) space O(n)
-class Solution {
+class StockWithCooldown {
     public int maxProfit(int[] prices) {
-        if(prices==null || prices.length<=1) {
+        if (prices == null || prices.length <= 1) {
             return 0;
         }
 
@@ -11,22 +11,20 @@ class Solution {
         int[] unhold = new int[n];
 
         hold[0] = -prices[0];
-        for(int i=1; i<n; i++){
-            if(i==1) {
-                hold[i] = Math.max(hold[i-1],-prices[i]);
+        for (int i = 1; i < n; i++) {
+            if (i == 1) {
+                hold[i] = Math.max(hold[i - 1], -prices[i]);
             } else {
-                hold[i] = Math.max(hold[i-1], unhold[i-2]-prices[i]);
+                hold[i] = Math.max(hold[i - 1], unhold[i - 2] - prices[i]);
             }
-            unhold[i] = Math.max(unhold[i-1], hold[i-1]+prices[i]);
+            unhold[i] = Math.max(unhold[i - 1], hold[i - 1] + prices[i]);
         }
-        
-        return unhold[n-1];
-    }
-}
 
-// Improved case, space O(1)
-class Solution1 {
-    public int maxProfit(int[] prices) {
+        return unhold[n - 1];
+    }
+
+    // Improved case, space O(1)
+    public int maxProfitI(int[] prices) {
         if (prices == null || prices.length <= 1)
             return 0;
         int buy = Integer.MIN_VALUE, sell = 0, prev_buy = 0, prev_sell = 0;

@@ -1,10 +1,17 @@
-/**
- * Definition for a binary tree node. public class TreeNode { int val; TreeNode
- * left; TreeNode right; TreeNode(int x) { val = x; } }
- */
-// Recursive
-// 
-class Solution {
+import java.util.*;
+
+class BinaryTreePaths {
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
+
+    // Recursive
     public List<String> binaryTreePaths(TreeNode root) {
         List<String> result = new ArrayList<>();
         if (root == null)
@@ -12,6 +19,7 @@ class Solution {
         searchBT(root, "", result);
         return result;
     }
+
     private void searchBT(TreeNode root, String path, List<String> result) {
         if (root.left == null && root.right == null)
             result.add(path + root.val);
@@ -20,11 +28,9 @@ class Solution {
         if (root.right != null)
             searchBT(root.right, path + root.val + "->", result);
     }
-}
 
-// Iterative
-class Solution1 {
-    public List<String> binaryTreePaths(TreeNode root) {
+    // Iterative
+    public List<String> binaryTreePathsItr(TreeNode root) {
         LinkedList<String> paths = new LinkedList();
         if (root == null)
             return paths;

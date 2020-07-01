@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class ThreeSumClosest {
     public int threeSumClosest(int[] nums, int target) {
         if (nums == null || nums.length == 0) {
             return 0;

@@ -1,4 +1,4 @@
-class Solution {
+class MinimumPathSum {
 
     // DFS brute force T = O(4^(M+N)) Space = O(M*N)
     public int minPathSum(int[][] grid) {

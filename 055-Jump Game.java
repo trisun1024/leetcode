@@ -1,4 +1,4 @@
-class Solution {
+class JumpGame {
 
     // DP
     public boolean canJump(int[] nums) {

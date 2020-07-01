@@ -1,4 +1,4 @@
-class Solution {
+class AndroidUnlockPatterns {
 
     // use 1D array to test
 

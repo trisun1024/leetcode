@@ -1,5 +1,5 @@
 // Horizontal scanning
-public class Solution1 {
+class LongestCommonPrefix {
     public String longestCommonPrefix(String[] strs) {
         if (strs.length == 0)
             return "";

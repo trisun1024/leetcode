@@ -1,4 +1,4 @@
-class Solution {
+class DecodeWays {
 
     public int numDecodings(String s) {
 

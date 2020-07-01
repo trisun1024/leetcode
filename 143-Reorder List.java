@@ -1,4 +1,6 @@
-class Solution {
+class ReorderList {
+
+    // 
     public void reorderList(ListNode head) {
         if(head==null) {
             return;

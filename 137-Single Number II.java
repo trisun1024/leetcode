@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class SingleNumberII {
 
     // HashSet solution Time = O(N); Space = O(N)
     public int singleNumberI(int[] nums) {

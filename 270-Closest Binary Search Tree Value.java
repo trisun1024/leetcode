@@ -3,7 +3,7 @@
  * left; TreeNode right; TreeNode(int x) { val = x; } }
  */
 
-class Solution {
+class ClosestBSTValue {
     // Recursive
     public int closestValue(TreeNode root, double target) {
         int a = root.val;

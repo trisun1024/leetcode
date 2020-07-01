@@ -1,4 +1,4 @@
-class Solution {
+class OneEditDistance {
     public boolean isOneEditDistance(String s, String t) {
         int ns = s.length();
         int nt = t.length();

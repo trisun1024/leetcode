@@ -1,4 +1,4 @@
-class Solution {
+class ScrambleString {
 
     // recursion
     public boolean isScramble(String s1, String s2) {

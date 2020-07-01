@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class MaximumGap {
 
     // Bucket Sort: Time - O(n), Space: O(n)
     // gap = ceiling((max - min) / (n - 1))

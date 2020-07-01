@@ -1,4 +1,4 @@
-class Solution {
+class ValidAnagram {
     public boolean isAnagram(String s, String t) {
         if (s.length() == 0 && t.length() == 0) {
             return true;

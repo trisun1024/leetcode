@@ -1,4 +1,4 @@
-class Solution {
+class BitwiseNumbersRange {
 
     public int rangeBitwiseAnd(int m, int n) {
         int shift = 0;

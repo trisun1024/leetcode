@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class AlienDictionary {
 
     // BFS Khan's Algorithm
     public String alienOrderBFS(String[] words) {

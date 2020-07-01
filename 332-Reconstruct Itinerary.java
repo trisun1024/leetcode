@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class ReconstructItinerary {
 
     // Hierholzer's Algorithm. Time = O(E*log(E/V)); Space = O(E+V)
     public List<String> findItinerary(List<List<String>> tickets) {

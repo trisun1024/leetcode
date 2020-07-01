@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class PermutationSequence {
     public String getPermutation(int n, int k) {
         int[] factorials = new int[n];
         List<Integer> nums = new ArrayList<>(); 

@@ -1,5 +1,5 @@
 // Brute Force
-class Solution1 {
+class PowerFunction {
     public double myPow(double x, int n) {
         long N = n;
         if (N < 0) {
@@ -12,11 +12,10 @@ class Solution1 {
         }
         return res;
     }
-}
-// Fast Power Recursive 
-// Consider x^n as x^(2*n) to downsize time O(n) to O(logN)
-class Solution2 {
-    public double myPow(double x, int n) {
+
+    // Fast Power Recursive
+    // Consider x^n as x^(2*n) to downsize time O(n) to O(logN)
+    public double myPowI(double x, int n) {
         int N = n;
         if (N < 0) {
             x = 1 / x;

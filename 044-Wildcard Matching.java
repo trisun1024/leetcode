@@ -1,5 +1,7 @@
-// DP  time: O(S*P) space: O(S*P)
-class Solution {
+
+class WildcardMatching {
+
+    // DP time: O(S*P) space: O(S*P)
     public boolean isMatch(String s, String p) {
         int sLen = s.length(), pLen = p.length();
 
@@ -47,11 +49,8 @@ class Solution {
         }
         return d[pLen][sLen];
     }
-}
 
-// backtracking  time: O(min(S,P)) space: O(1)
-class Solution1 {
-    public boolean isMatch(String s, String p) {
+    public boolean isMatchI(String s, String p) {
         int sLen = s.length(), pLen = p.length();
         int sIdx = 0, pIdx = 0;
         int starIdx = -1, sTmpIdx = -1;
@@ -95,11 +94,8 @@ class Solution1 {
                 return false;
         return true;
     }
-}
 
-// 2ms
-class Solution2 {
-    public boolean isMatch(String s, String p) {
+    public boolean isMatchII(String s, String p) {
         int i = 0;
         int j = 0;
         int starIndex = -1;

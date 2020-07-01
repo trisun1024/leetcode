@@ -2,7 +2,7 @@
  * Definition for singly-linked list. public class ListNode { int val; ListNode
  * next; ListNode(int x) { val = x; } }
  */
-class Solution {
+class RemoveDuplicatesFromLinkedList {
     public ListNode deleteDuplicates(ListNode head) {
         ListNode temp = head;
         while (temp != null) {

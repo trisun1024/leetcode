@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class DungeonGame {
 
     // DFS
     public int calculateMinimumHP(int[][] dungeon) {

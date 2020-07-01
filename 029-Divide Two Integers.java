@@ -1,4 +1,4 @@
-class Solution {
+class DivideTwoIntegers {
     public int divide(int dividend, int divisor) {
         // boarder
         if (divisor == 0 || (dividend == Integer.MIN_VALUE && divisor == -1))

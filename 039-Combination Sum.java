@@ -2,7 +2,7 @@
 // dynamic programming
 import java.util.*;
 
-class Solution {
+class CombinationSum {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> cur_res = new ArrayList<>();

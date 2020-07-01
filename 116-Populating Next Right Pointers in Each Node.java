@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class PopulatingNextRightPointersInEachNode {
 
     /*
     * The tree is perfect binary tree, so don't worry about missing children points.

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class LargestRectangleInHistogram {
 
     // use stack and dp to solve this problem Time = O(N) Space = O(N)
     public int largestRectangleArea(int[] heights) {

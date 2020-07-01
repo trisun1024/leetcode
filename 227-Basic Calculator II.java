@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class BasicCalculatorII {
 
     // use Stack to solve this
     // Time O(N) Space O(N)

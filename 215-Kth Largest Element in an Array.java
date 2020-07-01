@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class KthLargestElement {
 
     // Heap. Time = O(N*log(K)); Space = O(K);
     public int findKthLargest(int[] nums, int k) {

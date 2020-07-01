@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class Candy {
 
     // Brute Force Solution Time = O(N^2); Space = O(N)
     public int candy(int[] ratings) {

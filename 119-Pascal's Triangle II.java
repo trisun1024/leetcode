@@ -1,4 +1,5 @@
-class Solution {
+import java.util.*;
+class PascalTriangleII {
     public List<Integer> getRow(int rowIndex) {
         List<Integer> res = new LinkedList<Integer>();
         long coeff = 1;

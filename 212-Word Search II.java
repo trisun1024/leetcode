@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class WordSearchII {
 
     static class TrieNode {
         TrieNode[] children = new TrieNode[26];

@@ -1,4 +1,4 @@
-class Solution {
+class SortColors {
 
     // three pointers in-place
     public void sortColors(int[] nums) {

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class Permutations {
     public List<List<Integer>> permute(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         helper(nums, 0, res);

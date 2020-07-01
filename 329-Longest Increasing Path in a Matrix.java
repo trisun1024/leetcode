@@ -1,4 +1,4 @@
-class Solution {
+class LongestIncreasingPathInMatrix {
 
     // DFS + memorization
     private static final int[][] DIRS = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };

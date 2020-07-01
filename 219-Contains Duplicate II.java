@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class ContainsDuplicateII {
 
     // HashSet store relative numbers. Time = O(N); Space = O(min(N,K));
     public boolean containsNearbyDuplicate(int[] nums, int k) {

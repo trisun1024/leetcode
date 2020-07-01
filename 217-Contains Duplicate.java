@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class ContainsDuplicate {
 
     // HashSet. Time = O(N); Space = O(N);
     public boolean containsDuplicate(int[] nums) {

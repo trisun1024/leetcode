@@ -1,5 +1,13 @@
-class Solution {
+class BinaryTreeUpsideDown {
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
+        TreeNode(int x) {
+            val = x;
+        }
+    }
     // recursion
     public TreeNode upsideDownBinaryTreeII(TreeNode root) {
         if (root == null || root.left == null) {

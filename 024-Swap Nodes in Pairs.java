@@ -1,5 +1,5 @@
 
-class Solution {
+class SwapNodes {
 
     // Recursion
     public ListNode swapPairs(ListNode head) {
@@ -30,4 +30,3 @@ class Solution {
         return newHead;
     }
 }
-*/

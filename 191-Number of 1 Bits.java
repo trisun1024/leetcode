@@ -1,4 +1,4 @@
-public class Solution {
+ class NumberOf1Bits {
 
     // Loop for 32 Bits.
     public int hammingWeight(int n) {

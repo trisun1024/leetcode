@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class RepeatedDNASequences {
 
     // HashSet Solution. Time = O((N-L)*L); Space = O((N-L)*L)
     public List<String> findRepeatedDnaSequences(String s) {

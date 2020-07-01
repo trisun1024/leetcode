@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class MaximalRectangle {
 
     // DP Time = O(N^2*M); Space = O(N*M)
     public int maximalRectangleII(char[][] matrix) {

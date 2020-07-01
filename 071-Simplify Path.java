@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class SimplifyPath {
 
     // Stack Time = O(N);
     public String simplifyPath(String path) {

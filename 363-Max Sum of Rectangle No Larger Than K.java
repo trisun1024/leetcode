@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class MaxSumRectangleNoLargerThanK {
 
     // TreeSet
     public int maxSumSubmatrix(int[][] matrix, int k) {
@@ -28,8 +28,8 @@ class Solution {
                     if (curSum <= k) {
                         ans = Math.max(ans, curSum);
                     }
-                    Integer i = set.ceiling(curSum - k);
-                    if (i != null) {
+                    Integer a = set.ceiling(curSum - k);
+                    if (a != null) {
                         ans = Math.max(ans, curSum - i);
                     }
                     set.add(curSum);

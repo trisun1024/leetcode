@@ -1,4 +1,4 @@
-class Solution {
+class InterleavingString {
 
     // brute force dfs
     // Time O(2^(M+N)) Space O(M+N)

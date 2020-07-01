@@ -1,4 +1,4 @@
-class Solution {
+class StockIV {
     public int maxProfit(int k, int[] prices) {
         int len = prices.length;
         if (len == 0) {

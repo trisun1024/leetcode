@@ -1,7 +1,7 @@
 import java.util.*;
 
 // My work 984ms
-class Solution {
+class ThreeSum {
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<>();

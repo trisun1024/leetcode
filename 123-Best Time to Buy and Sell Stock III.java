@@ -1,4 +1,4 @@
-class Solution {
+class StockIII {
     public int maxProfit(int[] prices) {
         int firstBuy = Integer.MIN_VALUE, firstSell = 0;
         int secondBuy = Integer.MIN_VALUE, secondSell = 0;

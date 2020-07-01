@@ -1,6 +1,5 @@
-import javax.xml.stream.events.StartDocument;
 
-class Solution {
+class HouseRobberII {
 
     // DP
     public int rob(int[] nums) {

@@ -1,5 +1,5 @@
 // time: O(n^2) space: O(n)
-class Solution {
+class RotateImage {
     public void rotate(int[][] matrix) {
         if (matrix.length != matrix[0].length)
             return;

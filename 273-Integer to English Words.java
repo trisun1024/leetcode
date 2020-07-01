@@ -1,4 +1,4 @@
-class Solution {
+class IntegerToEnglishWords {
     public String one(int num) {
         switch (num) {
             case 1:

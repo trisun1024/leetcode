@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class Triangle {
 
     // Recursion
     public int minimumTotalII(List<List<Integer>> triangle) {

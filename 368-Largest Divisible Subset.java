@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class LargestDivisibleSubset {
 
     // DFS
     public List<Integer> largestDivisibleSubset(int[] nums) {

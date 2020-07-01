@@ -1,4 +1,4 @@
-class Solution {
+class MaximalSquare {
 
     // Brute Force
     public int maximalSquareI(char[][] matrix) {

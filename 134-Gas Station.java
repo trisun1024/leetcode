@@ -1,4 +1,4 @@
-class Solution {
+class GasStation {
     public int canCompleteCircuit(int[] gas, int[] cost) {
         int n = gas.length;
         int totTank = 0;

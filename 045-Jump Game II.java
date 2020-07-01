@@ -1,4 +1,4 @@
-class Solution {
+class JumpGameII {
 
     // DP
     public int jump(int[] nums) {

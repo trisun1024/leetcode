@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class PopulatingNextRightPointersInEachNodeII {
 
     // level order
     public Node connect(Node root) {

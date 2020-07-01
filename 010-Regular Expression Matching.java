@@ -1,4 +1,4 @@
-class Solution {
+class RegularExpressionMatch {
     public boolean isMatch(String s, String p) {
         if (p.isEmpty())
             return s.isEmpty();

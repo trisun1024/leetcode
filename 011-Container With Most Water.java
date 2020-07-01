@@ -1,4 +1,4 @@
-class Solution {
+class ContainMostWater {
     public int maxArea(int[] height) {
         int area = 0;
         int l = 0;

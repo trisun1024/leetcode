@@ -1,4 +1,4 @@
-class Solution {
+class LongestIncreasingSubsequence {
     // Time O(N^2) Space O(N)
     public int lengthOfLIS(int[] nums) {
         if (nums == null || nums.length == 0) {

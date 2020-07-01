@@ -1,4 +1,4 @@
-class Solution {
+class ReverseInteger {
     public int reverse(int x) {
         long y = 0;
         boolean flag = x < 0;

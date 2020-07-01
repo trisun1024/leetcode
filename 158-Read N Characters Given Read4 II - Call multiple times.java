@@ -3,7 +3,7 @@
 
 // Question: Given a file and assume that you can only read the file using a given method read4, implement a method read to read n characters. Your method read may be called multiple times.
 // Key is to store memorized variable in the class level and remember offset position and remaining number of elements.
-public class Solution extends Reader4 {
+ class ReadNII extends Reader4 {
 
     private int offSet = 0;
     private int remaining = 0;

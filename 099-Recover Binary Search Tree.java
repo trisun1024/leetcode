@@ -3,18 +3,20 @@ import java.util.*;
 /**
  * Definition for a binary tree node.
  */
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
 
-    TreeNode(int x) {
-        val = x;
-    }
-}
 
 // Sort an Almost Sorted Array Where Two Elements Are Swapped
-class Solution {
+class RecoverBinarySearchTree {
+
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
     public TreeNode recover(TreeNode root) {
         // sanity check
         if (root == null)

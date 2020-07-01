@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class UniquePaths {
 
     // 2D array T = O(M*N) S = O(M*N)
     public int uniquePaths(int m, int n) {

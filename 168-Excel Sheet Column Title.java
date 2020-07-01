@@ -1,4 +1,4 @@
-class Solution {
+class ExcelSheetColumnTitle {
 
     // each match A-Z is 1-26 convert to A-Z is 0-25. Append all the possible results, and reverse the string.
     public String convertToTitle(int n) {

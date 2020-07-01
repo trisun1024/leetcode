@@ -1,4 +1,4 @@
-class Solution {
+class RemoveDuplicates {
 
     // return the length of new array
     public int removeDuplicates(int[] nums) {

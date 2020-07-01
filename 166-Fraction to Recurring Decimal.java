@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class FractionToRecurringDecimal {
     public String fractionToDecimal(int numerator, int denominator) {
         // base case, when numerator == 0
         if (numerator == 0) {

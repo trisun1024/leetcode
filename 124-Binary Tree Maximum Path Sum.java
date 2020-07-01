@@ -3,7 +3,7 @@
  * left; TreeNode right; TreeNode(int x) { val = x; } }
  */
 // time O(n) space O(log(n))
-class Solution {
+class BinaryTreeMaximumPathSum {
     int max = Integer.MIN_VALUE;
 
     public int maxPathSum(TreeNode root) {

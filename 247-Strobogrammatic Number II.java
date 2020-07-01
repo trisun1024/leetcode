@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class StrobogrammaticNumberII {
 
     private int[] match = new int[] { 0, 1, -1, -1, -1, -1, 9, -1, 8, 6 };
 

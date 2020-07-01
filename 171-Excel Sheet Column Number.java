@@ -1,4 +1,4 @@
-class Solution {
+class ExcelSheetColumnNumber {
 
     // think of increasing from oct to 25
     public int titleToNumber(String s) {

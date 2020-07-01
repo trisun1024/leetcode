@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class DistinctSubsequences {
 
     // Recursion + Memorization
     private HashMap<Pair<Integer, Integer>, Integer> memo;

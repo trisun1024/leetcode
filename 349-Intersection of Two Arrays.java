@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class IntersectionOfTwoArrays {
     public int[] intersection(int[] nums1, int[] nums2) {
         if (nums1.length == 0 || nums2.length == 0) {
             return new int[0];

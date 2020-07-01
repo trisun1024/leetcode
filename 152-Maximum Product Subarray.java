@@ -1,4 +1,4 @@
-class Solution {
+class MaximumProductSubarray {
     public int maxProduct(int[] nums) {
         if(nums==null || nums.length==0) {
             return 0;

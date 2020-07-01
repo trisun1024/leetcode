@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class SubstringOfAllWords {
 
     // Consider two-map solution
     // use wordSet as our checking list, seen as our result list.

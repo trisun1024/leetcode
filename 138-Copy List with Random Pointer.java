@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class CopyListWithRandomPointer {
     public Node copyRandomList(Node head) {
         if (head == null) {
             return null;

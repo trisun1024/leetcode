@@ -1,5 +1,7 @@
+import java.util.*;
+
 // Sorting time: O(n*logN) space: O(1) or O(n)
-class Solution {
+class LongestConsecutiveSequence {
     public int longestConsecutive(int[] nums) {
         if (nums.length == 0)
             return 0;
@@ -21,11 +23,9 @@ class Solution {
         }
         return Math.max(longest, current);
     }
-}
 
-// HashMap time and space: O(n)
-class Solution2 {
-    public int longestConsecutive(int[] nums) {
+    // HashMap time and space: O(n)
+    public int longestConsecutiveI(int[] nums) {
         Set<Integer> num_set = new HashSet<Integer>();
         for (int num : nums) {
             num_set.add(num);

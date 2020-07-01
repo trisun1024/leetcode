@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class ConstructBinaryTreeFromPreorderAndInorderTraversal {
     static class TreeNode {
         int val;
         TreeNode left;

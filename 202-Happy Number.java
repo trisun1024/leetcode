@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class HappyNumber {
 
     // Time = O(log(N)); Space = O(log(N));
     public boolean isHappy(int n) {

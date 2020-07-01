@@ -1,5 +1,7 @@
-// Greedy
-class Solution {
+import java.util.*;
+
+class InsertIntervals {
+    // Greedy
     public int[][] insert(int[][] intervals, int[] newInterval) {
         int newStart = newInterval[0], newEnd = newInterval[1];
         int index = 0, n = intervals.length;

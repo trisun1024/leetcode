@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class CourseScheduleII {
     // topological sort DFS
     // Time O(N) Space O(N)
     public int[] findOrder(int numCourses, int[][] prerequisites) {

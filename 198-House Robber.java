@@ -1,4 +1,4 @@
-class Solution {
+class HouseRobber {
 
     // DP Solution. Time = O(N); Space = O(1);
     /*

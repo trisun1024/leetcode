@@ -1,4 +1,4 @@
-class Solution {
+class TrappingRain {
 
     // DP Time = O(N); Space = O(N);
     /*

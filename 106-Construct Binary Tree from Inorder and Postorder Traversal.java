@@ -1,8 +1,21 @@
+import java.util.*;
+
 /**
  * Definition for a binary tree node. public class TreeNode { int val; TreeNode
  * left; TreeNode right; TreeNode(int x) { val = x; } }
  */
-class Solution {
+class COnstructBinaryTreeFromInorderAndPostorderTraversal {
+
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
+
     HashMap<Integer, Integer> inorderMap = new HashMap<>();
     int preIndex;
 

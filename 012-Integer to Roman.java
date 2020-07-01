@@ -1,4 +1,4 @@
-class Solution {
+class IntegerToRoman {
     public String intToRoman(int num) {
         if (num < 1)
             return "";

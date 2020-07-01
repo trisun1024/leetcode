@@ -1,4 +1,4 @@
-class Solution {
+class RotateArray {
 
     // Time = O(N+K); Space = O(K);
     public void rotate(int[] nums, int k) {

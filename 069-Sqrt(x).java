@@ -1,4 +1,4 @@
-class Solution {
+class SquareRoot {
     public int mySqrt(int x) {
         long r = x;
         while (r * r > x) {

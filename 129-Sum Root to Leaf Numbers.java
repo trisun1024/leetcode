@@ -1,17 +1,16 @@
 import java.util.*;
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
 
-    TreeNode(int val) {
-        this.val = val;
+class SumRootToLeafNumbers {
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
     }
-}
-
-class Solution {
-
     // recursion
     public int sumNumbers(TreeNode root) {
         return helper(root, 0);

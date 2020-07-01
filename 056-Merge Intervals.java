@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class MergeIntervals {
 
     // sort array and combine
     public int[][] merge(int[][] intervals) {

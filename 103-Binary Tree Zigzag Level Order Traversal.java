@@ -5,7 +5,7 @@
  */
 import java.util.*;
 
-class Solution {
+class BinaryTreeZigzagLevelOrderTraversal {
 
     // BFS + Recursion
 

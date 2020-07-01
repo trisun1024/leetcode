@@ -2,7 +2,16 @@
  * Definition for a binary tree node. public class TreeNode { int val; TreeNode
  * left; TreeNode right; TreeNode(int x) { val = x; } }
  */
-class Solution {
+class MinimumDepthOfBinaryTree {
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
     public int minDepth(TreeNode root) {
         if (root == null)
             return 0;

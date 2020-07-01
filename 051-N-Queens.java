@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class NQueens {
 
     // DFS Space O(1)
     public List<List<String>> solveNQueens(int n) {

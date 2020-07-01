@@ -5,7 +5,7 @@
 // Brute Force: timeout
 
 // DFS time O(n)
-class SolutionDFS {
+class CountCompleteTreeNodes {
     static class TreeNode {
         int val;
         TreeNode left;

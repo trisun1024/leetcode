@@ -1,4 +1,4 @@
-class Solution {
+class CompareVersionNumbers {
 
     // Comparsion. Time = O(min(M,N));
     public int compareVersion(String version1, String version2) {

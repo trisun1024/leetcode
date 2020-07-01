@@ -1,6 +1,6 @@
 import java.util.*;
 
-class SolutionDFS {
+class NumberOfIslands {
 
     // DFS time O(m*n) space O(m*n)
     public int numIslands(char[][] grid) {

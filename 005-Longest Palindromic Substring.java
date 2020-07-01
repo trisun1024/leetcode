@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class LongestPalindromeSubstring {
 
     public String longestPalindromeDP(String s) {
         int n = s.length();

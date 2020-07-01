@@ -1,8 +1,11 @@
 // Tough one, use example as thinking cap;
-class Solution {
-    public void solveSudoku(char[][] board) {
-        if (board == null || board.length == 0)
+class SudokuSolver {
+
+    // DFS
+    public void solveSudokuI(char[][] board) {
+        if (board == null || board.length == 0) {
             return;
+        }
         solve(board);
     }
 
@@ -13,10 +16,11 @@ class Solution {
                     for (char c = '1'; c <= '9'; c++) {
                         if (isValid(board, i, j, c)) {
                             board[i][j] = c;
-                            if (solve(board))
+                            if (solve(board)) {
                                 return true;
-                            else
+                            } else {
                                 board[i][j] = '.';
+                            }
                         }
                     }
                     return false;
@@ -28,19 +32,20 @@ class Solution {
 
     private boolean isValid(char[][] board, int row, int col, char c) {
         for (int i = 0; i < 9; i++) {
-            if (board[i][col] != '.' && board[i][col] == c)
+            if (board[i][col] != '.' && board[i][col] == c) {
                 return false; // check row
-            if (board[row][i] != '.' && board[row][i] == c)
+            }
+            if (board[row][i] != '.' && board[row][i] == c) {
                 return false; // check column
+            }
             if (board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] != '.'
-                    && board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c)
+                    && board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c) {
                 return false; // check 3*3 block
+            }
         }
         return true;
     }
-}
-/* 
-class Solution {
+
     // box size
     int n = 3;
     // row size
@@ -60,6 +65,24 @@ class Solution {
          */
         int idx = (row / n) * n + col / n;
         return rows[row][d] + columns[col][d] + boxes[idx][d] == 0;
+    }
+
+    public boolean couldPlaceOnlyOne(int row, int col) {
+        /*
+         * Check if one could only place one number in (row, col) cell
+         */
+        int place = 0, count = 0;
+        for (int d = 1; d < 10; d++) {
+            int idx = (row / n) * n + col / n;
+            if (rows[row][d] + columns[col][d] + boxes[idx][d] == 0) {
+                count += 1;
+                place = d;
+            }
+        }
+        if (count == 1) {
+            placeNumber(place, row, col);
+        }
+        return false;
     }
 
     public void placeNumber(int d, int row, int col) {
@@ -141,8 +164,22 @@ class Solution {
                 }
             }
         }
+        while (true) {
+            int flag = 0;
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if (board[i][j] == '.') {
+                        if (couldPlaceOnlyOne(i, j) == true) {
+                            flag = 1;
+                        }
+                    }
+                }
+            }
+            if (flag == 0) {
+                break;
+            }
+
+        }
         backtrack(0, 0);
     }
 }
-
-*/

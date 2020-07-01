@@ -1,5 +1,5 @@
 
-class Solution1 {
+class UniqueBinarySearchTrees {
 
     // Mathematical Deduction C_n
     public int numTrees(int n) {

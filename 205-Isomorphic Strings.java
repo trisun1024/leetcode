@@ -1,4 +1,4 @@
-class Solution {
+class IsomorphicStrings {
     public boolean isIsomorphic(String s, String t) {
         int[] map = new int[128];
         int[] book = new int[128];

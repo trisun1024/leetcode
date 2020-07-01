@@ -1,4 +1,4 @@
-class Solution {
+class SearchRotatedArray {
 
     // binary search 
     public int search(int[] nums, int target) {

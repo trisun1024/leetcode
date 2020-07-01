@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class InvertBinaryTree {
 
     static class TreeNode {
         int val;

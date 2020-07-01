@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class CloneGraph {
     static class Node {
         public int val;
         public List<Node> neighbors;

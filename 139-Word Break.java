@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class WordBreak {
 
     // TrieNode Time = O()
     public boolean wordBreakIII(String s, List<String> wordDict) {

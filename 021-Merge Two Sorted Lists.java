@@ -1,4 +1,4 @@
-class Solution {
+class MergeTwoLists {
 
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode newL = new ListNode(-1);

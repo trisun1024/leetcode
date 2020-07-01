@@ -1,4 +1,4 @@
-class Solution {
+class InsertionSortList {
 
     // Solution 1
     public ListNode insertionSortList(ListNode head) {

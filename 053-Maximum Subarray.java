@@ -1,4 +1,4 @@
-class Solution {
+class MaximumSubarray {
 
     // DP
     // M[i] represents [the range of 0th to ith element] the largest sum of subarray

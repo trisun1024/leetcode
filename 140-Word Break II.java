@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class WordBreakII {
 
     // DFS + DP
     public List<String> wordBreak(String s, List<String> wordDict) {

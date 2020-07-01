@@ -1,4 +1,3 @@
-import java.util.*;
 
 // In this question, there is a trick to reduce the time complexity from O(N^2) to O(N) 
 // idea is using two array and two int to represent the rows and cols, diag and reverse diag

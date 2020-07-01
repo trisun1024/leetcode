@@ -1,4 +1,4 @@
-class Solution {
+class WordSearch {
     private final int[][] DIRS = new int[][] { { -1, 0 }, { 1, 0 }, { 0, -1 }, { 0, 1 } };
 
     // DFS

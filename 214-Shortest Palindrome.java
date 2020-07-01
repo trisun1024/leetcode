@@ -1,4 +1,4 @@
-class Solution {
+class ShortestPalindrome {
 
     // Brute Force. Time = O(N^2); Space = O(N)
     public String shortestPalindromeI(String s) {

@@ -1,4 +1,4 @@
-class Solution {
+class HIndexII {
 
     // linear scan Time = O(N)
     // generally we increment the index until we find the value that is greater than size-cur_index

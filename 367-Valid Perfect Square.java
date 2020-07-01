@@ -1,5 +1,5 @@
 // binary search 
-class Solution {
+class ValidPerfectSquare {
     public boolean isPerfectSquare(int num) {
         if (num == 1) {
             return true;

@@ -1,43 +1,42 @@
+import java.util.*;
+
 // Stack
-class Solution {
+class LongestParentheses {
     public int longestValidParentheses(String s) {
-        Stack<Integer> stack = new Stack<Integer>();
-        stack.push(-1);
+        Deque<Integer> stack = new ArrayDeque<Integer>();
+        stack.offerFirst(-1);
         int max = 0;
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '(') {
-                stack.push(i);
+                stack.offerFirst(i);
             } else {
-                stack.pop();
-                if (stack.empty()) {
-                    stack.push(i);
+                stack.pollFirst();
+                if (stack.isEmpty()) {
+                    stack.offerFirst(i);
                 } else {
-                    max = Math.max(max, i - stack.peek());
+                    max = Math.max(max, i - stack.peekFirst());
                 }
             }
         }
         return max;
     }
-}
 
-// Brute Force
-/*
-public class Solution {
+    // Brute Force
     public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<Character>();
+        Deque<Character> stack = new ArrayDeque<Character>();
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '(') {
                 stack.push('(');
-            } else if (!stack.empty() && stack.peek() == '(') {
+            } else if (!stack.isEmpty() && stack.peek() == '(') {
                 stack.pop();
             } else {
                 return false;
             }
         }
-        return stack.empty();
+        return stack.isEmpty();
     }
 
-    public int longestValidParentheses(String s) {
+    public int longestValidParenthesesI(String s) {
         int maxlen = 0;
         for (int i = 0; i < s.length(); i++) {
             for (int j = i + 2; j <= s.length(); j += 2) {
@@ -49,4 +48,5 @@ public class Solution {
         return maxlen;
     }
 }
-*/
+
+

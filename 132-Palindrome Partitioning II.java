@@ -1,4 +1,4 @@
-class Solution {
+class PalindromePartitioningII {
 
     // DP with palindrome check
     public int minCut(String s) {

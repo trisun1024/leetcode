@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class LinkedListCycle {
     // HashSet
     public boolean hasCycle(ListNode head) {
         Set<ListNode> check = new HashSet<>();

@@ -1,7 +1,15 @@
 import java.util.*;
 
-class Solution { 
+class BinaryTreePreorderTraversal { 
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
+        TreeNode(int x) {
+            val = x;
+        }
+    }
     // Iteration
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();

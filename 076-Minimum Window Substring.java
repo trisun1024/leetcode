@@ -1,5 +1,7 @@
-// 
-class Solution {
+import java.util.*;
+class MinimumWindowSubstring {
+
+    // Sliding Window
     public String minWindow(String s, String t) {
         if (s.length() < t.length())
             return "";
@@ -50,11 +52,8 @@ class Solution {
 
         return result;
     }
-}
 
-// 1ms
-class Solution1 {
-    public String minWindow(String s, String t) {
+    public String minWindowI(String s, String t) {
         int[] map = new int[128];
         for (char c : t.toCharArray())
             map[c]++;

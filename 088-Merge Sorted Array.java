@@ -1,5 +1,5 @@
 
-class Solution {
+class MergeSortedArray {
 
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         // two pointer, copy from the end

@@ -46,11 +46,11 @@ class Trie {
     public boolean startsWith(String prefix) {
         TrieNode cur = root;
         for (char c : prefix.toCharArray()) {
-            TrieNode tmp = cur.children[c - 'a'];
-            if (temp == null) {
+            TrieNode next = cur.children[c - 'a'];
+            if (next == null) {
                 return false;
             }
-            cur = temp;
+            cur = next;
         }
         return true;
     }

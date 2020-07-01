@@ -1,4 +1,4 @@
-class Solution {
+class MinimumSizeSubarraySum {
 
     // Two Pointers, Sliding window Time = O(N)
     public int minSubArrayLen(int s, int[] nums) {

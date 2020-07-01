@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class RestoreIPAddresses {
     public List<String> restoreIpAddresses(String s) {
         List<String> res = new ArrayList<>();
         StringBuilder sb = new StringBuilder();

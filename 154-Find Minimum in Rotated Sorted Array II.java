@@ -1,4 +1,4 @@
-class Solution {
+class MinimumRotatedSortedArrayII {
 
     // Brute Force. Time = O(N)
     public int findMinI(int[] nums) {

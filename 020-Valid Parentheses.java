@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class ValidParentheses {
 
     // Stack Time = O(N); Space = O(N) 
     public boolean isValid(String s) {

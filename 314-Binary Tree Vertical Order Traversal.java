@@ -1,17 +1,15 @@
 import java.util.*;
 
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
+class BinaryTreeVerticalOrderTraversal {
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
 
-    TreeNode(int val) {
-        this.val = val;
+        TreeNode(int x) {
+            val = x;
+        }
     }
-}
-
-class Solution {
-
     // BFS
     public List<List<Integer>> verticalOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();

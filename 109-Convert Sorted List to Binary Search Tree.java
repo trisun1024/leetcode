@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class ConvertSortedListToBST {
 
     static class ListNode {
 

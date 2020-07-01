@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class PermutationsII {
     public List<List<Integer>> permuteUnique(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         helper(nums, 0, res);

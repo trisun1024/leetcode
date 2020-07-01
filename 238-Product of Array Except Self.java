@@ -1,4 +1,4 @@
-class Solution {
+class ProductOfArrayExceptSelf {
     public int[] productExceptSelf(int[] nums) {
 
         // The length of the input array

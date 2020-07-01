@@ -1,4 +1,4 @@
-class Solution {
+class RemoveDuplicatesFromArrayII {
 
     // Two pointers Time = O(N)
     public int removeDuplicates(int[] nums) {

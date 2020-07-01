@@ -1,4 +1,4 @@
-class Solution {
+class MoveZeroes {
 
     // two pointers 
     public void moveZeroes(int[] nums) {

@@ -1,4 +1,4 @@
-class Solution {
+class PowerOfTwo {
 
     // Time = O(log(N))
     public boolean isPowerOfTwo(int n) {

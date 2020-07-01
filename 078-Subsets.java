@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class Subsets {
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> cur = new ArrayList<>();

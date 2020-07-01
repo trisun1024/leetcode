@@ -1,4 +1,4 @@
-class Solution {
+class FindPeakElement {
 
     // Linear Scan. Time = O(N);
     public int findPeakElement(int[] nums) {

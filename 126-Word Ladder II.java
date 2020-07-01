@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class WordLadderII {
 
     // bfs + dfs
     List<List<String>> res = new ArrayList<>();

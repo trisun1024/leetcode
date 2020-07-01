@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class TextJustification {
     public List<String> fullJustify(String[] words, int L) {
         List<String> lines = new ArrayList<String>();
 

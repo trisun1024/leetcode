@@ -4,7 +4,7 @@ import java.util.*;
  * Definition for singly-linked list. public class ListNode { int val; ListNode
  * next; ListNode(int x) { val = x; } }
  */
-class Solution {
+class RemoveNthNode {
     static class ListNode {
         int val;
         ListNode next;

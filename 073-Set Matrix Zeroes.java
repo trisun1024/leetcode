@@ -1,6 +1,4 @@
-import java.util.*;
-
-class Solution {
+class MatrixZeroes {
 
     // solution 1
     // use the whole matrix to save the row or col require a change

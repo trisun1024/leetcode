@@ -7,6 +7,15 @@ import java.util.*;
  * = left; this.right = right; } }
  */
 class BSTIterator {
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
 
     Deque<TreeNode> stack;
     TreeNode helper;

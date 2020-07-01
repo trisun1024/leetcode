@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class BinaryTreeRightSideView {
 
     // recursion 
     public List<Integer> rightSideView(TreeNode root) {

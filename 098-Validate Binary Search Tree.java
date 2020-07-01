@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class ValidateBinarySearchTree {
 
     static class TreeNode {
         int val;

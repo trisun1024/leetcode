@@ -1,4 +1,4 @@
-class Solution {
+class EditDistance {
 
     // DP
     public int minDistance(String word1, String word2) {

@@ -1,4 +1,4 @@
-class Solution {
+class CountPrimes {
 
     // DP 
     public int countPrimes(int n) {

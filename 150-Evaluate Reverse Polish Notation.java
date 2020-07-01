@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class EvaluateReversePolishNotation {
 
     // process 
     public int evalRPN(String[] tokens) {

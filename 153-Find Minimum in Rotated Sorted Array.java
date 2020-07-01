@@ -1,4 +1,4 @@
-class Solution {
+class MinimumRotatedSortedArray {
     public int findMin(int[] nums) {
         int left = 0;
         int right = nums.length - 1;

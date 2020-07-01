@@ -1,4 +1,4 @@
-class Solution {
+class CountingBits {
 
     // Time = O(N) Space = O(N)
     public int[] countBits(int num) {

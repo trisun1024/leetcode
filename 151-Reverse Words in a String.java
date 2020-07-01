@@ -1,4 +1,4 @@
-class Solution {
+class ReverseWords {
 
     // general idea reverse twice, first time reverse whole, second time reverse
     // partial

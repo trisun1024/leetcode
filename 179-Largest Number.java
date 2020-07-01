@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class LargestNumber {
 
     // Time = O(N*log(N)); Space = O(N);
     private class LargerNumberComparator implements Comparator<String> {

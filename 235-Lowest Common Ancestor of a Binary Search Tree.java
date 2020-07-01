@@ -3,7 +3,17 @@
  * left; TreeNode right; TreeNode(int x) { val = x; } }
  */
 // Recursive
-class Solution {
+class LCAofBST {
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
+
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
         // Value of current node or parent node.
@@ -26,10 +36,9 @@ class Solution {
             return root;
         }
     }
-}
-// Iteravtive
-class Solution1 {
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+    // Iteravtive
+    public TreeNode lowestCommonAncestorItr(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null)
             return null;
         TreeNode node = root;

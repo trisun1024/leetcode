@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class CourseSchedule {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         Map<Integer, List<Integer>> graph = new HashMap<>();
 

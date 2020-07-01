@@ -1,4 +1,4 @@
-class Solution {
+class SortList {
 
     // merge sort up to bottom
     // Time O(N*log(N)) Space O(log(N))

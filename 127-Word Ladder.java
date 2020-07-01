@@ -1,7 +1,7 @@
 import java.util.*;
 
 // BFS
-class Solution {
+class WordLadder {
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
         // build hashset to store the wordList for later fast access
         Set<String> dict = new HashSet<>(wordList);

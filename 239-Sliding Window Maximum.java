@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class SlidingWindowMaximum {
 
     // Brute Force 
     public int[] maxSlidingWindowBF(int[] nums, int k) {

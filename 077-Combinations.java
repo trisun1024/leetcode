@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class Combinations {
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> res = new ArrayList<>();
         if (n <= 0 || k <= 0) {
@@ -24,12 +24,12 @@ class Solution {
     }
 
     // still backtracking, combine the k and index
-    public List<List<Integer>> combine(int n, int k) {
+    public List<List<Integer>> combineI(int n, int k) {
         List<List<Integer>> results = new ArrayList<>();
         if (n <= 0 || k <= 0)
             return results;
 
-        backtracking(n, k, 1, results, new ArrayList());
+        backtracking(n, k, 1, results, new ArrayList<>());
         return results;
     }
 

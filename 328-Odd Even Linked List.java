@@ -1,4 +1,4 @@
-class Solution {
+class OddEvenLinkedList {
 
     // sort odd and even position
     public ListNode oddEvenList(ListNode head) {

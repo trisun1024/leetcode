@@ -1,4 +1,4 @@
-class Solution {
+class ReverseBits {
 
     // Time = O(1);
     public int reverseBits(int n) {

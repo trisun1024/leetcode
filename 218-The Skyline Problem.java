@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class SkylineProblem {
     public List<List<Integer>> getSkyline(int[][] buildings) {
         List<List<Integer>> res = new ArrayList<>();
         if (buildings.length == 0) {

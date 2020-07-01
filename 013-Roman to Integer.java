@@ -1,4 +1,6 @@
-class Solution {
+import java.util.*;
+
+class RomanToInteger {
     public int romanToInt(String s) {
         char[] charArray = s.toCharArray();
         int res = 0;
