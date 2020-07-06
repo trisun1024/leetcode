@@ -1,13 +1,28 @@
 class Stock {
-    public int maxProfit(int[] prices) {
-        int min = Integer.MAX_VALUE;
-        int profit = 0;
+
+    // Brute Force. Time = O(N^2)
+    public int maxProfitI(int[] prices) {
+        int maxProfit = 0;
         for (int i = 0; i < prices.length; i++) {
-            if (prices[i] < min)
-                min = prices[i];
-            else if (prices[i] - min > profit)
-                profit = prices[i] - min;
+            for (int j = i + 1; j < prices.length; j++) {
+                int profit = prices[j] - prices[i];
+                maxProfit = Math.max(maxProfit, profit);
+            }
         }
-        return profit;
+        return maxProfit;
+    }
+
+    // One Pass. Time = O(N);
+    public int maxProfit(int[] prices) {
+        int minPrice = Integer.MAX_VALUE; // use minPrice to track the minimum price
+        int maxProfit = 0;
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
+            } else if (prices[i] - minPrice > maxProfit) {
+                maxProfit = prices[i] - minPrice;
+            }
+        }
+        return maxProfit;
     }
 }

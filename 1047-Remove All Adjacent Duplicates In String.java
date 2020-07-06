@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class RemoveAllAdjacentDuplicatesInString {
 
     // Use Stack
     public String removeDuplicates(String S) {
@@ -33,5 +33,16 @@ class Solution {
             j++;
         }
         return new String(array, 0, i + 1);
+    }
+
+    public String removeDupliatesIII(String S) {
+        int i = 0, n = S.length();
+        char[] res = S.toCharArray();
+        for (int j = 0; j < n; ++j, ++i) {
+            res[i] = res[j];
+            if (i > 0 && res[i - 1] == res[i]) // count = 2
+                i -= 2;
+        }
+        return new String(res, 0, i);
     }
 }

@@ -1,20 +1,21 @@
 class StockIV {
     public int maxProfit(int k, int[] prices) {
         int len = prices.length;
-        if (len == 0) {
+        // base case. if len is less or equal than one, then return 0.
+        if (len <=1) {
             return 0;
         }
+        // if k bigger than half of len, then we could use every increasing transcation.
         if (k >= len / 2) {
             return quickSolve(prices);
         }
+        // build a 2D DP.
         int[][] dp = new int[k + 1][len];
         for (int i = 1; i <= k; i++) {
             int curMax = -prices[0];
             for (int j = 1; j < len; j++) {
                 dp[i][j] = Math.max(dp[i][j - 1], prices[j] + curMax);
-                System.out.println(dp[i][j - 1] + " " + dp[i][j]);
                 curMax = Math.max(curMax, dp[i - 1][j - 1] - prices[j]);
-                // System.out.print(curMax);
             }
         }
         return dp[k][len - 1];
@@ -33,37 +34,26 @@ class StockIV {
 
     // 
     public int maxProfitII(int k, int[] prices) {
-        int n = prices.length;
-
-        int maxprof = 0;
-        if (k >= n) {
-            for (int i = 1; i < n; i++) {
-                maxprof += Math.max(0, prices[i] - prices[i - 1]);
+        int len = prices.length;
+        // base case. if len is less or equal than one, then return 0.
+        if (len <= 1) {
+            return 0;
+        }
+        // if k bigger than half of len, then we could use every increasing transcation.
+        if (k >= len / 2) {
+            return quickSolve(prices);
+        }
+        // build a 2D DP.
+        int[] dp = new int[len];
+        for (int i = 0; i < k; i++) {
+            int[] cur = new int[len];
+            int curMax = -prices[0];
+            for (int j = 1; j < len; j++) {
+                cur[j] = Math.max(cur[j - 1], prices[j] + curMax);
+                curMax = Math.max(curMax, dp[j - 1] - prices[j]);
             }
-            return maxprof;
+            dp = cur;
         }
-        int[][] profit = new int[k + 1][n + 1];
-
-        // day 0
-        for (int t = 0; t <= k; t++) {
-            profit[t][0] = 0;
-        }
-
-        // max 0 transaction
-        for (int i = 0; i <= n; i++) {
-            profit[0][i] = 0;
-        }
-
-        int maxval = 0;
-        for (int t = 1; t <= k; t++) {
-
-            int prevDiff = Integer.MIN_VALUE;
-            for (int i = 1; i <= n; i++) {
-                prevDiff = Math.max(prevDiff, profit[t - 1][i - 1] - prices[i - 1]);
-                profit[t][i] = Math.max(prevDiff + prices[i - 1], profit[t][i - 1]);
-            }
-        }
-
-        return profit[k][n];
+        return dp[len - 1];
     }
 }
