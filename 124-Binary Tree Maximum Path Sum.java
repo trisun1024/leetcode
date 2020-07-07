@@ -4,23 +4,28 @@
  */
 // time O(n) space O(log(n))
 class BinaryTreeMaximumPathSum {
-    int max = Integer.MIN_VALUE;
 
     public int maxPathSum(TreeNode root) {
-        getSum(root);
-        return max;
+        int[] max = new int[] { Integer.MIN_VALUE };
+        helper(root, max);
+        return max[0];
     }
 
-    private int getSum(TreeNode root) {
-        if (root == null)
+    private int helper(TreeNode root, int[] max) {
+        // base case 
+        if (root == null) {
             return 0;
-
-        int left = Math.max(getSum(root.left), 0);
-        int right = Math.max(getSum(root.right), 0);
-
-        max = Math.max(max, root.val + left + right);
-
-        return root.val + Math.max(left, right);
+        }
+        // what we want from both left and right subtrees
+        int left = helper(root.left, max);
+        int right = helper(root.right, max);
+        // update left and right if smaller than zero than is zero
+        left = left < 0 ? 0 : left;
+        right = right < 0 ? 0 : right;
+        // update max
+        max[0] = Math.max(max[0], left + right + root.val);
+        // return the largest sum branch
+        return Math.max(left, right) + root.val;
     }
 
     static class TreeNode {
