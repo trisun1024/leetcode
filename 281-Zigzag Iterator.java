@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ZigzagIterator {
+ class ZigzagIterator {
 
     boolean first = true;
     List<Integer> v1;

@@ -1,13 +1,12 @@
 import java.util.*;
-import extensions.*;
 
-class Solution {
+class WallsAndGates {
 
     private final int EMPTY = Integer.MAX_VALUE;
     private final int GATE = 0;
     private final int[][] DIRS = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
 
-    // BFS 
+    // BFS
     public void wallsAndGates(int[][] rooms) {
         int row = rooms.length;
         if (row == 0) {

@@ -24,8 +24,7 @@ class ExpressionAddOperators {
 
         // Extending the current operand by one digit
         currentOperand = currentOperand * 10 + Character.getNumericValue(nums.charAt(index));
-        String current_val_rep = Long.toString(currentOperand);
-        int length = nums.length();
+        String current_val_rep = Long.toString(currentOperand); 
 
         // To avoid cases where we have 1 + 05 or 1 * 05 since 05 won't be a
         // valid operand. Hence this check

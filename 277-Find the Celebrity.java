@@ -1,11 +1,13 @@
 /* The knows API is defined in the parent class Relation.
       boolean knows(int a, int b); */
 class Celebrity {
-    abstract class Relation {
-        public abstract boolean knows(int i, int j);
+    class Relation {
+        public boolean knows(int i, int j) {
+            return true;
+        }
     }
 
-    public class Solution extends Relation {
+    public class CelebritySolution extends Relation {
 
         private int people;
 
