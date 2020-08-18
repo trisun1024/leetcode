@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class NumbersWithSameConsecutiveDifferences {
 
     // DFS. Time = O(N*2^N); Space = O(2^N);
     public int[] numsSameConsecDiff(int N, int K) {
