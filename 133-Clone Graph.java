@@ -26,17 +26,22 @@ class CloneGraph {
         if (node == null) {
             return null;
         }
-        Map<Node, Node> lookup = new HashMap<>();
-        Node copy = new Node(node.val);
-        lookup.put(node, copy);
-        for (Node nei : node.neighbors) {
-            if (!lookup.containsKey(nei)) {
-                Node copyNei = new Node(nei.val);
-                copy.neighbors.add(copyNei);
-                lookup.put(nei, copyNei);
+        Map<Node, Node> map = new HashMap<>();
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.offer(node);
+        map.put(node, new Node(node.val));
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            for (Node nei : cur.neighbors) {
+                if (!map.containsKey(nei)) {
+                    queue.offer(nei);
+                    Node nnei = new Node(nei.val);
+                    map.put(nei, nnei);
+                }
+                map.get(cur).neighbors.add(map.get(nei));
             }
         }
-        return copy;
+        return map.get(node);
     }
 
     // DFS
