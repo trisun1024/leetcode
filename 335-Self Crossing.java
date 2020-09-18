@@ -89,4 +89,28 @@ class SelfCrossing {
         }
     }
 
+    // 
+    public boolean isSelfCrossingI(int[] x) {
+        int n = x.length;
+        if (n <= 3)
+            return false;
+        int i = 2;
+        // keep spiraling outward
+        while (i < n && x[i] > x[i - 2])
+            i++;
+        // spiraling
+        if (i >= n)
+            return false;
+        // transite from outward to inward
+        if ((i == 3 && x[i] == x[i - 2]) || (i > 3 && x[i] >= x[i - 2] - x[i - 4]))
+            x[i - 1] -= x[i - 3];
+        // keep spiraling inward
+        i++;
+        while (i < n) {
+            if (x[i] >= x[i - 2])
+                return true;
+            i++;
+        }
+        return false;
+    }
 }
