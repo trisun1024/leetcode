@@ -1,4 +1,6 @@
 class GasStation {
+
+    // totTank >= 0 means there is a position starting index that can finish the loop. 
     public int canCompleteCircuit(int[] gas, int[] cost) {
         int n = gas.length;
         int totTank = 0;

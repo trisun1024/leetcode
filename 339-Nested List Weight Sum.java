@@ -9,7 +9,7 @@ class NestedListWeightSum {
         for (NestedInteger i : nestedList) {
             dfs(i, depths, 1);
         }
-        System.out.println(Arrays.toString(depths));
+        // System.out.println(Arrays.toString(depths));
         int sum = 0;
         for (int i = 0; i < depths.length; i++) {
             sum += i * depths[i];
