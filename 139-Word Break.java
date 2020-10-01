@@ -2,8 +2,8 @@ import java.util.*;
 
 class WordBreak {
 
-    // TrieNode Time = O()
-    public boolean wordBreakIII(String s, List<String> wordDict) {
+    // TrieNode Time = O(N^2);
+    public boolean wordBreak(String s, List<String> wordDict) {
         TrieNode root = buildTrie(wordDict);
         int n = s.length();
         boolean[] visited = new boolean[n + 1];
@@ -47,9 +47,8 @@ class WordBreak {
     }
 
     // DP Time = O(N^2);
-    public boolean wordBreak(String s, List<String> wordDict) {
+    public boolean wordBreakI(String s, List<String> wordDict) {
         Set<String> newWordDict = new HashSet<String>(wordDict);
-
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
         for (int i = 1; i <= s.length(); i++) {
