@@ -34,7 +34,7 @@ class ArithmeticSlicesIISubsequence {
     public int numberOfArithmeticSlices(int[] A) {
         int count = 0;
         int n = A.length;
-        Map<Integer, Integer>[] dp = new Map[n];
+        HashMap<Integer, Integer>[] dp = new HashMap[n];
         for (int i = 0; i < n; i++) {
             dp[i] = new HashMap<>(i);
             for (int j = 0; j < i; j++) {
