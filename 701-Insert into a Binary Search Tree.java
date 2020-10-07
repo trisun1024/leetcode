@@ -1,10 +1,8 @@
-/**
- * Definition for a binary tree node. public class TreeNode { int val; TreeNode
- * left; TreeNode right; TreeNode(int x) { val = x; } }
- */
-// Time O(h) Space O(h)
-// recursive
-class Solution {
+import extensions.TreeNode;
+
+class InsertIntoBST {
+
+    // Recursion. Time = O(H); Space = O(H);
     public TreeNode insertIntoBST(TreeNode root, int val) {
         if (root == null) {
             return new TreeNode(val);
@@ -16,11 +14,9 @@ class Solution {
         }
         return root;
     }
-}
 
-// iterative
-class Solution2 {
-    public TreeNode insertIntoBST(TreeNode root, int val) {
+    // Iteration.
+    public TreeNode insertIntoBSTI(TreeNode root, int val) {
         TreeNode node = root;
         while (node != null) {
             // insert into the right subtree
@@ -34,7 +30,7 @@ class Solution2 {
             }
             // insert into the left subtree
             else {
-                // insert right now
+                // insert left now
                 if (node.left == null) {
                     node.left = new TreeNode(val);
                     return root;
