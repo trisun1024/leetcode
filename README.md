@@ -1,6 +1,3 @@
-# LEETCODE BOARD
+# LEETCODE PLAYGROUND
 
-Track how I practise leetcode questions time after times. 
-
-## General Order
-The files followed the question number order.
+The saving code when I practise the question in Leetcode website. This helps me to track how many questions I have been solved and what kind of solutions I figure out.

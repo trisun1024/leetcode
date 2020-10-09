@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class SortCharactersByFrequency {
 
     public String frequencySort(String s) {
         if (s.length() <= 1) {

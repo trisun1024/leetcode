@@ -1,4 +1,4 @@
-class Solution {
+class StringCompression {
 
     // three pointers 
     public int compress(char[] chars) {

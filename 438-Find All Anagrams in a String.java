@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class FindAllAnagramsInString {
 
     // use hashmap
     public List<Integer> findAnagrams(String s, String p) {
