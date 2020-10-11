@@ -4,27 +4,27 @@ class MinimumNumberArrowstoBurstBalloons {
 
     // Greedy. Time = O(N*log(N)); Space = O(1);
     public int findMinArrowShots(int[][] points) {
-        if (points.length == 0) {
+        if (points == null || points.length == 0) {
             return 0;
         }
-        Arrays.sort(points, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] a, int[] b) {
-                return a[1] - b[1];
+        Arrays.sort(points, (a, b) -> {
+            if (a[1] > b[1]) {
+                return 1;
+            } else {
+                return -1;
             }
         });
-        int arrows = 1;
-        int xStart = points[0][1];
-        int xEnd = points[0][1];
-        int firstEnd = points[0][1];
-        for (int[] p : points) {
-            xStart = p[0];
-            xEnd = p[1];
-            if (firstEnd < xStart) {
-                arrows++;
-                firstEnd = xEnd;
+
+        int num = 0;
+        int prevEnd = points[0][1];
+        int i = 1;
+        while (i < points.length) {
+            if (points[i][0] > prevEnd) {
+                num++;
+                prevEnd = points[i][1];
             }
+            i++;
         }
-        return arrows;
+        return num + 1;
     }
 }
