@@ -1,7 +1,8 @@
+import extensions.ListNode;
+
 class SortList {
 
-    // merge sort up to bottom
-    // Time O(N*log(N)) Space O(log(N))
+    // Merge Sort Top Down. Time = O(N*log(N)); Space = O(log(N));
     public ListNode sortList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
@@ -45,5 +46,52 @@ class SortList {
         }
         return dummy.next;
     }
+
+
+    // Quick Sort.
+    public ListNode sortListI(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode leftPartition = partition(head);
+        if (leftPartition == null) {
+            leftPartition = head;
+            head = head.next;
+            leftPartition.next = null;
+        }
+        ListNode leftSorted = sortListI(leftPartition);
+        ListNode rightSorted = sortListI(head);
+        ListNode leftSortedTail = findTail(leftSorted);
+        leftSortedTail.next = rightSorted;
+        return leftSorted;
+    }
+
+    private ListNode partition(ListNode head) {
+        ListNode small = new ListNode(-1);
+        ListNode big = new ListNode(-1);
+        ListNode smallCur = small;
+        ListNode bigCur = big;
+        ListNode cur = head;
+        while (cur != null) {
+            if (head.val > cur.val) {
+                smallCur.next = cur;
+                smallCur = smallCur.next;
+            } else {
+                bigCur.next = cur;
+                bigCur = bigCur.next;
+            }
+            cur = cur.next;
+        }
+        smallCur.next = null;
+        bigCur.next = null;
+        return small.next;
+    }
+
+    private ListNode findTail(ListNode head) {
+        ListNode tail = head;
+        while (tail != null && tail.next != null) {
+            tail = tail.next;
+        }
+        return tail;
+    }
 }
- 
