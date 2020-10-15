@@ -1,32 +1,39 @@
 
 class HouseRobberII {
 
-    // DP
+    // DP. Time = O(N); Space = O(N);
     public int rob(int[] nums) {
-        int n = nums.length;
-        if (n == 0) {
+        if (nums.length == 0) {
             return 0;
         }
-        if (n == 1) {
+        if (nums.length == 1) {
             return nums[0];
         }
-        int[] startFromFirst = new int[n + 1];
-        int[] startFromSecond = new int[n + 1];
-        startFromFirst[0] = 0;
-        startFromFirst[1] = nums[0];
-        startFromSecond[0] = 0;
-        startFromSecond[1] = 0;
-        for (int i = 2; i <= n; i++) {
-            startFromFirst[i] = Math.max(startFromFirst[i - 1], startFromFirst[i - 2] + nums[i - 1]);
-            startFromSecond[i] = Math.max(startFromSecond[i - 1], startFromSecond[i - 2] + nums[i - 1]);
+        int L = nums.length;
+        int[] take = new int[L];
+        int[] skip = new int[L];
+        take[0] = nums[0];
+        for (int i = 1; i < L - 1; i++) {
+            take[i] = skip[i - 1] + nums[i];
+            skip[i] = Math.max(take[i - 1], skip[i - 1]);
         }
-        return Math.max(startFromFirst[n - 1], startFromSecond[n]);
+        int result = Math.max(take[L - 2], skip[L - 2]);
+        take[1] = nums[1];
+        skip[1] = 0;
+        for (int i = 2; i < L; i++) {
+            take[i] = skip[i - 1] + nums[i];
+            skip[i] = Math.max(take[i - 1], skip[i - 1]);
+        }
+        result = Math.max(result, take[L - 1]);
+        result = Math.max(result, skip[L - 1]);
+        return result;
     }
 
-    // 
+    // DFS
     public int robII(int[] nums) {
-        if (nums.length == 1)
+        if (nums.length == 1) {
             return nums[0];
+        }
         return Math.max(rob(nums, 0, nums.length - 2), rob(nums, 1, nums.length - 1));
     }
 
