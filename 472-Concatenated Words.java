@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class ConcatenatedWords {
 
     // use HashMap to store the words
     public List<String> findAllConcatenatedWordsInADict(String[] words) {

@@ -1,4 +1,4 @@
-class Solution {
+class PermutationInString {
 
     // use 1D array
     public boolean checkInclusion(String s1, String s2) {

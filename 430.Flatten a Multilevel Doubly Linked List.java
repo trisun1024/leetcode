@@ -1,6 +1,38 @@
 import java.util.*;
 
-class Solution {
+class FlattenAMultilevelDoublyLinkedList {
+    static class Node {
+        public int val;
+        public Node prev;
+        public Node next;
+        public Node child;
+
+        Node(int v) {
+            this.val = v;
+            this.prev = null;
+            this.next = null;
+            this.child = null;
+        }
+
+        Node(int v, Node prev, Node next, Node child) {
+            this.val = v;
+            this.prev = prev;
+            this.next = next;
+            this.child = child;
+        }
+    }
+
+    static class ListNode {
+        int val;
+        ListNode next;
+        ListNode child;
+
+        ListNode(int v, ListNode next, ListNode child) {
+            this.val = v;
+            this.next = next;
+            this.child = child;
+        }
+    }
 
     // way of flatten a list node with previous, next and child node
     public Node flatten(Node head) {
@@ -52,38 +84,5 @@ class Solution {
             cur = cur.next;
         }
         return dummy;
-    }
-}
-
-class Node {
-    public int val;
-    public Node prev;
-    public Node next;
-    public Node child;
-
-    Node(int v) {
-        this.val = v;
-        this.prev = null;
-        this.next = null;
-        this.child = null;
-    }
-
-    Node(int v, Node prev, Node next, Node child) {
-        this.val = v;
-        this.prev = prev;
-        this.next = next;
-        this.child = child;
-    }
-}
-
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode child;
-
-    ListNode(int v, ListNode next, ListNode child) {
-        this.val = v;
-        this.next = next;
-        this.child = child;
     }
 }

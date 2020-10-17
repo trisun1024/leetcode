@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class ReplaceWords  {
 
     // prefix hash
     public String replaceWordsII(List<String> roots, String sentence) {

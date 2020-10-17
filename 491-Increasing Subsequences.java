@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class IncreasingSubsequences {
 
     // return a list of all possible sequences
     public List<List<Integer>> findSubsequences(int[] nums) {

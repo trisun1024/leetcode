@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class BeautifulArrangement {
 
     // Time O(K) K is the number of valid permutations
     // Space O(N) because visited size is N+1

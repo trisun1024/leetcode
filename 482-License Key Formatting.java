@@ -1,16 +1,19 @@
-// 18ms
-class Solution {
+
+class LicenseKeyFormatting {
+
+    // StringBuilder.
     public String licenseKeyFormatting(String S, int K) {
-StringBuilder sb = new StringBuilder();
-        for (int i = S.length() - 1; i >= 0; i--)
-            if (S.charAt(i) != '-')
+        StringBuilder sb = new StringBuilder();
+        for (int i = S.length() - 1; i >= 0; i--) {
+            if (S.charAt(i) != '-') {
                 sb.append(sb.length() % (K + 1) == K ? '-' : "").append(S.charAt(i));
+            }
+        }
         return sb.reverse().toString().toUpperCase();
     }
-}
-// 3ms
-class Solution1 {
-    public String licenseKeyFormatting(String S, int K) {
+
+    // Char Array.
+    public String licenseKeyFormattingI(String S, int K) {
         char[] arr = S.toCharArray();
         int slow = 0;
         int fast = 0;

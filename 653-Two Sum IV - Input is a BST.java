@@ -1,6 +1,7 @@
 import java.util.*;
+import extensions.TreeNode;
 
-class Solution {
+class TwoSumIV {
     public boolean findTarget(TreeNode root, int k) {
         List<Integer> list = new ArrayList<>();
         inorder(root, list);
@@ -26,15 +27,5 @@ class Solution {
         inorder(root.left, list);
         list.add(root.val);
         inorder(root.right, list);
-    }
-}
-
-class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-
-    TreeNode(int val) {
-        this.val = val;
     }
 }

@@ -1,4 +1,4 @@
-class Solution {
+class ValidateIPAddress {
     public String validateIPv4(String IP) {
         String[] nums = IP.split("\\.", -1);
         for (String x : nums) {

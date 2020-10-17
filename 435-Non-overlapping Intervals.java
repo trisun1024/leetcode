@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class NonOverlappingIntervals {
 
     // 435. Non-overlapping Intervals
     // Sort intervals on ending time, use DP to find overlapping intervals Time =

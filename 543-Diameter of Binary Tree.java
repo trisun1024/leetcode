@@ -1,14 +1,8 @@
-class Solution {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
+import extensions.TreeNode;
 
-        TreeNode(int x) {
-            this.val = x;
-        }
-    }
+class DiameterOfBinaryTree {
 
+    
     // DFS T = O(N) S = O(N)
     public int diameterOfBinaryTree(TreeNode root) {
         int[] max = new int[] { 1 };

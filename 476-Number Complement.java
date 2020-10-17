@@ -1,4 +1,4 @@
-class Solution {
+class NumberComplement {
 
     public int findComplement(int num) {
         // n is a length of num in binary representation

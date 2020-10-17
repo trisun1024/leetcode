@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class PacificAtlanticWaterFlow {
 
     // DFS solution
     public List<List<Integer>> pacificAtlantic(int[][] matrix) {

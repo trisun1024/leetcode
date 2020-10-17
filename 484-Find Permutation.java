@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class FindPermutation {
 
     // Stack
     public int[] findPermutationIII(String s) {

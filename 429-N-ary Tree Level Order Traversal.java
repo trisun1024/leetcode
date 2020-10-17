@@ -1,19 +1,20 @@
-/*
-// Definition for a Node.
-class Node {
-    public int val;
-    public List<Node> children;
+import java.util.*;
 
-    public Node() {}
+class NaryTreeLevelOrderTraversal {
+    static class Node {
+        public int val;
+        public List<Node> children;
 
-    public Node(int _val,List<Node> _children) {
-        val = _val;
-        children = _children;
-    }
-};
-*/
-// Recursive
-class Solution {
+        public Node() {
+        }
+
+        public Node(int _val, List<Node> _children) {
+            val = _val;
+            children = _children;
+        }
+    };
+
+    // Recursive
     public List<List<Integer>> levelOrder(Node root) {
         return getLevelOrder(root, 0, new ArrayList<>());
     }
@@ -23,34 +24,29 @@ class Solution {
             return orderList;
         }
         List<Integer> levelList;
-        if(orderList.size() > level) {
+        if (orderList.size() > level) {
             levelList = orderList.get(level);
         } else {
             levelList = new ArrayList<>();
         }
         levelList.add(node.val);
-        if(orderList.size() <= level) {
+        if (orderList.size() <= level) {
             orderList.add(levelList);
         }
-        for( Node n: node.children) {
+        for (Node n : node.children) {
             getLevelOrder(n, level + 1, orderList);
         }
         return orderList;
     }
-}
 
-// Iterative
-class Solution1 {
-    public List<List<Integer>> levelOrder(Node root) {
+    // Iterative
+    public List<List<Integer>> levelOrderI(Node root) {
         List<List<Integer>> ret = new LinkedList<>();
-
-        if (root == null)
+        if (root == null) {
             return ret;
-
-        Queue<Node> queue = new LinkedList<>();
-
+        }
+        Queue<Node> queue = new ArrayDeque<>();
         queue.offer(root);
-
         while (!queue.isEmpty()) {
             List<Integer> curLevel = new LinkedList<>();
             int len = queue.size();
@@ -62,7 +58,6 @@ class Solution1 {
             }
             ret.add(curLevel);
         }
-
         return ret;
     }
 }

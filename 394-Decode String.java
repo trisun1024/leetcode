@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class DecodeString {
 
     // use two stack to store the information; one stack store the numbers, the
     // other stack store string

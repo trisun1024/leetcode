@@ -1,4 +1,4 @@
-class Solution {
+class LongestLineOfConsecutiveOneInMatrix {
 
     // Brute Force
     // Time O(N^2) Space O(1)

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class RemoveKDigits {
     public String removeKdigits(String num, int k) {
         Deque<Character> stack = new ArrayDeque<Character>();
 

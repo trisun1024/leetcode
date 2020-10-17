@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class FirstUniqueCharacterInString {
 
     // use HashMap
     public int firstUniqChar(String s) {

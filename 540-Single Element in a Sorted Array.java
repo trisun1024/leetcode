@@ -1,4 +1,4 @@
-class Solution {
+class SingleElementInSortedArray {
     public int singleNonDuplicate(int[] nums) {
         if (nums.length == 0) {
             return -1;

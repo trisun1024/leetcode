@@ -1,4 +1,4 @@
-class Solution {
+class SplitArrayLargestSum {
 
     // 2D DP Time = O(N^2*M) Space = O(N*M)
     public int splitArray(int[] nums, int m) {

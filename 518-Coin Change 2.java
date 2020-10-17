@@ -1,4 +1,4 @@
-class Solution {
+class CoinChange2 {
 
     // DP 
     public int change(int amount, int[] coins) {

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class ContiguousArray {
     public int findMaxLength(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;

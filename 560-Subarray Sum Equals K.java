@@ -1,4 +1,4 @@
-class Solution {
+class SubarraySumEqualsK {
 
     // use prefix to save space
     public int subarraySum(int[] nums, int k) {

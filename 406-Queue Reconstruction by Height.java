@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class QueueReconstructionByHeight {
 
     public int[][] reconstructQueue(int[][] people) {
         Arrays.sort(people, new Comparator<int[]>() {

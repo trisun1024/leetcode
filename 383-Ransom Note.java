@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class RansomNote {
 
     // Simulation
     public boolean canConstruct(String ransomNote, String magazine) {
@@ -42,8 +42,8 @@ class Solution {
         }
 
         // Make the count maps.
-        Map<Character, Integer> ransomNoteCounts = makeCountsMap(ransomNote);
-        Map<Character, Integer> magazineCounts = makeCountsMap(magazine);
+        Map<Character, Integer> ransomNoteCounts = makeCountsMapI(ransomNote);
+        Map<Character, Integer> magazineCounts = makeCountsMapI(magazine);
 
         // For each unique character, c, in the ransom note:
         for (char c : ransomNoteCounts.keySet()) {
@@ -65,7 +65,7 @@ class Solution {
 
     // Takes a String, and returns a HashMap with counts of
     // each character.
-    private Map<Character, Integer> makeCountsMap(String s) {
+    private Map<Character, Integer> makeCountsMapI(String s) {
         Map<Character, Integer> counts = new HashMap<>();
         for (char c : s.toCharArray()) {
             int currentCount = counts.getOrDefault(c, 0);

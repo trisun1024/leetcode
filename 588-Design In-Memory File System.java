@@ -71,7 +71,7 @@ class FileSystemII {
 
     private FileNode root;
 
-    public FileSystem() {
+    public FileSystemII() {
         root = new FileNode();
     }
 
