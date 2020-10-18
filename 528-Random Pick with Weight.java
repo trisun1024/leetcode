@@ -1,31 +1,34 @@
-class Solution {
-    private int[] prefixSums;
-    private int totalSum;
 
-    public Solution(int[] w) {
-        this.prefixSums = new int[w.length];
+class RandomPickWithWeight {
+    class Solution {
+        private int[] prefixSums;
+        private int totalSum;
 
-        int prefixSum = 0;
-        for (int i = 0; i < w.length; ++i) {
-            prefixSum += w[i];
-            this.prefixSums[i] = prefixSum;
+        public Solution(int[] w) {
+            this.prefixSums = new int[w.length];
+
+            int prefixSum = 0;
+            for (int i = 0; i < w.length; ++i) {
+                prefixSum += w[i];
+                this.prefixSums[i] = prefixSum;
+            }
+            this.totalSum = prefixSum;
         }
-        this.totalSum = prefixSum;
-    }
 
-    public int pickIndex() {
-        double target = this.totalSum * Math.random();
+        public int pickIndex() {
+            double target = this.totalSum * Math.random();
 
-        // run a binary search to find the target zone
-        int low = 0, high = this.prefixSums.length;
-        while (low < high) {
-            // better to avoid the overflow
-            int mid = low + (high - low) / 2;
-            if (target > this.prefixSums[mid])
-                low = mid + 1;
-            else
-                high = mid;
+            // run a binary search to find the target zone
+            int low = 0, high = this.prefixSums.length;
+            while (low < high) {
+                // better to avoid the overflow
+                int mid = low + (high - low) / 2;
+                if (target > this.prefixSums[mid])
+                    low = mid + 1;
+                else
+                    high = mid;
+            }
+            return low;
         }
-        return low;
     }
 }

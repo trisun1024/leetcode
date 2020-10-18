@@ -1,3 +1,4 @@
+import java.util.*;
 class FindKClosestElements {
 
     // middle out, Time = O(K*log(N));

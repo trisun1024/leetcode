@@ -1,4 +1,4 @@
-class Solution {
+class RobotReturnToOrigin {
 
     // initial a origin point 
     public boolean judgeCircle(String moves) {

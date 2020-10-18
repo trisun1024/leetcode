@@ -1,4 +1,6 @@
-class Solution {
+class StrangePrinter {
+
+    
     public int strangePrinter(String s) {
         int size = s.length();
         int[][] dp = new int[size + 1][size + 1];
