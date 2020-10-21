@@ -1,16 +1,17 @@
 import java.util.*;
+import extensions.TreeNode;
 
-class Solution {
+class PathSumIV {
 
-    // transform tree 
-    public int pathSum(int[] nums) {
+    // transform tree
+    public int pathSumI(int[] nums) {
         TreeNode root = buildTree(nums);
         int[] ans = new int[] { 0 };
-        dfs(root, 0, ans);
+        helper(root, 0, ans);
         return ans[0];
     }
 
-    private void dfs(TreeNode root, int sum, int[] ans) {
+    private void helper(TreeNode root, int sum, int[] ans) {
         if (root == null) {
             return;
         }
@@ -18,8 +19,8 @@ class Solution {
         if (root.left == null && root.right == null) {
             ans[0] += sum;
         } else {
-            dfs(root.left, sum, ans);
-            dfs(root.right, sum, ans);
+            helper(root.left, sum, ans);
+            helper(root.right, sum, ans);
         }
     }
 
@@ -52,31 +53,18 @@ class Solution {
         return root;
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int v) {
-            this.val = v;
-        }
-    }
-
-
-    // direct traversal
-    int ans = 0;
-    Map<Integer, Integer> values;
-
-    public int pathSumII(int[] nums) {
-        values = new HashMap();
-        for (int num : nums)
+    // Direct DFS.
+    public int pathSum(int[] nums) {
+        Map<Integer, Integer> values = new HashMap<>();
+        for (int num : nums) {
             values.put(num / 10, num % 10);
-
-        dfsII(nums[0] / 10, 0);
-        return ans;
+        }
+        int[] ans = new int[] { 0 };
+        dfs(nums[0] / 10, 0, values, ans);
+        return ans[0];
     }
 
-    public void dfsII(int node, int sum) {
+    public void dfs(int node, int sum, Map<Integer, Integer> values, int[] ans) {
         if (!values.containsKey(node))
             return;
         sum += values.get(node);
@@ -86,10 +74,30 @@ class Solution {
         int right = left + 1;
 
         if (!values.containsKey(left) && !values.containsKey(right)) {
-            ans += sum;
+            ans[0] += sum;
         } else {
-            dfs(left, sum);
-            dfs(right, sum);
+            dfs(left, sum, values, ans);
+            dfs(right, sum, values, ans);
         }
+    }
+
+    // 2D Array.
+    public int pathSumII(int[] nums) {
+        int[][] nodes = new int[5][8];
+        for (int num : nums) {
+            int level = num / 100;
+            int pos = (num % 100) / 10 - 1;
+            int val = num % 10;
+            nodes[level][pos] = nodes[level - 1][pos / 2] + val;
+        }
+        int ans = 0;
+        for (int i = 1; i <= 4; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (i == 4 || i < 4 && j < 4 && nodes[i + 1][j * 2] == 0 && nodes[i + 1][j * 2 + 1] == 0) {
+                    ans += nodes[i][j];
+                }
+            }
+        }
+        return ans;
     }
 }
