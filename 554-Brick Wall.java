@@ -37,17 +37,34 @@ class BrickWall {
             int sum = 0;
             for (int i = 0; i < row.size() - 1; i++) {
                 sum += row.get(i);
-                if (map.containsKey(sum)) {
-                    map.put(sum, map.get(sum) + 1);
-                } else {
-                    map.put(sum, 1);
-                }
+                map.put(sum, map.getOrDefault(sum, 0) + 1);
             }
         }
+
         int res = wall.size();
         for (int key : map.keySet()) {
             res = Math.min(res, wall.size() - map.get(key));
         }
         return res;
+    }
+
+    // HashMap.
+    public int leastBricksII(List<List<Integer>> wall) {
+        int height = wall.size();
+        Map<Integer, Integer> map = new HashMap<>();
+        int maxCount = 0;
+        for (int i = 0; i < height; i++) {
+            List<Integer> row = wall.get(i);
+            int aWidth = 0;
+            for (int j = 0; j < row.size() - 1; j++) {
+                aWidth += row.get(j);
+                int count = map.getOrDefault(aWidth, 0) + 1;
+                if (count > maxCount) {
+                    maxCount = count;
+                }
+                map.put(aWidth, count);
+            }
+        }
+        return height - maxCount;
     }
 }
