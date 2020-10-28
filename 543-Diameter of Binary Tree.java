@@ -3,7 +3,7 @@ import extensions.TreeNode;
 class DiameterOfBinaryTree {
 
     
-    // DFS T = O(N) S = O(N)
+    // DFS. Time = O(N); Space = O(N);
     public int diameterOfBinaryTree(TreeNode root) {
         int[] max = new int[] { 1 };
         height(root, max);

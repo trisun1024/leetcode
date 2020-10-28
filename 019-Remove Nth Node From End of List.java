@@ -1,19 +1,8 @@
-import java.util.*;
+import extensions.ListNode;
 
-/**
- * Definition for singly-linked list. public class ListNode { int val; ListNode
- * next; ListNode(int x) { val = x; } }
- */
 class RemoveNthNode {
-    static class ListNode {
-        int val;
-        ListNode next;
 
-        ListNode(int val) {
-            this.val = val;
-        }
-    }
-
+    // Find Size.
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode temp = new ListNode(0);
         temp.next = head;
@@ -35,12 +24,13 @@ class RemoveNthNode {
         return temp.next;
     }
 
+    // Loop Use Fast and Slow pointers.
     public ListNode removeNthFromEndII(ListNode head, int n) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode f = dummy;
         ListNode s = dummy;
-        for (int i = 0; i < n+1; i++) {
+        for (int i = 0; i < n + 1; i++) {
             f = f.next;
         }
         while (f != null) {

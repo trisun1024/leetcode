@@ -1,27 +1,13 @@
-/**
- * Definition for a binary tree node. public class TreeNode { int val; TreeNode
- * left; TreeNode right; TreeNode(int x) { val = x; } }
- */
-// Brute Force: timeout
+import extensions.TreeNode;
 
-// DFS time O(n)
 class CountCompleteTreeNodes {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
-    // Linear Time = O(N)
+    // DFS Linear. Time = O(N);
     public int countNodes(TreeNode root) {
         return root == null ? 0 : 1 + countNodes(root.right) + countNodes(root.left);
     }
 
-    // Binary Time = O(log^2(N))
+    // Binary Search. Time = O(log^2(N))
     public int countNodesII(TreeNode root) {
         if (root == null) {
             return 0;

@@ -1,15 +1,7 @@
 import java.util.*;
+import extensions.ListNode;
 
 class LinkedListCycleII {
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int val) {
-            this.val = val;
-        }
-    }
 
     // HashSet store the visited node Time = O(N); Space = O(N)
     public ListNode detectCycle(ListNode head) {

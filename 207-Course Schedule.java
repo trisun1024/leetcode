@@ -1,6 +1,8 @@
 import java.util.*;
 
 class CourseSchedule {
+
+    // DFS.
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         Map<Integer, List<Integer>> graph = new HashMap<>();
 
@@ -36,7 +38,7 @@ class CourseSchedule {
         return true;
     }
 
-    // Topological Algorithm
+    // Topological Algorithm. Time = O(V^2);
     public boolean canFinishII(int numCourses, int[][] prerequisites) {
         int[] topologicalOrder = new int[numCourses];
         int[] incomingEdges = new int[numCourses];

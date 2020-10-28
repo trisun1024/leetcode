@@ -1,9 +1,12 @@
 import java.util.*;
 
 class CourseScheduleII {
-    // topological sort DFS
-    // Time O(N) Space O(N)
+
+    // Topological Sort DFS. Time = O(N); Space = O(N); 
     public int[] findOrder(int numCourses, int[][] prerequisites) {
+        if(numCourses <= 0) {
+            return new int[0];
+        }
         int[] inDegrees = new int[numCourses];
         Map<Integer, List<Integer>> graph = new HashMap<>();
         for (int[] edge : prerequisites) {
@@ -15,6 +18,7 @@ class CourseScheduleII {
             }
             graph.get(start).add(end);
         }
+
         Queue<Integer> queue = new LinkedList<>();
         int[] res = new int[numCourses];
         int index = 0;

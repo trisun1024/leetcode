@@ -1,4 +1,4 @@
-
+import extensions.ListNode;
 
 class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -23,15 +23,6 @@ class AddTwoNumbers {
         if (sum / 10 == 1)
             d.next = new ListNode(1);
         return res.next;
-    }
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int val) {
-            this.val = val;
-        }
     }
 
     // use dummy node
@@ -67,6 +58,31 @@ class AddTwoNumbers {
         }
         if (carry != 0) {
             cur.next = new ListNode(carry);
+        }
+        return dummy.next;
+    }
+
+    public ListNode addTwoNumbersIII(ListNode l1, ListNode l2) {
+        int plus = 0;
+        ListNode dummy = new ListNode(0);
+        ListNode cur = dummy;
+        while (l1 != null || l2 != null) {
+            int v1 = l1 != null ? l1.val : 0;
+            int v2 = l2 != null ? l2.val : 0;
+            int sum = v1 + v2 + plus;
+            plus = sum / 10;
+            sum = sum % 10;
+            cur.next = new ListNode(sum);
+            cur = cur.next;
+            if (l1 != null) {
+                l1 = l1.next;
+            }
+            if (l2 != null) {
+                l2 = l2.next;
+            }
+        }
+        if (plus == 1) {
+            cur.next = new ListNode(plus);
         }
         return dummy.next;
     }

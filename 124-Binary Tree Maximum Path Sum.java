@@ -1,10 +1,8 @@
-/**
- * Definition for a binary tree node. public class TreeNode { int val; TreeNode
- * left; TreeNode right; TreeNode(int x) { val = x; } }
- */
-// time O(n) space O(log(n))
+import extensions.TreeNode;
+
 class BinaryTreeMaximumPathSum {
 
+    // Time = O(N); Space = O(log(N));
     public int maxPathSum(TreeNode root) {
         int[] max = new int[] { Integer.MIN_VALUE };
         helper(root, max);
@@ -12,7 +10,7 @@ class BinaryTreeMaximumPathSum {
     }
 
     private int helper(TreeNode root, int[] max) {
-        // base case 
+        // base case
         if (root == null) {
             return 0;
         }
@@ -28,13 +26,4 @@ class BinaryTreeMaximumPathSum {
         return Math.max(left, right) + root.val;
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int v) {
-            this.val = v;
-        }
-    }
 }
