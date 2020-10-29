@@ -1,43 +1,32 @@
 import java.util.*;
 
 class SummaryRanges {
+    
+    // Time = O(N);
     public List<String> summaryRanges(int[] nums) {
         List<String> res = new ArrayList<>();
-        if (nums.length == 0) {
+        if (nums == null || nums.length == 0) {
             return res;
         }
         int start = nums[0];
-        int next = start + 1;
         for (int i = 1; i <= nums.length; i++) {
-            if (i == nums.length) {
-                if (start == next - 1) {
-                    res.add(String.valueOf(start));
-                } else {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(start);
-                    sb.append("->");
-                    sb.append(next - 1);
-                    res.add(sb.toString());
+            if (i == nums.length || nums[i] != nums[i - 1] + 1) {
+                res.add(extract(nums, start, i - 1));
+                if (i < nums.length) {
+                    start = nums[i];
                 }
-                break;
-            }
-            int cur = nums[i];
-            if (cur == next) {
-                next = cur + 1;
-            } else {
-                if (start == next - 1) {
-                    res.add(String.valueOf(start));
-                } else {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(start);
-                    sb.append("->");
-                    sb.append(next - 1);
-                    res.add(sb.toString());
-                }
-                start = cur;
-                next = start + 1;
             }
         }
         return res;
+    }
+
+    private String extract(int[] nums, int startValue, int endIndex) {
+        StringBuilder res = new StringBuilder();
+        res.append(startValue);
+        if (nums[endIndex] != startValue) {
+            res.append("->");
+            res.append(nums[endIndex]);
+        }
+        return res.toString();
     }
 }
