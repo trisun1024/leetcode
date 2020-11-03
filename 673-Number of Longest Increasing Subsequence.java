@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class NumberOfLongestIncreasingSubsequence {
 
     // DP
     public int findNumberOfLIS(int[] nums) {
@@ -13,6 +13,7 @@ class Solution {
         int[] longest = new int[n];
         int[] counts = new int[n];
         Arrays.fill(counts, 1);
+        int max = 0;
         for (int i = 0; i < n; i++) {
             longest[i] = 1;
             for (int j = 0; j < i; j++) {
@@ -25,13 +26,10 @@ class Solution {
                     }
                 }
             }
+            max = Math.max(longest[i], max);
         }
-
-        int max = 0;
-        int res = 0;
-        for (int i : longest) {
-            max = Math.max(i, max);
-        }
+       
+        int res = 0; 
         for (int i = 0; i < n; i++) {
             if (longest[i] == max) {
                 res += counts[i];

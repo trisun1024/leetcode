@@ -1,32 +1,34 @@
+import extensions.ListNode;
+
 class InsertionSortList {
 
-    // Solution 1
+    // Dummy Head. 
     public ListNode insertionSortList(ListNode head) {
+        // base case
         if (head == null || head.next == null) {
             return head;
         }
-
-        ListNode preInsert, toInsert, dummyHead = new ListNode(0);
-        dummyHead.next = head;
-
+        ListNode dummy = new ListNode(0), preInsert = null, toInsert = null;
+        dummy.next = head;
         while (head != null && head.next != null) {
+            // if value in order then skip
             if (head.val <= head.next.val) {
                 head = head.next;
             } else {
                 toInsert = head.next;
-                // Locate preInsert.
-                preInsert = dummyHead;
+                preInsert = dummy;
+                // locate the position to insert
                 while (preInsert.next.val < toInsert.val) {
                     preInsert = preInsert.next;
                 }
+                // store the next
                 head.next = toInsert.next;
-                // Insert toInsert after preInsert.
+                // insert
                 toInsert.next = preInsert.next;
                 preInsert.next = toInsert;
             }
         }
-
-        return dummyHead.next;
+        return dummy.next;
     }
 
     // Solution 2

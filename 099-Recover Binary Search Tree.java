@@ -1,22 +1,9 @@
 import java.util.*;
-
-/**
- * Definition for a binary tree node.
- */
-
+import extensions.TreeNode;
 
 // Sort an Almost Sorted Array Where Two Elements Are Swapped
 class RecoverBinarySearchTree {
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
     public TreeNode recover(TreeNode root) {
         // sanity check
         if (root == null)
@@ -103,8 +90,13 @@ class RecoverBinarySearchTree {
         inOrderTraversal(root.right, inOrder);
     }
 
-    // Recursion 
+    // Recursion
     TreeNode x = null, y = null, pred = null;
+
+    public void recoverTreeII(TreeNode root) {
+        findTwoSwapped(root);
+        swap(x, y);
+    }
 
     public void findTwoSwapped(TreeNode root) {
         if (root == null)
@@ -119,11 +111,6 @@ class RecoverBinarySearchTree {
         }
         pred = root;
         findTwoSwapped(root.right);
-    }
-
-    public void recoverTreeII(TreeNode root) {
-        findTwoSwapped(root);
-        swap(x, y);
     }
 
     // Morris Inorder Traversal Time = O(N) Space = O(1)
