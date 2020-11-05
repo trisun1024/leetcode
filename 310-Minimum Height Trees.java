@@ -2,8 +2,7 @@ import java.util.*;
 
 class MinimumHeightTrees {
 
-    // Topologic
-
+    // Topologic Sorting. Time = O(V); Space = O(V);
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
         List<Integer> res = new ArrayList<>();
         int[] degrees = new int[n];
