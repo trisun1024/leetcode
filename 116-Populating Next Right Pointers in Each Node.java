@@ -3,10 +3,11 @@ import java.util.*;
 class PopulatingNextRightPointersInEachNode {
 
     /*
-    * The tree is perfect binary tree, so don't worry about missing children points.
-    */
+     * The tree is perfect binary tree, so don't worry about missing children
+     * points.
+     */
 
-    // level order traversal, iteration
+    // level order traversal, iteration. Time = O(N); Space = O(N);
     public Node connect(Node root) {
         if (root == null) {
             return root;
@@ -31,7 +32,7 @@ class PopulatingNextRightPointersInEachNode {
         return root;
     }
 
-    // previous node, iteration 
+    // previous node, iteration
     public Node connectII(Node root) {
         if (root == null) {
             return root;
@@ -51,24 +52,25 @@ class PopulatingNextRightPointersInEachNode {
         return root;
     }
 
-    // recursion Time = O(N); Space = O(N)
+    // recursion Time = O(N); Space = O(1)
     public Node connectIII(Node root) {
-        if(root==null) {
+        if (root == null) {
             return root;
         }
         root.next = null;
         helper(root);
         return root;
     }
+
     private void helper(Node root) {
-        if(root==null) {
-            return ;
+        if (root == null) {
+            return;
         }
-        if(root.left!=null ) {
+        if (root.left != null) {
             root.left.next = root.right;
         }
-        if(root.right!=null) {
-            if(root.next!=null) {
+        if (root.right != null) {
+            if (root.next != null) {
                 root.right.next = root.next.left;
             } else {
                 root.right.next = null;
