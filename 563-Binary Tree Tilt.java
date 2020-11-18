@@ -20,7 +20,7 @@ class BinaryTreeTilt {
         return left + right + root.val;
     }
 
-    // Iteration.
+    // Iteration. Time = O(N); 
     public int findTiltI(TreeNode root) {
         if (root == null) {
             return 0;
