@@ -1,41 +1,52 @@
-// 1ms
+import java.util.*;
+
 class LongestSubstringWithMostTwoDistinct {
-    public int lengthOfLongestSubstringTwoDistinct(String s) {
-        if (s == null || s.length() < 1) {
+
+    // HashMap.
+    public int lengthOfLongestSubstringTwoDistinctI(String s) {
+        if (s == null || s.length() == 0) {
             return 0;
         }
-
-        int index = 0;
-        int max = 1; // Longest is at least 1 character.
-
-        int[] counts = new int[256];
-        int distincts = 0; // Number of distinct characters currently in the substring.
-
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i); // current character
-
-            if (counts[c] == 0) {
-                distincts++;
-                counts[c]++;
-
-                // outbound 
-                while (distincts > 2) {
-                    char current = s.charAt(index);
-
-                    counts[current]--;
-                    if (counts[current] == 0) {
-                        distincts--;
-                    }
-
-                    index++;
-                }
-            } else {
-                counts[c]++;
-            }
-
-            max = Math.max(max, i - index + 1);
+        if (s.length() < 3) {
+            return s.length();
         }
+        int left = 0;
+        int right = 0;
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        int maxLen = 2;
+        while (right < s.length()) {
+            map.put(s.charAt(right), right++);
+            if (map.size() == 3) {
+                int deleteIndex = Collections.min(map.values());
+                map.remove(s.charAt(deleteIndex));
+                left = deleteIndex + 1;
+            }
+            maxLen = Math.max(maxLen, right - left);
+        }
+        return maxLen;
+    }
 
-        return max;
+    public int lengthOfLongestSubstringTwoDistinct(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        if (s.length() < 3) {
+            return s.length();
+        }
+        int[] map = new int[128];
+        int counter = 0;
+        int left = 0, right = 0;
+        int maxLength = 0;
+        while (right < s.length()) {
+            if (map[s.charAt(right++)]++ == 0) {
+                counter++;
+            }
+            while (counter > 2)
+                if (map[s.charAt(left++)]-- == 1)
+                    counter--;
+
+            maxLength = Math.max(maxLength, right - left);
+        }
+        return maxLength;
     }
 }

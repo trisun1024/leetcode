@@ -8,33 +8,33 @@ class DecodeString {
         if (s.length() == 0) {
             return "";
         }
-        Deque<String> result = new ArrayDeque<>();
-        Deque<Integer> count = new ArrayDeque<>();
-        int i = 0;
-        result.offerFirst("");
-        while (i < s.length()) {
-            char ch = s.charAt(i);
-            if (ch >= '0' && ch <= '9') {
-                int start = i;
-                while (s.charAt(i + 1) >= '0' && s.charAt(i + 1) <= '9')
-                    i++;
-                count.offerFirst(Integer.parseInt(s.substring(start, i + 1)));
+        Deque<Integer> countStack = new ArrayDeque<>();
+        Deque<StringBuilder> stringStack = new ArrayDeque<>();
+        StringBuilder currentString = new StringBuilder();
+        int k = 0;
+        for (char ch : s.toCharArray()) {
+            if (Character.isDigit(ch)) {
+                k = k * 10 + ch - '0';
             } else if (ch == '[') {
-                result.offerFirst("");
+                // push the number k to countStack
+                countStack.push(k);
+                // push the currentString to stringStack
+                stringStack.push(currentString);
+                // reset currentString and k
+                currentString = new StringBuilder();
+                k = 0;
             } else if (ch == ']') {
-                String str = result.pollFirst();
-                StringBuilder sb = new StringBuilder();
-                int times = count.pollFirst();
-                for (int j = 0; j < times; j += 1) {
-                    sb.append(str);
+                StringBuilder decodedString = stringStack.pop();
+                // decode currentK[currentString] by appending currentString k times
+                for (int currentK = countStack.pop(); currentK > 0; currentK--) {
+                    decodedString.append(currentString);
                 }
-                result.offerFirst(result.pollFirst() + sb.toString());
+                currentString = decodedString;
             } else {
-                result.offerFirst(result.pollFirst() + ch);
+                currentString.append(ch);
             }
-            i += 1;
         }
-        return result.pollFirst();
+        return currentString.toString();
     }
 
     // DFS
