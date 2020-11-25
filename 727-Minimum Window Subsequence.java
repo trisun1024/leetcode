@@ -1,4 +1,4 @@
-class Solution {
+class MinimumWindowSubsequence {
 
     // DP 2 array
     public String minWindowII(String S, String T) {

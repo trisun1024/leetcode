@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class LargestPlusSign {
     public int orderOfLargestPlusSign(int N, int[][] mines) {
         Set<Integer> banned = new HashSet<>();
         int[][] dp = new int[N][N];

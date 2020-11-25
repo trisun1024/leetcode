@@ -93,23 +93,17 @@ class NumberOfIslands {
             for (int c = 0; c < nc; ++c) {
                 if (grid[r][c] == '1') {
                     grid[r][c] = '0';
-                    if (r - 1 >= 0 && grid[r - 1][c] == '1') {
-                        uf.union(r * nc + c, (r - 1) * nc + c);
-                    }
-                    if (r + 1 < nr && grid[r + 1][c] == '1') {
-                        uf.union(r * nc + c, (r + 1) * nc + c);
-                    }
-                    if (c - 1 >= 0 && grid[r][c - 1] == '1') {
-                        uf.union(r * nc + c, r * nc + c - 1);
-                    }
-                    if (c + 1 < nc && grid[r][c + 1] == '1') {
-                        uf.union(r * nc + c, r * nc + c + 1);
+                    for (int[] dir : DIRS) {
+                        int x = r + dir[0];
+                        int y = c + dir[1];
+                        if (x >= 0 && x < nr && y >= 0 && y < nc && grid[x][y] == '1') {
+                            uf.union(r * nc + c, x * nc + y);
+                        }
                     }
                 }
             }
         }
-
-        return uf.getCount();
+        return uf.count();
     }
 
     static class UnionFind {
@@ -129,7 +123,7 @@ class NumberOfIslands {
                         parent[i * n + j] = i * n + j;
                         ++count;
                     }
-                    rank[i * n + j] = 0;
+                    rank[i * n + j] = 1;
                 }
             }
         }
@@ -146,17 +140,16 @@ class NumberOfIslands {
             if (rootx != rooty) {
                 if (rank[rootx] > rank[rooty]) {
                     parent[rooty] = rootx;
-                } else if (rank[rootx] < rank[rooty]) {
-                    parent[rootx] = rooty;
+                    rank[rootx] += rank[rooty];
                 } else {
-                    parent[rooty] = rootx;
-                    rank[rootx] += 1;
+                    parent[rootx] = rooty;
+                    rank[rooty] += rank[rootx];
                 }
-                --count;
+                count--;
             }
         }
 
-        public int getCount() {
+        public int count() {
             return count;
         }
     }

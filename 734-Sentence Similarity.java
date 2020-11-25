@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class SentenceSimilarity {
     public boolean areSentencesSimilar(String[] words1, String[] words2, List<List<String>> pairs) {
         if (words1.length != words2.length) {
             return false;

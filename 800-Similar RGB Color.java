@@ -1,4 +1,6 @@
-class Solution {
+class SimilarRGBColor {
+
+
     public String similarRGB(String color) {
         StringBuilder sb = new StringBuilder();
         sb.append('#');

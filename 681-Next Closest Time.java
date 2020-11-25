@@ -1,4 +1,6 @@
-class Solution {
+import java.util.*;
+
+class NextClosestTime  {
     public String nextClosestTime(String time) {
         char[] result = time.toCharArray();
         char[] digits = new char[] { result[0], result[1], result[3], result[4] };

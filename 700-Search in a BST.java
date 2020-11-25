@@ -1,13 +1,6 @@
-class Solution {
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode (int v) {
-            this.val = v;
-        }
-    }
+import extensions.*;
+class SearchInBST {
+ 
 
     // recursion 
     public TreeNode searchBST(TreeNode root, int val) {

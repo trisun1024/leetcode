@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class AllPathsFromSourceToTarget {
 
     // DFS Time = O(N!); Space = O(N)
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {

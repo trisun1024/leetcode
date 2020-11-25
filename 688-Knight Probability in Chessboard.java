@@ -1,9 +1,8 @@
 import java.util.*;
 
-class Solution {
+class KnightProbabilityInChessboard {
 
     // BFS
-
     public double knightProbabilityII(int N, int K, int r, int c) {
         Queue<Point> queue = new ArrayDeque<>();
         queue.offer(new Point(r, c));
@@ -69,28 +68,27 @@ class Solution {
     }
 
     // Iteration
-    public double  knightProbabilityI(int N, int K, int r, int c) { 
+    public double knightProbabilityI(int N, int K, int r, int c) {
         double[][] cur = new double[N][N];
         double[][] next = new double[N][N];
         // init
-        for(int i = 0; i < N; i++) {
-            for(int j = 0;j < N; j++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
                 cur[i][j] = 0;
                 next[i][j] = 0;
             }
         }
         // starting point
         cur[r][c] = 1;
-        while(K >0) {
-            for(int i = 0; i< N; i++) {
-                for(int j = 0; j < N; j++) {
-                    if(cur[i][j] > 0) {
-                        for(int[] dir: DIRS ){
+        while (K > 0) {
+            for (int i = 0; i < N; i++) {
+                for (int j = 0; j < N; j++) {
+                    if (cur[i][j] > 0) {
+                        for (int[] dir : DIRS) {
                             int x = i + dir[0];
                             int y = j + dir[1];
-                            if(x >= 0 && x < N && y >= 0 && y < N ) {
-                                next[x][y] = next[x][y] == 0 ? 0.125 * cur[i][j]
-                                        : next[x][y] + (0.125 * cur[i][j]);
+                            if (x >= 0 && x < N && y >= 0 && y < N) {
+                                next[x][y] = next[x][y] == 0 ? 0.125 * cur[i][j] : next[x][y] + (0.125 * cur[i][j]);
                             }
                         }
                         cur[i][j] = 0;
@@ -103,8 +101,8 @@ class Solution {
         }
         // get final res
         double prob = 0;
-        for(int i =0 ; i < N; i++) {
-            for(int j = 0; j< N; j++) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
                 prob += cur[i][j];
             }
         }

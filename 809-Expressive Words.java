@@ -1,4 +1,4 @@
-class Solution {
+class ExpressiveWords {
     public int expressiveWords(String S, String[] words) {
         int count = 0;
         for (String word : words) {

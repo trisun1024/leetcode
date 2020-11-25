@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class CheapestFlightsWithinKStops {
 
     // Graph matrix representation, Dijstra's
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {

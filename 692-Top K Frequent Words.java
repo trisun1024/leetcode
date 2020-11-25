@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class TopKFrequentWords {
 
     // Time = O(N*log(N)); Space = O(N);
     public List<String> topKFrequentII(String[] words, int k) {

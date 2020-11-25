@@ -1,4 +1,4 @@
-class Solution {
+class ValidParenthesisString {
 
     // brute force
     boolean ans = false;

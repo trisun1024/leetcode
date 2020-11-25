@@ -2,7 +2,7 @@ import java.util.*;
 
 class WordBreakII {
 
-    // DFS + DP
+    // DFS + DP. Time = O(N*M);
     public List<String> wordBreak(String s, List<String> wordDict) {
         List<String> res = new ArrayList<String>();
         if (s == null || s.length() == 0) {
@@ -39,7 +39,8 @@ class WordBreakII {
         for (int i = start; i < s.length(); i++) {
             String word = s.substring(start, i + 1);
             if (dict.contains(word)) {
-                helper(s, dict, path.append(word + " "), i + 1, res);
+                path.append(word).append(" ");
+                helper(s, dict, path, i + 1, res);
                 path.delete(path.length() - word.length() - 1, path.length());
             }
         }

@@ -1,4 +1,4 @@
-class Solution {
+class PartitionToKEqualSumSubsets {
 
     // DFS
     public boolean canPartitionKSubsets(int[] nums, int k) {

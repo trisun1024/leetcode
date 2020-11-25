@@ -1,4 +1,4 @@
-class Solution {
+class RedundantConnection {
 
     //
     public int[] findRedundantConnectionII(int[][] edges) {

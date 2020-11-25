@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class JewelsAndStones {
 
     // brute force
     public int numJewelsInStones(String J, String S) {

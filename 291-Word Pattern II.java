@@ -18,7 +18,6 @@ class WordPatternII {
 
     private boolean dfs(char[] array, int index, String s, int sIndex, Map<Character, String> charMap,
             Map<String, Character> strMap) {
-        System.out.println(index);
         if (index == array.length && sIndex == s.length()) {
             return true;
         }
@@ -73,8 +72,8 @@ class WordPatternII {
             int count = matched.length();
             // substring equals previously mapped string
             // moving forward
-            return start + count <= end + 1 && matched.equals(str.substring(start, start + count)) 
-                    && wordPatternMatch(pattern, str, map, set, start + matched.length(), end, startP + 1, endP); 
+            return start + count <= end + 1 && matched.equals(str.substring(start, start + count))
+                    && wordPatternMatch(pattern, str, map, set, start + matched.length(), end, startP + 1, endP);
         } else {
             int endPoint = end;
             for (int i = endP; i > startP; i--) {
