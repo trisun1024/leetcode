@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class removeSubfoldersFromFileSystem {
 
     // sort by length, hashset store parent folder
     // Time O(N*(log(N)+M^2)) Space O(N*M)

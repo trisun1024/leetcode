@@ -1,10 +1,10 @@
 import java.util.*;
 
-class Solution {
+class PathWithMaximumGold {
 
     public static final int[][] DIRS = { { 0, 1 }, { 0, -1 }, { 1, 0 }, { -1, 0 } };
 
-    // dfs
+    // DFS. Time = O(N)
     public int getMaximumGold(int[][] grid) {
         if (grid == null || grid.length == 0 || grid[0] == null || grid[0].length == 0) {
             return 0;
@@ -34,7 +34,7 @@ class Solution {
         return max + origin;
     }
 
-    // bfs
+    // BFS.
     public int getMaximumGoldII(int[][] grid) {
         int ans = 0, m = grid.length, n = grid[0].length;
         int[][] oneCellTrace = new int[m][n];

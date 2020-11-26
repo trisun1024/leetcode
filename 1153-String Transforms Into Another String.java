@@ -1,6 +1,8 @@
 import java.util.*;
 
-class Solution {
+class StringTransformsIntoAnotherString {
+
+    // HashMap. 
     public boolean canConvert(String str1, String str2) {
         if (str1.equals(str2)) {
             return true;

@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class MinimumKnightMoves {
 
     // BFS
     private final int[][] DIRECTIONS = new int[][] { { 2, 1 }, { 1, 2 }, { -1, 2 }, { -2, 1 }, { -2, -1 }, { -1, -2 },

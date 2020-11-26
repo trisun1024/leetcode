@@ -1,4 +1,4 @@
-class Solution {
+class CheckIfAStraightLine {
     public boolean checkStraightLine(int[][] coordinates) {
         if (coordinates.length == 2)
             return true;

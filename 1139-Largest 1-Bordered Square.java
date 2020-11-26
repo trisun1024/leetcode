@@ -1,7 +1,6 @@
-class Solution {
+class largest1BorderedSquare {
 
-    // DP
-    // Time O(N^2)
+    // DP. Time = O(N^2)
     public int largest1BorderedSquare(int[][] grid) {
         if (grid.length == 0 || grid[0].length == 0) {
             return 0;

@@ -1,4 +1,4 @@
-class Solution {
+class CountSquareSubmatricesWithAllOnes {
 
     // brute force
     public int countSquares(int[][] matrix) {

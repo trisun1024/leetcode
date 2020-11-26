@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Solution {
+class InvalidTransactions {
     static class Transaction {
         String name, city;
         int amount, min;

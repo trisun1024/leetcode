@@ -1,4 +1,4 @@
-class Solution {
+class StoneGameII {
 
     // DP
     public int stoneGameII(int[] piles) {

@@ -1,8 +1,7 @@
- 
 
 class MinimumCostToMoveChipsToSamePosition {
 
-
+    // Math.
     public int minCostToMoveChips(int[] position) {
         int even = 0;
         int odd = 0;
