@@ -10,12 +10,13 @@ class WebCrawlerMultithread {
 
         // multi-thread
         Crawler crawler = new Crawler(startUrl, hostname, htmlParser);
-        crawler.result = new HashSet<>(); // reset result as static property belongs to class, it will go through
-                                          // all of the test cases
+        // reset result as static property belongs to class, it will go through all of
+        // the test cases
+        crawler.result = new HashSet<>();  
         Thread thread = new Thread(crawler);
         thread.start();
-
-        crawler.joinThread(thread); // wait for thread to complete
+        // wait for thread to complete
+        Crawler.joinThread(thread); 
         return new ArrayList<>(crawler.result);
     }
 }

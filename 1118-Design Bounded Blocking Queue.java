@@ -17,7 +17,7 @@ class BoundedBlockingQueue {
         this.lock = new ReentrantLock();
         this.fullCondition = lock.newCondition();
         this.emptyCondition = lock.newCondition();
-        this.queue = new int[capacity];
+        this.queue = new int[CAPACITY];
         this.head = 0;
         this.tail = 0;
         this.size = 0;

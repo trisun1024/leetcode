@@ -2,50 +2,34 @@ import java.util.*;
 
 class LongestSubstringwithAtLeastKRepeatingCharacters {
 
-    // Divide and conqure.
+    // Divide and Conquer. Time = O(N^2); Space = O(N);
     public int longestSubstring(String s, int k) {
-        if (s.length() == 0 || k > s.length())
-            return 0;
-        if (k == 1) {
-            return s.length();
-        }
-        char[] arr = s.toCharArray();
-        return longestSubstring(arr, 0, arr.length - 1, k);
+        return helper(s, 0, s.length(), k);
     }
 
-    private int longestSubstring(char[] arr, int start, int end, int k) {
-        if (end - start < k - 1) {
+    private int helper(String s, int start, int end, int k) {
+        if (end < k) {
             return 0;
         }
-        // check if the arr is with at least k repeating characters
-        int[] freqs = new int[26];
-        Arrays.fill(freqs, -1);
-        int failed = 0;
-        for (int i = start; i <= end; ++i) {
-            if (freqs[arr[i] - 'a'] == -1) {
-                failed++;
-                freqs[arr[i] - 'a'] = k - 1;
-            } else if (freqs[arr[i] - 'a'] > 0 && --freqs[arr[i] - 'a'] == 0) {
-                failed--;
+        int[] countMap = new int[26];
+        // update the countMap with the count of each character
+        for (int i = start; i < end; i++) {
+            countMap[s.charAt(i) - 'a']++;
+        }
+        for (int mid = start; mid < end; mid++) {
+            if (countMap[s.charAt(mid) - 'a'] >= k) {
+                continue;
             }
-        }
-        // if string succeeds
-        if (failed == 0) {
-            return end - start + 1;
-        }
-        int maxLen = 0;
-        int lastFailed = start - 1;
-        for (int i = start; i <= end; ++i) {
-            if (freqs[arr[i] - 'a'] > 0) {
-                maxLen = Math.max(longestSubstring(arr, lastFailed + 1, i - 1, k), maxLen);
-                lastFailed = i;
+            int midNext = mid + 1;
+            while (midNext < end && countMap[s.charAt(midNext) - 'a'] < k) {
+                midNext++;
             }
+            return Math.max(helper(s, start, mid, k), helper(s, midNext, end, k));
         }
-        maxLen = Math.max(longestSubstring(arr, lastFailed + 1, end, k), maxLen);
-        return maxLen;
+        return (end - start);
     }
 
-    // Two pointers.
+    // Two Pointers.
     public int longestSubstringI(String s, int k) {
         int maxLen = Integer.MIN_VALUE;
         char[] ch = s.toCharArray();
@@ -63,7 +47,7 @@ class LongestSubstringwithAtLeastKRepeatingCharacters {
             }
             maxIndex[val] = i;
             if (count[val] >= k) {
-                boolean flag = true;
+                boolean flag = false;
                 int max = -1;
                 int min = ch.length;
 
@@ -81,12 +65,13 @@ class LongestSubstringwithAtLeastKRepeatingCharacters {
 
                 for (int j = 0; j < 26; j++) {
                     if (count[j] != 0 && maxIndex[j] > max && minIndex[j] < min) {
-                        flag = false;
+                        flag = true;
                         break;
                     }
                 }
-                if (!flag)
+                if (flag) {
                     continue;
+                }
                 int diff = i - max;
                 maxLen = Math.max(maxLen, diff);
             }
