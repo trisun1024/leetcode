@@ -16,6 +16,28 @@ class MaximumAverageSubarrayII {
         return res;
     }
 
+    // Prefix Sum. Time = O(N^2); Space = O(N);
+    public double findMaxAverageII(int[] nums, int k) {
+        if (nums.length < k) {
+            return 0;
+        }
+        int[] prefix = new int[nums.length + 1];
+        for (int i = 1; i < prefix.length; i++) {
+            prefix[i] = prefix[i - 1] + nums[i - 1];
+        }
+        if (nums.length == k) {
+            return (prefix[prefix.length - 1] - prefix[0]) / (double) nums.length;
+        }
+        double res = Double.MIN_VALUE;
+        for (int i = 0; i < nums.length - k + 1; i++) {
+            for (int j = i + k; j <= nums.length; j++) {
+                double temp = (prefix[j] - prefix[i]) / (double) (j - i);
+                res = Math.max(res, temp);
+            }
+        }
+        return res;
+    }
+
     // Binary Search + Prefix Sum. Time = O(N*log(N)); Space = O(N);
     public double findMaxAverage(int[] nums, int k) {
         // compute partial sums
