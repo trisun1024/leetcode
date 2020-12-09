@@ -1,25 +1,22 @@
 import java.util.*;
-
-// extreme case Integer.MAX_VALUE
+ 
 class MissingRanges {
+
+    // Linear Scan. Time = O(N);
     public List<String> findMissingRanges(int[] nums, int lower, int upper) {
         List<String> res = new ArrayList<>();
-        long Lower = (long) lower;
-        long Upper = (long) upper;
         for (int num : nums) {
-            long justBelow = (long) num - 1;
-            if (justBelow == Lower)
-                res.add(String.valueOf(justBelow));
-            else if (justBelow > Lower)
-                res.add(Lower + "->" + justBelow);
-            if (num == Integer.MAX_VALUE)
+            if (num > lower) {
+                res.add(lower + ((num - 1 > lower) ? "->" + (num - 1) : ""));
+            }
+            if (num == upper) {
                 return res;
-            Lower = (long) num + 1;
+            }
+            lower = num + 1;
         }
-        if (Lower == Upper)
-            res.add(String.valueOf(Upper));
-        else if (Lower < Upper)
-            res.add(Lower + "->" + Upper);
+        if (lower <= upper) {
+            res.add(lower + ((upper > lower) ? "->" + upper : ""));
+        }
         return res;
     }
 }
