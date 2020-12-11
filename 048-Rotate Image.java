@@ -1,5 +1,7 @@
 // time: O(n^2) space: O(n)
 class RotateImage {
+
+    // Sol1.
     public void rotate(int[][] matrix) {
         if (matrix.length != matrix[0].length)
             return;
@@ -21,10 +23,9 @@ class RotateImage {
             }
         }
     }
-}
-// time: O(n^2) space: O(n)
-class Solution1 {
-    public void rotate(int[][] matrix) {
+
+    // Rotate As Rectangle.
+    public void rotateI(int[][] matrix) {
         int n = matrix.length;
         for (int i = 0; i < n / 2 + n % 2; i++) {
             for (int j = 0; j < n / 2; j++) {
@@ -46,11 +47,9 @@ class Solution1 {
             }
         }
     }
-}
 
-// time: O(n^2) space: O(n)
-class Solution2 {
-    public void rotate(int[][] matrix) {
+    // Rotate In A Single Loop
+    public void rotateII(int[][] matrix) {
         int n = matrix.length;
         for (int i = 0; i < (n + 1) / 2; i++) {
             for (int j = 0; j < n / 2; j++) {

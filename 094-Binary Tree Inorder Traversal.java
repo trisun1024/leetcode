@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
+import extensions.TreeNode;
 
 /**
  * Definition for a binary tree node. public class TreeNode { int val; TreeNode
@@ -30,27 +29,18 @@ class BinaryTreeInorderTraversal {
     // Iterative
     public List<Integer> inorderTraversalItr(TreeNode root) {
         List<Integer> res = new ArrayList<>();
-        Stack<TreeNode> stack = new Stack<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode curr = root;
         while (curr != null || !stack.isEmpty()) {
             while (curr != null) {
-                stack.push(curr);
+                stack.offerFirst(curr);
                 curr = curr.left;
             }
-            curr = stack.pop();
+            curr = stack.pollFirst();
             res.add(curr.val);
             curr = curr.right;
         }
         return res;
     }
 
-    static class TreeNode {
-        TreeNode left;
-        TreeNode right;
-        int val;
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-    }
 }

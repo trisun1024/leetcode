@@ -19,7 +19,7 @@ class RemoveDuplicatesFromArrayII {
                 if (count > 2) {
                     j++;
                 } else {
-                    nums[i++] = nums[j++];
+                    nums[i++] = nums[j++]; 
                 }
             } else {
                 // reset count to zero and cur change to current j index val
