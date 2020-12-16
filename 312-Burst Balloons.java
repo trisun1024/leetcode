@@ -1,14 +1,13 @@
 class BurstBalloons {
 
-    // DP top-down
+    // DP top-down. Time = O(N^3); Space = O(N^2);
     public int maxCoinsI(int[] nums) {
         int n = nums.length + 2;
+        // form a new array with left most and right most value of 1
         int[] new_nums = new int[n];
-
         for (int i = 0; i < nums.length; i++) {
             new_nums[i + 1] = nums[i];
         }
-
         new_nums[0] = new_nums[n - 1] = 1;
 
         // cache the results of dp
@@ -21,47 +20,51 @@ class BurstBalloons {
 
     public int dp(int[][] memo, int[] nums, int left, int right) {
         // no more balloons can be added
-        if (left + 1 == right)
+        if (left + 1 == right) {
             return 0;
+        }
 
         // we've already seen this, return from cache
-        if (memo[left][right] > 0)
+        if (memo[left][right] > 0) {
             return memo[left][right];
+        }
 
         // add each balloon on the interval and return the maximum score
         int ans = 0;
-        for (int i = left + 1; i < right; ++i)
+        for (int i = left + 1; i < right; ++i) {
             ans = Math.max(ans,
                     nums[left] * nums[i] * nums[right] + dp(memo, nums, left, i) + dp(memo, nums, i, right));
+        }
         // add to the cache
         memo[left][right] = ans;
         return ans;
     }
 
-    // DP bottom-up
+    // DP bottom-up. Time = O(N^3); Space = O(N^2);
     public int maxCoins(int[] nums) {
-        // reframe the problem
+        // Rebuild the nums to n+2 length with start and end value of 1
         int n = nums.length + 2;
-        int[] new_nums = new int[n];
-
+        int[] newArray = new int[n];
         for (int i = 0; i < nums.length; i++) {
-            new_nums[i + 1] = nums[i];
+            newArray[i + 1] = nums[i];
         }
-
-        new_nums[0] = new_nums[n - 1] = 1;
-
-        // dp will store the results of our calls
+        newArray[0] = newArray[n - 1] = 1;
+        // DP run the result.
         int[][] dp = new int[n][n];
-
-        // iterate over dp and incrementally build up to dp[0][n-1]
-        for (int left = n - 2; left > -1; left--)
+        for (int left = n - 2; left >= 0; left--) {
             for (int right = left + 2; right < n; right++) {
-                for (int i = left + 1; i < right; ++i)
-                    // same formula to get the best score from (left, right) as before
+                for (int i = left + 1; i < right; i++) {
                     dp[left][right] = Math.max(dp[left][right],
-                            new_nums[left] * new_nums[i] * new_nums[right] + dp[left][i] + dp[i][right]);
+                            newArray[left] * newArray[i] * newArray[right] + dp[left][i] + dp[i][right]);
+                }
             }
-
+        }
         return dp[0][n - 1];
     }
+    /**
+     * Base Case: DP[1][1] = left * (i=1) * right
+     * 
+     * Induction Rule: DP[left][right] represents the maximum value from left index
+     * to right index inclusive.
+     */
 }

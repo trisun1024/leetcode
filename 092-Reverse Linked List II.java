@@ -1,13 +1,6 @@
+import extensions.ListNode;
+
 class ReverseLinkedListII {
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int v) {
-            this.val = v;
-        }
-    }
 
     // iteration
     public ListNode reverseBetween(ListNode head, int m, int n) {
@@ -44,20 +37,21 @@ class ReverseLinkedListII {
         if (head == null || head.next == null || m > n) {
             return head;
         }
-       if(m==1) {
-           return reverseNodes(head, n);
-       }
-       head.next = reverseBetweenII(head.next, m-1, n-1);
-       return head;
+        if (m == 1) {
+            return reverseNodes(head, n);
+        }
+        head.next = reverseBetweenII(head.next, m - 1, n - 1);
+        return head;
     }
-    
+
     private ListNode next;
+
     private ListNode reverseNodes(ListNode head, int n) {
-        if(n==1) {
+        if (n == 1) {
             next = head.next;
             return head;
         }
-        ListNode tail = reverseNodes(head.next, n-1);
+        ListNode tail = reverseNodes(head.next, n - 1);
         head.next.next = head;
         head.next = next;
         return tail;

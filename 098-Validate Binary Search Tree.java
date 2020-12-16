@@ -1,17 +1,7 @@
 import java.util.*;
-
+import extensions.TreeNode;
 class ValidateBinarySearchTree {
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int v) {
-            this.val = v;
-        }
-    }
-
+ 
     // recursion Time = O(N) Space = O(N)
     public boolean isValidBST(TreeNode root) {
         if (root == null) {

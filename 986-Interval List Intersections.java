@@ -1,6 +1,7 @@
 import java.util.*;
 
 class Solution {
+    
     public int[][] intervalIntersection(int[][] A, int[][] B) {
         List<int[]> res = new ArrayList<>();
         int i = 0;
