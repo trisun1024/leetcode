@@ -2,23 +2,26 @@ import java.util.*;
 
 class IncreasingSubsequences {
 
-    // return a list of all possible sequences
+    // return a list of all possible sequences14
     public List<List<Integer>> findSubsequences(int[] nums) {
         Set<List<Integer>> res = new HashSet<List<Integer>>();
-        List<Integer> holder = new ArrayList<Integer>();
-        findSequence(res, holder, 0, nums);
+        List<Integer> cur = new ArrayList<Integer>();
+        helper(nums, 0, cur, res);
         return new ArrayList<>(res);
     }
 
-    public void findSequence(Set<List<Integer>> res, List<Integer> holder, int index, int[] nums) {
-        if (holder.size() >= 2) {
-            res.add(new ArrayList<>(holder));
+    public void helper(int[] nums, int index, List<Integer> cur, Set<List<Integer>> res) {
+        if (index > nums.length) {
+            return;
+        }
+        if (cur.size() > 1) {
+            res.add(new ArrayList<>(cur));
         }
         for (int i = index; i < nums.length; i++) {
-            if (holder.size() == 0 || holder.get(holder.size() - 1) <= nums[i]) {
-                holder.add(nums[i]);
-                findSequence(res, holder, i + 1, nums);
-                holder.remove(holder.size() - 1);
+            if (cur.size() == 0 || cur.get(cur.size() - 1) <= nums[i]) {
+                cur.add(nums[i]);
+                helper(nums, i + 1, cur, res);
+                cur.remove(cur.size() - 1);
             }
         }
     }
