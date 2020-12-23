@@ -13,6 +13,7 @@ class JumpGameIII {
             if (arr[cur] == 0) {
                 return true;
             }
+            // if visited, then skip 
             if (arr[cur] < 0) {
                 continue;
             }
@@ -22,6 +23,7 @@ class JumpGameIII {
                     queue.offer(next);
                 }
             }
+            // mark as visited 
             arr[cur] = -arr[cur];
         }
         return false;
@@ -37,6 +39,6 @@ class JumpGameIII {
             return true;
         }
         arr[start] = -arr[start];
-        return canReach(arr, start + arr[start]) || canReach(arr, start - arr[start]);
+        return canReachI(arr, start + arr[start]) || canReachI(arr, start - arr[start]);
     }
 }

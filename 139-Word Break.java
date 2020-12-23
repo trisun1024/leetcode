@@ -46,11 +46,12 @@ class WordBreak {
         }
     }
 
-    // DP Time = O(N^2);
+    // DP Time = O(N^3) not O(N^2) because substring cost O(N);
     public boolean wordBreakI(String s, List<String> wordDict) {
         Set<String> newWordDict = new HashSet<String>(wordDict);
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
+        // M[i] represents string between i,j is in word dict or not 
         for (int i = 1; i <= s.length(); i++) {
             for (int j = 0; j < i; j++) {
                 if (dp[j] && newWordDict.contains(s.substring(j, i))) {
