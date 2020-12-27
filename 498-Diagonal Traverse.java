@@ -11,22 +11,27 @@ class DiagonalTraverse {
         int cols = matrix[0].length;
 
         int[] res = new int[rows * cols];
-        int k = 0;
-        List<Integer> intermediate = new ArrayList<>();
-        for (int i = 0; i < rows + cols - 1; i++) {
-            intermediate.clear();
-            int r = i < cols ? 0 : i - cols + 1;
-            int c = i < cols ? i : cols - 1;
-            while (r < rows && c > -1) {
-                intermediate.add(matrix[r][c]);
-                r++;
-                c--;
-            }
-            if (i % 2 == 0) {
-                Collections.reverse(intermediate);
-            }
-            for (int j = 0; j < intermediate.size(); j++) {
-                res[k++] = intermediate.get(j);
+        int r = 0, c = 0;
+        for (int i = 0; i < res.length; i++) {
+            res[i] = matrix[r][c];
+            if ((r + c) % 2 == 0) { // moving up
+                if (c == cols - 1) {
+                    r++;
+                } else if (r == 0) {
+                    c++;
+                } else {
+                    r--;
+                    c++;
+                }
+            } else { // moving down
+                if (r == rows - 1) {
+                    c++;
+                } else if (c == 0) {
+                    r++;
+                } else {
+                    r++;
+                    c--;
+                }
             }
         }
         return res;
@@ -37,45 +42,37 @@ class DiagonalTraverse {
         if (matrix == null || matrix.length == 0) {
             return new int[0];
         }
-        int rows = matrix.length;
-        int cols = matrix[0].length;
-        int[] res = new int[rows * cols];
-        res[0] = matrix[0][0];
-        int i = 0;
-        int j = 0;
-        int k = 1;
-        while (k < rows * cols) {
-            // move up-right first
-            while (i >= 1 && j < cols - 1) {
-                i--;
-                j++;
-                res[k++] = matrix[i][j];
+        int m = matrix.length, n = matrix[0].length;
+
+        int[] result = new int[m * n];
+        int row = 0, col = 0, d = 0;
+        int[][] dirs = { { -1, 1 }, { 1, -1 } };
+
+        for (int i = 0; i < m * n; i++) {
+            result[i] = matrix[row][col];
+            row += dirs[d][0];
+            col += dirs[d][1];
+
+            if (row >= m) {
+                row = m - 1;
+                col += 2;
+                d = 1 - d;
             }
-            // when we can't move up-right ,then move right one step
-            if (j < cols - 1) {
-                j++;
-                res[k++] = matrix[i][j];
-            } else if (i < rows - 1) {
-                // if we can't move right,just move down one step
-                i++;
-                res[k++] = matrix[i][j];
+            if (col >= n) {
+                col = n - 1;
+                row += 2;
+                d = 1 - d;
             }
-            // After that,we will move down-left until it can't move
-            while (i < rows - 1 && j >= 1) {
-                i++;
-                j--;
-                res[k++] = matrix[i][j];
+            if (row < 0) {
+                row = 0;
+                d = 1 - d;
             }
-            // if we can't move down-left,then move down
-            if (i < rows - 1) {
-                i++;
-                res[k++] = matrix[i][j];
-            } else if (j < cols - 1) {
-                // if we can't move down,just move right
-                j++;
-                res[k++] = matrix[i][j];
+            if (col < 0) {
+                col = 0;
+                d = 1 - d;
             }
         }
-        return res;
+
+        return result;
     }
 }

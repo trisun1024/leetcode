@@ -1,32 +1,30 @@
+import extensions.ListNode;
 
 class SwapNodes {
 
     // Recursion
     public ListNode swapPairs(ListNode head) {
-        if (head == null || head.next == null)
+        if (head == null || head.next == null) {
             return head;
-        ListNode tempNext = head.next.next;
-        ListNode tempFirst = head.next;
-        ListNode tempSecond = head;
-        head = tempFirst;
-        head.next = tempSecond;
-        head.next.next = swapPairs(tempNext);
-        return head;
+        }
+        ListNode newHead = head.next;
+        head.next = swapPairs(head.next.next);
+        newHead.next = head;
+        return newHead;
     }
 
     // Iteration
-    public ListNode swapPairsII(ListNode head) {
-        if (head == null || head.next == null) return head;
-        ListNode cur = head;
-        ListNode newHead = head.next;
-        while (cur != null && cur.next != null) {
-            ListNode tmp = cur;
-            cur = cur.next;
-            tmp.next = cur.next;
-            cur.next = tmp;
-            cur = tmp.next;
-            if (cur != null && cur.next != null) tmp.next = cur.next;
+    public ListNode swapPairsI(ListNode head) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode cur = dummy;
+        while (cur.next != null && cur.next.next != null) {
+            ListNode next = cur.next.next;
+            cur.next.next = cur.next.next.next;
+            next.next = cur.next;
+            cur.next = next;
+            cur = cur.next.next;
         }
-        return newHead;
+        return dummy.next;
     }
 }
