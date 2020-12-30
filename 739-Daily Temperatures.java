@@ -2,10 +2,14 @@ import java.util.*;
 
 class DailyTemperatures {
 
+    // Stack.
     public int[] dailyTemperatures(int[] T) {
-        int[] res = new int[T.length];
+        int n = T.length;
+        int[] res = new int[n];
+        // stack store the index of past temperature
         Deque<Integer> stack = new ArrayDeque<>();
-        for (int i = T.length - 1; i >= 0; i--) {
+        for (int i =n-1; i >= 0; i--) {
+            // current temperature is higher or equal to stack top, then poll
             while (!stack.isEmpty() && T[i] >= T[stack.peekFirst()]) {
                 stack.pollFirst();
             }
