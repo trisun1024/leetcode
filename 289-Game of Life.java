@@ -20,11 +20,11 @@ class GameOfLife {
                         }
                     }
                 }
-                // check rule 1 & 3
+                // check rule 1 & 3, set pos to -1 for later to be dead
                 if (board[r][c] == 1 && (liveNeighbor < 2 || liveNeighbor > 3)) {
                     board[r][c] = -1;
                 }
-                // rule 2
+                // rule 2, set pos to 2 for later to be alive
                 if (board[r][c] == 0 && liveNeighbor == 3) {
                     board[r][c] = 2;
                 }

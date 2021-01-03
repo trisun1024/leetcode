@@ -1,7 +1,8 @@
 import java.util.*;
 
-// Sorting time: O(n*logN) space: O(1) or O(n)
 class LongestConsecutiveSequence {
+
+    // Sorting time: O(n*logN) space: O(1) or O(n)
     public int longestConsecutive(int[] nums) {
         if (nums.length == 0)
             return 0;
