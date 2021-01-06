@@ -1,8 +1,8 @@
-/**
- * Definition for singly-linked list. public class ListNode { int val; ListNode
- * next; ListNode(int x) { val = x; } }
- */
+import extensions.ListNode;
+
 class RemoveDuplicatesFromLinkedList {
+
+    // Iteration.
     public ListNode deleteDuplicates(ListNode head) {
         ListNode temp = head;
         while (temp != null) {
@@ -16,13 +16,13 @@ class RemoveDuplicatesFromLinkedList {
         }
         return head;
     }
-}
 
-/*
-// 3 Line Java recursive solution
-public ListNode deleteDuplicates(ListNode head) {
-        if(head == null || head.next == null)return head;
-        head.next = deleteDuplicates(head.next);
+    // Recursion.
+    public ListNode deleteDuplicatesI(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        head.next = deleteDuplicatesI(head.next);
         return head.val == head.next.val ? head.next : head;
+    }
 }
-*/

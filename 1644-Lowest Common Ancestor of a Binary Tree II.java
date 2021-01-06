@@ -21,12 +21,8 @@ class LowestCommonAncestorOfBinaryTreeII {
     }
 
     private TreeNode lca(TreeNode root, TreeNode p, TreeNode q) {
-        // base case
-        if (root == null) {
-            return null;
-        }
-        // if p or q == root, then return root;
-        if (root == p || root == q) {
+        // base case, if p or q == root or root == null, then return root;
+        if (root == null || root == p || root == q) {
             return root;
         }
         TreeNode left = lca(root.left, p, q);

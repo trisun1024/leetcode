@@ -1,28 +1,16 @@
-/**
- * Definition for a binary tree node. public class TreeNode { int val; TreeNode
- * left; TreeNode right; TreeNode(int x) { val = x; } }
- */
-class LCAofBT {
+import extensions.TreeNode;
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
+class LowestCommonAncestorOfBinaryTree {
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
+    // Recursion.
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null) {
-            return null;
-        }
-        if (root == p || root == q) {
+        // base case
+        if (root == null || root == p || root == q) {
             return root;
         }
         TreeNode left = lowestCommonAncestor(root.left, p, q);
         TreeNode right = lowestCommonAncestor(root.right, p, q);
+        // if left and right both not null, then root is common ancestor
         if (left != null && right != null) {
             return root;
         }

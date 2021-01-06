@@ -1,12 +1,7 @@
-
-/**
- * Definition for a binary tree node. public class TreeNode { int val; TreeNode
- * left; TreeNode right; TreeNode(int x) { val = x; } }
- */
-
-import extensions.*;
+import extensions.TreeNode;
 
 class ClosestBSTValue {
+    
     // Recursive
     public int closestValue(TreeNode root, double target) {
         int a = root.val;
@@ -31,7 +26,7 @@ class ClosestBSTValue {
         return ret;
     }
 
-    // Binary Search 
+    // Binary Search
     public int closestValueIII(TreeNode root, double target) {
         int val = root.val;
         int closest = root.val;

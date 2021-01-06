@@ -1,30 +1,15 @@
-/**
- * Definition for a binary tree node. public class TreeNode { int val; TreeNode
- * left; TreeNode right; TreeNode(int x) { val = x; } }
- */
-// Recursive
+import extensions.TreeNode;
+
 class LCAofBST {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
+    // Recursion.
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-
         // Value of current node or parent node.
         int parentVal = root.val;
-
         // Value of p
         int pVal = p.val;
-
         // Value of q;
         int qVal = q.val;
-
         if (pVal > parentVal && qVal > parentVal) {
             // If both p and q are greater than parent
             return lowestCommonAncestor(root.right, p, q);
@@ -39,16 +24,15 @@ class LCAofBST {
 
     // Iteravtive
     public TreeNode lowestCommonAncestorItr(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null)
-            return null;
-        TreeNode node = root;
-        while (node != null) {
-            if (p.val > node.val && q.val > node.val) {
-                node = node.right;
-            } else if (p.val < node.val && q.val < node.val) {
-                node = node.left;
+        int min = Math.min(p.val, q.val);
+        int max = Math.max(p.val, q.val);
+        while (root != null) {
+            if (root.val < min) {
+                root = root.right;
+            } else if (root.val > max) {
+                root = root.left;
             } else {
-                return node;
+                return root;
             }
         }
         return null;
