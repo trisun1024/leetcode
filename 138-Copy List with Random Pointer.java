@@ -1,6 +1,20 @@
 import java.util.*;
 
+class Node {
+    int val;
+    Node next;
+    Node random;
+
+    public Node(int val) {
+        this.val = val;
+        this.next = null;
+        this.random = null;
+    }
+}
+
 class CopyListWithRandomPointer {
+
+    // Linear Scan. Time = O(N);
     public Node copyRandomList(Node head) {
         if (head == null) {
             return null;
@@ -26,15 +40,4 @@ class CopyListWithRandomPointer {
         return dummy.next;
     }
 
-    static class Node {
-        int val;
-        Node next;
-        Node random;
-
-        public Node(int val) {
-            this.val = val;
-            this.next = null;
-            this.random = null;
-        }
-    }
 }

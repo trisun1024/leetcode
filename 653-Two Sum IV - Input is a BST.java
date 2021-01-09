@@ -2,7 +2,9 @@ import java.util.*;
 import extensions.TreeNode;
 
 class TwoSumIV {
-    public boolean findTarget(TreeNode root, int k) {
+
+    // In-order traversal.
+    public boolean findTargetI(TreeNode root, int k) {
         List<Integer> list = new ArrayList<>();
         inorder(root, list);
         int l = 0;
@@ -27,5 +29,22 @@ class TwoSumIV {
         inorder(root.left, list);
         list.add(root.val);
         inorder(root.right, list);
+    }
+
+    // Recursion.
+    public boolean findTarget(TreeNode root, int k) {
+        Set<Integer> set = new HashSet<>();
+        return find(root, k, set);
+    }
+
+    private boolean find(TreeNode root, int k, Set<Integer> set) {
+        if (root == null) {
+            return false;
+        }
+        if (set.contains(k - root.val)) {
+            return true;
+        }
+        set.add(root.val);
+        return find(root.left, k, set) || find(root.right, k, set);
     }
 }

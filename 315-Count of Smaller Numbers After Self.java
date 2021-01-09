@@ -2,7 +2,7 @@ import java.util.*;
 
 class CountOfSmallerNumbersAfterSelf {
 
-    // brute force
+    // Brute Force. Time = O(N^2);
     public List<Integer> countSmaller(int[] nums) {
         List<Integer> res = new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
@@ -17,60 +17,56 @@ class CountOfSmallerNumbersAfterSelf {
         return res;
     }
 
+    // Merge Sort. Time = O(N*log(N));
     public List<Integer> countSmallerI(int[] nums) {
+        int n = nums.length;
+        int[] indexArray = initialIndex(nums);
+        int[] countArray = new int[n];
+        int[] helper = new int[n];
+        mergesort(nums, indexArray, countArray, helper, 0, n - 1);
         List<Integer> res = new ArrayList<>();
-        if (nums.length == 0) {
-            return res;
+        for (int i : countArray) {
+            res.add(i);
         }
-        res.add(0);
-
-        int len = nums.length;
-        int lastNum = nums[len - 1];
-
-        Node root = new Node(lastNum);
-
-        for (int i = len - 2; i >= 0; i--) {
-            res.add(insert(root, nums[i]));
-        }
-        Collections.reverse(res);
         return res;
     }
 
-    public int insert(Node root, int num) {
-        Node node = root;
-        int rightCounts = 0;
-        while (true) {
-            if (num > node.val) {
-                rightCounts += node.count;
-                if (node.right == null) {
-                    node.right = new Node(num);
-                    break;
-                } else {
-                    node = node.right;
-                }
-
-            } else {
-                node.count++;
-                if (node.left == null) {
-                    node.left = new Node(num);
-                    break;
-                } else {
-                    node = node.left;
-                }
-            }
+    private int[] initialIndex(int[] nums) {
+        int[] arr = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            arr[i] = i;
         }
-        return rightCounts;
+        return arr;
     }
 
-    static class Node {
-        int val;
-        int count;
-        Node left;
-        Node right;
+    private void mergesort(int[] nums, int[] indexArray, int[] countArray, int[] helper, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        int mid = left + (right - left) / 2;
+        mergesort(nums, indexArray, countArray, helper, left, mid);
+        mergesort(nums, indexArray, countArray, helper, mid + 1, right);
+        merge(nums, indexArray, countArray, helper, left, mid, right);
+    }
 
-        Node(int val) {
-            this.val = val;
-            this.count = 1;
+    private void merge(int[] nums, int[] indexArray, int[] countArray, int[] helper, int left, int mid, int right) {
+        copyArray(indexArray, helper, left, right);
+        int l = left;
+        int r = mid + 1;
+        int cur = left;
+        while (l <= mid) {
+            if (r > right || nums[helper[l]] <= nums[helper[r]]) {
+                countArray[helper[l]] += (r - mid - 1);
+                indexArray[cur++] = helper[l++];
+            } else {
+                indexArray[cur++] = helper[r++];
+            }
+        }
+    }
+
+    private void copyArray(int[] indexArray, int[] helper, int left, int right) {
+        for (int i = left; i <= right; i++) {
+            helper[i] = indexArray[i];
         }
     }
 }

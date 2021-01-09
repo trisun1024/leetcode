@@ -4,13 +4,53 @@ class DeleteNodeInBST {
 
     // Recursion
     public TreeNode deleteNode(TreeNode root, int key) {
+        // base case
+        if (root == null) {
+            return null;
+        }
+        if (key < root.val) {
+            root.left = deleteNode(root.left, key);
+        } else if (key > root.val) {
+            root.right = deleteNode(root.right, key);
+        } else if (key == root.val) {
+            if (root.left == null) {
+                return root.right;
+            } else if (root.right == null) {
+                return root.left;
+            } else if (root.right.left == null) {
+                root.right.left = root.left;
+                return root.right;
+            } else {
+                // find the smallest value in right tree, return the smallest
+                TreeNode newRoot = deleteSmallest(root.right);
+                newRoot.left = root.left;
+                newRoot.right = root.right;
+                return newRoot;
+            }
+        }
+        return root;
+    }
+
+    private TreeNode deleteSmallest(TreeNode root) {
+        while (root.left.left != null) {
+            root = root.left;
+        }
+        TreeNode smallest = root.left;
+        root.left = root.left.right;
+        return smallest;
+    }
+
+    // Recursion II.
+    public TreeNode deleteNodeII(TreeNode root, int key) {
         if (root == null) {
             return null;
         }
         if (root.val > key) {
             root.left = deleteNode(root.left, key);
+
         } else if (root.val < key) {
             root.right = deleteNode(root.right, key);
+
         } else {
             // find the largest node in the left, and put it as the root
             if (root.left == null) {
@@ -26,50 +66,9 @@ class DeleteNodeInBST {
             }
             root.val = cur.val;
             root.left = deleteNode(left, cur.val);
+
         }
         return root;
-    }
-
-    public TreeNode deleteNodeII(TreeNode root, int key) {
-        if (root == null) {
-            return root;
-        }
-        if (key > root.val) {
-            root.right = deleteNode(root.right, key);
-        } else if (key < root.val) {
-            root.left = deleteNode(root.left, key);
-        } else {
-            if (root.left == null && root.right == null) {
-                root = null;
-            } else if (root.right != null) {
-                root.val = successor(root);
-                root.right = deleteNode(root.right, root.val);
-            } else {
-                root.val = predecessor(root);
-                root.left = deleteNode(root.left, root.val);
-            }
-        }
-        return root;
-    }
-
-    /*
-     * One step right and then always left
-     */
-    public int successor(TreeNode root) {
-        root = root.right;
-        while (root.left != null)
-            root = root.left;
-        return root.val;
-    }
-
-    /*
-     * One step left and then always right
-     */
-    public int predecessor(TreeNode root) {
-        root = root.left;
-        while (root.right != null)
-            root = root.right;
-        return root.val;
     }
 
     // Iteration

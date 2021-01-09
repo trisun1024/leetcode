@@ -1,6 +1,6 @@
 class UglyNumber {
 
-    
+    // Count all.
     public boolean isUgly(int num) {
         int[] dividors = { 2, 3, 5 };
         if (num < 1) {
