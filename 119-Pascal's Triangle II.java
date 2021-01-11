@@ -32,17 +32,12 @@ class PascalTriangleII {
     }
 
     // Math
-    public List<Integer> getRowII(int rowIndex) {
-        List<Integer> row = new ArrayList<>() {
-            {
-                add(1);
-            }
-        };
-
-        for (int k = 1; k <= rowIndex; k++) {
+    public List<Integer> getRowII(int n) {
+        List<Integer> row = new ArrayList<>();
+        row.add(1);
+        for (int k = 1; k <= n; k++) {
             row.add((int) ((row.get(row.size() - 1) * (long) (n - k + 1)) / k));
         }
-
         return row;
     }
 }

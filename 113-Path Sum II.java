@@ -1,44 +1,29 @@
-import java.util.ArrayList;
+import extensions.TreeNode;
 import java.util.*;
-/**
- * Definition for a binary tree node. public class TreeNode { int val; TreeNode
- * left; TreeNode right; TreeNode(int x) { val = x; } }
- */
+
 class PathSumII {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
+    // Recursion. Time = O(N^2);
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> res = new ArrayList<>();
-        List<Integer> sumList = new ArrayList<>();
-        helper(root, sum, res, sumList);
+        List<Integer> cur = new ArrayList<>();
+        helper(root, sum, cur, res);
         return res;
     }
 
-    private void helper(TreeNode root, int sum, List<List<Integer>> res, List<Integer> sumList) {
-        if (root == null)
+    private void helper(TreeNode root, int sum, List<Integer> cur, List<List<Integer>> res) {
+        if (root == null) {
             return;
-        sumList.add(root.val);
-        sum -= root.val;
-        if (root.left == null && root.right == null) {
-            if (sum == 0) {
-                res.add(new ArrayList<>(sumList));
-            }
-        } else {
-            if (root.left != null) {
-                helper(root.left, sum, res, sumList);
-            }
-            if (root.right != null) {
-                helper(root.right, sum, res, sumList);
-            }
         }
-        sumList.remove(sumList.size() - 1);
+        cur.add(root.val);
+        sum -= root.val;
+        if (root.left == null && root.right == null && sum == 0) {
+            res.add(new ArrayList<>(cur));
+        }
+        helper(root.left, sum, cur, res);
+        helper(root.right, sum, cur, res);
+
+        cur.remove(cur.size() - 1);
+
     }
 }

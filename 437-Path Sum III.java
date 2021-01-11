@@ -2,8 +2,11 @@ import extensions.*;
 import java.util.*;
 
 class PathSumIII {
+
+    // Recursion.
     public int pathSum(TreeNode root, int sum) {
         int[] count = new int[] { 0 };
+        // store key-value sum and number of path with this sum.
         Map<Integer, Integer> height = new HashMap<>();
         preorder(root, 0, sum, height, count);
         return count[0];
