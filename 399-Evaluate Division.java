@@ -35,14 +35,14 @@ class EvaulateDivision {
                 results[i] = 1.0;
             else {
                 HashSet<String> visited = new HashSet<>();
-                results[i] = backtrackEvaluate(graph, dividend, divisor, 1, visited);
+                results[i] = dfs(graph, dividend, divisor, 1, visited);
             }
         }
 
         return results;
     }
 
-    private double backtrackEvaluate(HashMap<String, HashMap<String, Double>> graph, String currNode, String targetNode,
+    private double dfs(HashMap<String, HashMap<String, Double>> graph, String currNode, String targetNode,
             double accProduct, Set<String> visited) {
 
         // mark the visit
@@ -57,7 +57,7 @@ class EvaulateDivision {
                 String nextNode = pair.getKey();
                 if (visited.contains(nextNode))
                     continue;
-                ret = backtrackEvaluate(graph, nextNode, targetNode, accProduct * pair.getValue(), visited);
+                ret = dfs(graph, nextNode, targetNode, accProduct * pair.getValue(), visited);
                 if (ret != -1.0)
                     break;
             }

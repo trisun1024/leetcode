@@ -37,4 +37,23 @@ class RussianDollEnvelopes {
         }
         return len;
     }
+
+    // DP. Time = O(N^2);
+    public int maxEnvelopesI(int[][] envelopes) {
+        // sort array with increasing width
+        Arrays.sort(envelopes, (a, b) -> a[0] - b[0]);
+        int m = envelopes.length;
+        int[] dp = new int[m];
+        int max = 0;
+        for (int i = 0; i < m; i++) {
+            dp[i] = 1;
+            for (int j = 0; j < i; j++) {
+                if (envelopes[j][0] < envelopes[i][0] && envelopes[j][1] < envelopes[i][1]) {
+                    dp[i] = Math.max(dp[i], dp[j] + 1);
+                }
+            }
+            max = Math.max(max, dp[i]);
+        }
+        return max;
+    }
 }

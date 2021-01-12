@@ -1,6 +1,8 @@
 import java.util.*;
 
 class Subsets {
+
+    // DFS. Time = O(2^N);
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> cur = new ArrayList<>();
