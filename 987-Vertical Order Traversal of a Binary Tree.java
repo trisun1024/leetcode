@@ -1,16 +1,7 @@
+import extensions.TreeNode;
 import java.util.*;
 
-class Solution {
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int v) {
-            this.val = v;
-        }
-    }
+class VerticalOrderTraversalOfBinaryTree {
 
     // use hashmap + bfs
     static class Node {
@@ -69,12 +60,11 @@ class Solution {
         return res;
     }
 
-    // dfs
-    TreeMap<Integer, List<int[]>> map = new TreeMap<>();
-
+    // DFS.
     public List<List<Integer>> verticalTraversalII(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
-        dfs(root, 0, 0);
+        TreeMap<Integer, List<int[]>> map = new TreeMap<>();
+        dfs(root, 0, 0, map);
         for (Map.Entry<Integer, List<int[]>> entry : map.entrySet()) {
             List<int[]> curr = entry.getValue();
             curr.sort(new Comparator<int[]>() {
@@ -95,7 +85,7 @@ class Solution {
         return res;
     }
 
-    private void dfs(TreeNode node, int x, int y) {
+    private void dfs(TreeNode node, int x, int y, TreeMap<Integer, List<int[]>> map) {
         if (node == null)
             return;
         if (!map.containsKey(x)) {
@@ -104,7 +94,7 @@ class Solution {
         List<int[]> tmp = map.get(x);
         tmp.add(new int[] { y, node.val });
         map.put(x, tmp);
-        dfs(node.left, x - 1, y - 1);
-        dfs(node.right, x + 1, y - 1);
+        dfs(node.left, x - 1, y - 1, map);
+        dfs(node.right, x + 1, y - 1, map);
     }
 }
