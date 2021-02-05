@@ -27,5 +27,37 @@ class SimplifyPath {
         }
         return res.length() > 0 ? res.toString() : "/";
     }
-    
+
+    // Recursion.
+    public String simplifyPathI(String path) {
+        String[] arr = path.split("/");
+        List<String> res = new ArrayList<>();
+        helper(arr, 0, res);
+        if (res.size() == 0) {
+            return "/";
+        }
+        StringBuilder sb = new StringBuilder();
+        for (String s : res) {
+            sb.append("/").append(s);
+        }
+        return sb.toString();
+    }
+
+    private void helper(String[] arr, int index, List<String> res) {
+        if (index == arr.length) {
+            return;
+        }
+        String cur = arr[index];
+        if (cur.equals(".") || cur.length() == 0) {
+            // skip
+        } else if (cur.equals("..")) {
+            if (res.size() > 0) {
+                res.remove(res.size() - 1);
+            }
+        } else {
+            res.add(arr[index]);
+        }
+        helper(arr, index + 1, res);
+    }
+
 }

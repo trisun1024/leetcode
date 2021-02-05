@@ -1,4 +1,5 @@
 import java.util.*;
+import extensions.ListNode;
 
 class LinkedListCycle {
     // HashSet
