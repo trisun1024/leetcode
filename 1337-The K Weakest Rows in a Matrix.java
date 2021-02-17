@@ -1,10 +1,10 @@
 import java.util.*;
 
-class Solution {
+class KWeakestRowsInMatrix {
 
     // vertical iteration
     // Time O(M*N) Space O(1)
-    public int[] kWeakestRows(int[][] mat, int k) {
+    public int[] kWeakestRowsI(int[][] mat, int k) {
         int m = mat.length;
         int n = mat[0].length;
         int[] indexes = new int[k];
@@ -72,5 +72,32 @@ class Solution {
         }
 
         return indexes;
+    }
+
+    // PriorityQueue
+    public int[] kWeakestRows(int[][] mat, int k) {
+        int row = mat.length;
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> b[1] == a[1] ? b[0] - a[0] : b[1] - a[1]);
+        for (int r = 0; r < row; r++) {
+            int count = getNumber(mat[r]);
+            pq.offer(new int[] { r, count });
+            if (pq.size() > k) {
+                pq.poll();
+            }
+        }
+        int[] res = new int[k];
+        int i = k - 1;
+        while (!pq.isEmpty()) {
+            res[i--] = pq.poll()[0];
+        }
+        return res;
+    }
+
+    private int getNumber(int[] arr) {
+        int c = 0;
+        for (int i : arr) {
+            c += i;
+        }
+        return c;
     }
 }

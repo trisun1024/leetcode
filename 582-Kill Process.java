@@ -43,6 +43,7 @@ class KillProcess {
 
     // HashMap + BFS. Time = O(N); Space = O(N);
     public List<Integer> killProcessIII(List<Integer> pid, List<Integer> ppid, int kill) {
+        // build graph
         HashMap<Integer, List<Integer>> map = new HashMap<>();
         for (int i = 0; i < ppid.size(); i++) {
             if (ppid.get(i) > 0) {
@@ -51,6 +52,7 @@ class KillProcess {
                 map.put(ppid.get(i), list);
             }
         }
+        // traverse using queue
         Queue<Integer> queue = new ArrayDeque<>();
         List<Integer> list = new ArrayList<>();
         queue.offer(kill);
