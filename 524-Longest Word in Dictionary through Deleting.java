@@ -26,14 +26,14 @@ class LongestWordInDictionaryThroughDeleting {
     }
 
     // DP.
-    public String findLonString(String s, List<String> d) {
+    public String findLongestWordII(String s, List<String> d) {
         int len = s.length();
         String res = "";
         int[][] dp = new int[len + 1][26];
         Arrays.fill(dp[len], -1);
         for (int i = len - 1; i >= 0; i--) {
             for (int j = 0; j < 26; j++) {
-                dp[i][j] = dp[i][j - 1];
+                dp[i][j] = dp[i + 1][j];
             }
             dp[i][s.charAt(i) - 'a'] = i + 1;
         }
@@ -65,4 +65,20 @@ class LongestWordInDictionaryThroughDeleting {
         return true;
     }
 
+    // Time
+    public String findLongestWord(String s, List<String> d) {
+        String res = "";
+        for (String c : d)
+            if ((c.length() > res.length() || c.length() == res.length() && c.compareTo(res) < 0) && isSubseq(c, s))
+                res = c;
+        return res;
+    }
+
+    public boolean isSubseq(String a, String b) {
+        int i = -1, j = -1;
+        while (++i < a.length())
+            if ((j = b.indexOf(a.charAt(i), j + 1)) == -1)
+                return false;
+        return true;
+    }
 }
