@@ -22,37 +22,27 @@ class ShortestUnsortedContinuousSubarray {
         return r - l > 0 ? r - l + 1 : 0;
     }
 
-    // One-pass Time = O(N); Space = O(1);
+    // One-pass using two pointers to simulate. Time = O(N); Space = O(1);
     public int findUnsortedSubarrayI(int[] nums) {
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
-        boolean flag = false;
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] < nums[i - 1]) {
-                flag = true;
-            }
-            if (flag) {
-                min = Math.min(min, nums[i]);
-            }
-        }
-        flag = false;
-        for (int i = nums.length - 2; i >= 0; i--) {
-            if (nums[i] > nums[i + 1]) {
-                flag = true;
-            }
-            if (flag) {
-                max = Math.max(max, nums[i]);
+        int start = -1;
+        int end = -1;
+        int prevHigh = nums.length - 1;
+        int prevLow = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] < nums[prevLow]) {
+                end = i;
+            } else {
+                prevLow = i;
             }
         }
-        int l, r;
-        for (l = 0; l < nums.length; l++) {
-            if (min < nums[l])
-                break;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (nums[i] > nums[prevHigh]) {
+                start = i;
+            } else {
+                prevHigh = i;
+            }
         }
-        for (r = nums.length - 1; r >= 0; r--) {
-            if (max > nums[r])
-                break;
-        }
-        return r - l < 0 ? 0 : r - l + 1;
+        return (start >= 0 && end >= 0) ? (end - start) + 1 : 0;
     }
+
 }
