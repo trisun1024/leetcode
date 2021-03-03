@@ -1,3 +1,4 @@
+
 class DivideTwoIntegers {
     public int divide(int dividend, int divisor) {
         // boarder
@@ -11,10 +12,11 @@ class DivideTwoIntegers {
 
         long res = longDivide(dividend_abs, divisor_abs);
         // res reach int max return max or min; else normal;
-        if (res > Integer.MAX_VALUE)
+        if (res > Integer.MAX_VALUE) {
             return (sign == 1) ? Integer.MAX_VALUE : Integer.MIN_VALUE;
-        else
+        } else {
             return sign == 1 ? (int) res : (int) (-res);
+        }
     }
 
     // Recursion

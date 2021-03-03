@@ -4,8 +4,10 @@ class RobotBoundedInCircle {
     public boolean isRobotBounded(String instructions) {
         // north = 0, east = 1, south = 2, west = 3
         int[][] dirs = new int[][] { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };  
+        // initial positions
         int x = 0;
         int y = 0;
+        // facing north
         int index = 0;
         for (char c : instructions.toCharArray()) {
             if (c == 'L') {
