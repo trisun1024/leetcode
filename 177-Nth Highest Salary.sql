@@ -15,7 +15,7 @@ SET
 ;-------------------------------------------
 
 CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT BEGIN RETURN (
-        # Write your MySQL query statement below.
+      
         WITH t AS (
             SELECT
                 Salary,
