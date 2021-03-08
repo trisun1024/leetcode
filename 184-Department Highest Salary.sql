@@ -1,3 +1,4 @@
+# Write your MySQL query statement below
 SELECT
     Department.name AS 'Department',
     Employee.name AS 'Employee',

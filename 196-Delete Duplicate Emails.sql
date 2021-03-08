@@ -1,7 +1,20 @@
-DELETE p1
-FROM
-    Person p1,
-    Person p2
+# Write your MySQL query statement below
+WITH tab1 AS (
+    SELECT
+        Email,
+        MIN(Id) AS min_id,
+        COUNT(1) AS count_
+    FROM
+        Person
+    GROUP BY
+        Email
+)
+DELETE FROM
+    Person
 WHERE
-    p1.Email = p2.Email
-    AND p1.Id > p2.Id;
+    Id NOT IN (
+        SELECT
+            min_id
+        FROM
+            tab1
+    )
