@@ -102,7 +102,7 @@ class Solution {
         return helper(map, 0, 0, N, 1);
     }
 
-    int helper(Map<Integer, Integer> map, int num, int rotate, int N, int base) {
+    private int helper(Map<Integer, Integer> map, int num, int rotate, int N, int base) {
         if (num > N || num < 0) {
             return 0;
         }

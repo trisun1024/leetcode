@@ -4,27 +4,54 @@ import extensions.TreeNode;
 class AddOneRowToTree {
 
     // Recursion.
+    public TreeNode addOneRowIII(TreeNode root, int v, int d) {
+        if (root == null || d <= 0) {
+            return root;
+        }
+        if (d - 1 == 0) {
+            TreeNode newRoot = new TreeNode(v);
+            newRoot.left = root;
+            return newRoot;
+        }
+        if (d - 1 == 1) {
+            TreeNode old = root.left;
+            root.left = new TreeNode(v);
+            root.left.left = old;
+            old = root.right;
+            root.right = new TreeNode(v);
+            root.right.right = old;
+        } else {
+            addOneRow(root.left, v, d - 1);
+            addOneRow(root.right, v, d - 1);
+        }
+        return root;
+    }
+
+    // Recursion.
     public TreeNode addOneRow(TreeNode root, int v, int d) {
+        // base case, when we need add on top
         if (d == 1) {
-            TreeNode n = new TreeNode(v);
-            n.left = root;
-            return n;
+            TreeNode newRoot = new TreeNode(v);
+            newRoot.left = root;
+            return newRoot;
         }
         insert(root, 1, v, d);
         return root;
     }
 
     private void insert(TreeNode root, int depth, int v, int d) {
-        if (root == null) {
+        // base case and early stop. if reach null or depth greater than d;
+        if (root == null || depth >= d) {
             return;
         }
         if (depth == d - 1) {
-            TreeNode t = root.left;
+            // add row when depth is before d
+            TreeNode old = root.left;
             root.left = new TreeNode(v);
-            root.left.left = t;
-            t = root.right;
+            root.left.left = old;
+            old = root.right;
             root.right = new TreeNode(v);
-            root.right.right = t;
+            root.right.right = old;
         } else {
             insert(root.left, depth + 1, v, d);
             insert(root.right, depth + 1, v, d);
