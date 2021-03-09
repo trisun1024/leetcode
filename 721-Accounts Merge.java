@@ -14,7 +14,6 @@ class AccountsMerge {
                     graph.put(acc.get(i), new HashSet<>());
                 }
                 if (i == 1) {
-                    continue;
                 }
                 graph.get(acc.get(i)).add(acc.get(i - 1));
                 graph.get(acc.get(i - 1)).add(acc.get(i));
