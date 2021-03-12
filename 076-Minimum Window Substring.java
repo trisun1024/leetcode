@@ -1,10 +1,12 @@
 import java.util.*;
+
 class MinimumWindowSubstring {
 
     // Sliding Window
     public String minWindow(String s, String t) {
-        if (s.length() < t.length())
+        if (s.length() < t.length()) {
             return "";
+        }
         HashMap<Character, Integer> goal = new HashMap<>();
         int goalSize = t.length();
         int minLen = Integer.MAX_VALUE;
@@ -53,21 +55,35 @@ class MinimumWindowSubstring {
         return result;
     }
 
+    // Two Pointers.
     public String minWindowI(String s, String t) {
         int[] map = new int[128];
-        for (char c : t.toCharArray())
+        for (char c : t.toCharArray()) {
             map[c]++;
-        int begin = 0, end = 0, head = 0, d = Integer.MAX_VALUE, cnt = t.length();
+        }
+        int begin = 0, end = 0;
+        int head = 0;
+        int dist = Integer.MAX_VALUE;
+        int count = t.length();
         while (end < s.length()) {
-            if (map[s.charAt(end++)]-- > 0)
-                cnt--;
-            while (cnt == 0) {
-                if (d > end - begin)
-                    d = end - (head = begin);
-                if (map[s.charAt(begin++)]++ == 0)
-                    cnt++;
+            // end point increase, if char's number greater than 0, then count++;
+            if (map[s.charAt(end)]-- > 0) {
+                count--;
+            }
+            end++;
+            // if count == 0; we need figure out update begin or not
+            while (count == 0) {
+                // cur dist less than history dist, then update history and head
+                if (dist > end - begin) {
+                    dist = end - begin;
+                    head = begin;
+                }
+                if (map[s.charAt(begin)]++ == 0) {
+                    count++;
+                }
+                begin++;
             }
         }
-        return d == Integer.MAX_VALUE ? "" : s.substring(head, head + d);
+        return dist == Integer.MAX_VALUE ? "" : s.substring(head, head + dist);
     }
 }
