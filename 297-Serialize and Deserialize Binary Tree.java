@@ -13,7 +13,7 @@ class SerializeAndDeserializeBinaryTree {
                 return "";
             }
             StringBuilder sb = new StringBuilder();
-            Queue<TreeNode> queue = new LinkedList<>();
+            Queue<TreeNode> queue = new ArrayDeque<>();
             queue.offer(root);
             while (!queue.isEmpty()) {
                 TreeNode node = queue.poll();
