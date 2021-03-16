@@ -3,26 +3,26 @@ import java.util.*;
 class EncodeAndDecodeTinyURL {
 
     public class Codec {
-        String dict = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-        HashMap<String, String> hm = new HashMap<>();
-        Random rand = new Random();
-        String key = getKey();
+        private String dict = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        private Map<String, String> map = new HashMap<>();
+        private Random rand = new Random();
+        private String key = getKey();
 
         // Encodes a URL to a shortened URL.
         public String encode(String longUrl) {
-            while (hm.containsKey(key)) {
+            while (map.containsKey(key)) {
                 key = getKey();
             }
-            hm.put(key, longUrl);
+            map.put(key, longUrl);
             return key;
         }
 
         // Decodes a shortened URL to its original URL.
         public String decode(String shortUrl) {
-            return hm.get(key);
+            return map.get(shortUrl);
         }
 
-        public String getKey() {
+        private String getKey() {
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < 6; i++) {
                 sb.append(dict.charAt(rand.nextInt(62)));
