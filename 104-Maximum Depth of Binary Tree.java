@@ -16,7 +16,7 @@ class MaximumDepthofBinaryTree {
         if (root == null) {
             return 0;
         }
-        Deque<TreeNode> queue = new ArrayDeque<>();
+        Queue<TreeNode> queue = new ArrayDeque<>();
         queue.offer(root);
         int level = 0;
         while (!queue.isEmpty()) {

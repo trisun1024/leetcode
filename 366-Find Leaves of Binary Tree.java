@@ -1,17 +1,9 @@
 import java.util.*;
+import extensions.TreeNode;
 
 class LeavesOfBinaryTree {
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
+    // DFS without sorting. Time = O(N); Space = O(N);
     public List<List<Integer>> findLeaves(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
         getHeight(res, root);

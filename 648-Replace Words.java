@@ -1,6 +1,6 @@
 import java.util.*;
 
-class ReplaceWords  {
+class ReplaceWords {
 
     // prefix hash
     public String replaceWordsII(List<String> roots, String sentence) {
@@ -25,17 +25,7 @@ class ReplaceWords  {
 
     // Trie
     public String replaceWords(List<String> dict, String sentence) {
-        TrieNode root = new TrieNode();
-        for (String d : dict) {
-            TrieNode cur = root;
-            for (char c : d.toCharArray()) {
-                if (cur.children[c - 'a'] == null) {
-                    cur.children[c - 'a'] = new TrieNode();
-                }
-                cur = cur.children[c - 'a'];
-            }
-            cur.word = d;
-        }
+        TrieNode root = buildTrie(dict);
 
         StringBuilder res = new StringBuilder();
         for (String word : sentence.split(" ")) {
@@ -54,13 +44,27 @@ class ReplaceWords  {
         return res.toString();
     }
 
+    private TrieNode buildTrie(List<String> words) {
+        TrieNode root = new TrieNode();
+        for (String word : words) {
+            TrieNode cur = root;
+            for (char c : word.toCharArray()) {
+                if (cur.children[c - 'a'] == null) {
+                    cur.children[c - 'a'] = new TrieNode();
+                }
+                cur = cur.children[c - 'a'];
+            }
+            cur.word = word;
+        }
+        return root;
+    }
+
     static class TrieNode {
         TrieNode[] children;
         String word;
 
         TrieNode() {
             children = new TrieNode[26];
-            word = "";
         }
     }
 }

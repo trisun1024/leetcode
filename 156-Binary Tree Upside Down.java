@@ -1,13 +1,7 @@
-class BinaryTreeUpsideDown {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
+import extensions.TreeNode;
 
-        TreeNode(int x) {
-            val = x;
-        }
-    }
+class BinaryTreeUpsideDown {
+ 
     // recursion
     public TreeNode upsideDownBinaryTreeII(TreeNode root) {
         if (root == null || root.left == null) {

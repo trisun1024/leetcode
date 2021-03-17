@@ -129,8 +129,9 @@ class NumberOfIslands {
         }
 
         public int find(int i) { // path compression
-            if (parent[i] != i)
+            if (parent[i] != i) {
                 parent[i] = find(parent[i]);
+            }
             return parent[i];
         }
 
