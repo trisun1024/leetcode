@@ -27,20 +27,30 @@ class StockIII {
     }
 
     public int maxProfit(int[] prices) {
-        int firstBuy = Integer.MIN_VALUE, firstSell = 0;
-        int secondBuy = Integer.MIN_VALUE, secondSell = 0;
-
+        // the minimal cost of buying the stock in transaction #1. The minimal cost to
+        // acquire a stock would be the minimal price value that we have seen so far at
+        // each step.
+        int firstBuy = Integer.MAX_VALUE;
+        // the maximal profit of selling the stock in transaction #1. Actually, at the
+        // end of the iteration, this value would be the answer for the first problem in
+        // the series
+        int firstSell = 0;
+        // the minimal cost of buying the stock in transaction #2, while taking into
+        // account the profit gained from the previous transaction #1. One can consider
+        // this as the cost of reinvestment. Similar with t1_cost, we try to find the
+        // lowest price so far, which in addition would be partially compensated by the
+        // profits gained from the first transaction
+        int secondBuy = Integer.MAX_VALUE;
+        // the maximal profit of selling the stock in transaction #2. With the help of
+        // t2_cost as we prepared so far, we would find out the maximal profits with at
+        // most two transactions at each step.
+        int secondSell = 0;
         for (int curPrice : prices) {
-            if (firstBuy < -curPrice)
-                firstBuy = -curPrice; // the max profit after you buy first stock
-            if (firstSell < firstBuy + curPrice)
-                firstSell = firstBuy + curPrice; // the max profit after you sell it
-            if (secondBuy < firstSell - curPrice)
-                secondBuy = firstSell - curPrice; // the max profit after you buy the second stock
-            if (secondSell < secondBuy + curPrice)
-                secondSell = secondBuy + curPrice; // the max profit after you sell the second stock
+            firstBuy = Math.min(firstBuy, curPrice);
+            firstSell = Math.max(firstSell, curPrice - firstBuy);
+            secondBuy = Math.min(secondBuy, curPrice - firstSell);
+            secondSell = Math.max(secondSell, curPrice - secondBuy);
         }
-
         return secondSell;
     }
 }

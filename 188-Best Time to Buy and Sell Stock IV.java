@@ -1,8 +1,10 @@
 class StockIV {
+
+    // DP with 2D array. Time = O(N^2); Space = O(N^2);
     public int maxProfit(int k, int[] prices) {
         int len = prices.length;
         // base case. if len is less or equal than one, then return 0.
-        if (len <=1) {
+        if (len <= 1) {
             return 0;
         }
         // if k bigger than half of len, then we could use every increasing transcation.
@@ -32,7 +34,7 @@ class StockIV {
         return profit;
     }
 
-    // 
+    // DP with 1D array. Time = O(N^2); Space = O(N);
     public int maxProfitII(int k, int[] prices) {
         int len = prices.length;
         // base case. if len is less or equal than one, then return 0.
@@ -43,7 +45,7 @@ class StockIV {
         if (k >= len / 2) {
             return quickSolve(prices);
         }
-        // build a 2D DP.
+        // build a 1D array.
         int[] dp = new int[len];
         for (int i = 0; i < k; i++) {
             int[] cur = new int[len];

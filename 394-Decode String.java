@@ -2,39 +2,38 @@ import java.util.*;
 
 class DecodeString {
 
-    // use two stack to store the information; one stack store the numbers, the
-    // other stack store string
+    // use two stack to store the information;
+    // one stack store the numbers;
+    // the other stack store string
     public String decodeString(String s) {
-        if (s.length() == 0) {
+        if (s == null || s.length() == 0) {
             return "";
         }
+        Deque<StringBuilder> stack = new ArrayDeque<>();
         Deque<Integer> countStack = new ArrayDeque<>();
-        Deque<StringBuilder> stringStack = new ArrayDeque<>();
-        StringBuilder currentString = new StringBuilder();
-        int k = 0;
-        for (char ch : s.toCharArray()) {
-            if (Character.isDigit(ch)) {
-                k = k * 10 + ch - '0';
-            } else if (ch == '[') {
-                // push the number k to countStack
-                countStack.push(k);
-                // push the currentString to stringStack
-                stringStack.push(currentString);
-                // reset currentString and k
-                currentString = new StringBuilder();
-                k = 0;
-            } else if (ch == ']') {
-                StringBuilder decodedString = stringStack.pop();
-                // decode currentK[currentString] by appending currentString k times
-                for (int currentK = countStack.pop(); currentK > 0; currentK--) {
-                    decodedString.append(currentString);
+        StringBuilder cur = new StringBuilder();
+        int num = 0;
+        for (char c : s.toCharArray()) {
+            if (Character.isDigit(c)) {
+                num = num * 10 + (c - '0');
+            } else if (c == '[') {
+                countStack.offerFirst(num);
+                num = 0;
+                stack.offerFirst(cur);
+                cur = new StringBuilder();
+            } else if (c == ']') {
+                StringBuilder temp = stack.pollFirst();
+                int i = countStack.pollFirst();
+                while (i > 0) {
+                    temp.append(cur);
+                    i--;
                 }
-                currentString = decodedString;
+                cur = temp;
             } else {
-                currentString.append(ch);
+                cur.append(c);
             }
         }
-        return currentString.toString();
+        return cur.toString();
     }
 
     // DFS
