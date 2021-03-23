@@ -1,26 +1,17 @@
 import java.util.*;
+import extensions.TreeNode;
 
 class SameTree {
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
-    }
-
     // Recursion
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        if (p == null && q == null)
+        if (p == null && q == null) {
             return true;
-        if (p == null || q == null)
+        }
+        if (p == null || q == null) {
             return false;
-        if (p.val != q.val)
-            return false;
-        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+        }
+        return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 
     // Iteration
@@ -28,13 +19,13 @@ class SameTree {
         Deque<TreeNode> queue = new ArrayDeque<>();
         queue.offer(p);
         queue.offer(q);
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             p = queue.poll();
             q = queue.poll();
-            if(p == null && q == null) {
+            if (p == null && q == null) {
                 continue;
             }
-            if(p==null || q==null || p.val != q.val) {
+            if (p == null || q == null || p.val != q.val) {
                 return false;
             }
             queue.offer(p.left);
