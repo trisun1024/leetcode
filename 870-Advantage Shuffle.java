@@ -29,7 +29,7 @@ class AdvantageShuffle {
                 remaining.add(a);
             }
         }
-
+        
         // Reconstruct the answer from annotations (assigned, remaining)
         int[] ans = new int[B.length];
         for (int i = 0; i < B.length; ++i) {
