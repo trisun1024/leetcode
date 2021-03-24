@@ -4,14 +4,15 @@ import java.util.*;
 
 class SmallestSubtreeWithAlltheDeepestNodes {
 
+    // DFS.
     public TreeNode subtreeWithAllDeepestII(TreeNode root) {
         Map<TreeNode, Integer> depth = new HashMap<>();
         depth.put(null, -1);
         dfs(root, null, depth);
         int[] maxDepth = new int[] { -1 };
-        for (Integer d : depth.values())
+        for (Integer d : depth.values()) {
             maxDepth[0] = Math.max(maxDepth[0], d);
-
+        }
         return answer(root, depth, maxDepth);
     }
 
