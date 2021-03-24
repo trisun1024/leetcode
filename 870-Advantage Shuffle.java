@@ -4,18 +4,20 @@ class AdvantageShuffle {
 
     // Greedy.
     public int[] advantageCount(int[] A, int[] B) {
+        // sort the array A and B
         int[] sortedA = A.clone();
         Arrays.sort(sortedA);
         int[] sortedB = B.clone();
         Arrays.sort(sortedB);
 
         // assigned[b] = list of a that are assigned to beat b
-        Map<Integer, Deque<Integer>> assigned = new HashMap();
-        for (int b : B)
-            assigned.put(b, new LinkedList());
+        Map<Integer, Deque<Integer>> assigned = new HashMap<>();
+        for (int b : B) {
+            assigned.put(b, new LinkedList<>());
+        }
 
         // remaining = list of a that are not assigned to any b
-        Deque<Integer> remaining = new LinkedList();
+        Deque<Integer> remaining = new LinkedList<>();
 
         // populate (assigned, remaining) appropriately
         // sortedB[j] is always the smallest unassigned element in B
@@ -32,10 +34,11 @@ class AdvantageShuffle {
         int[] ans = new int[B.length];
         for (int i = 0; i < B.length; ++i) {
             // if there is some a assigned 1470to b...
-            if (assigned.get(B[i]).size() > 0)
+            if (assigned.get(B[i]).size() > 0) {
                 ans[i] = assigned.get(B[i]).pop();
-            else
+            } else {
                 ans[i] = remaining.pop();
+            }
         }
         return ans;
     }
@@ -46,11 +49,11 @@ class AdvantageShuffle {
         Arrays.sort(A);
         int n = A.length;
         // create used boolean array
-        boolean[] used = new boolean[n]; 
+        boolean[] used = new boolean[n];
         // res
         int[] ans = new int[n];
         Arrays.fill(ans, -1);
-        // traverse 
+        // traverse
         for (int i = 0; i < n; i++) {
             // binary search the closest value of A greater than B[i]
             int index = binarySearch(A, B[i]);
@@ -91,16 +94,17 @@ class AdvantageShuffle {
         }
         return ans;
     }
-private int binarySearch(int[] array , int target) {
-    int left = 0, right = array.length-1;
-    while(left < right-1) {
-        int mid = left + (right-left)/2;
-        if(array[mid] > target) {
-            right = mid;
-        } else {
-            left = mid;
+
+    private int binarySearch(int[] array, int target) {
+        int left = 0, right = array.length - 1;
+        while (left < right - 1) {
+            int mid = left + (right - left) / 2;
+            if (array[mid] > target) {
+                right = mid;
+            } else {
+                left = mid;
+            }
         }
+        return array[right] > target ? right : array[left] > target ? left : -1;
     }
-    return array[right] > target ? right : array[left] > target ? left : -1;
-}
 }
