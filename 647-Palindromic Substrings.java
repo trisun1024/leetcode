@@ -16,6 +16,30 @@ class PalindromicSubstrings {
         }
         return res;
     }
+    // DP.
+    public int countSubstringsII(String s) {
+        int ans = 0;
+        if (s.length() <= 0) {
+            return ans;
+        }
+        int n = s.length();
+        boolean[][] dp = new boolean[n][n];
+        for (int i = 0; i < n; i++) {
+            dp[i][i] = true;
+            ans++;
+        }
+        for (int i = 0; i < n - 1; i++) {
+            dp[i][i + 1] = (s.charAt(i) == s.charAt(i + 1));
+            ans += (dp[i][i + 1] ? 1 : 0);
+        }
+        for (int len = 3; len <= n; len++) {
+            for (int i = 0, j = i + len - 1; j < n; i++, j++) {
+                dp[i][j] = dp[i + 1][j - 1] && (s.charAt(i) == s.charAt(j));
+                ans += (dp[i][j] ? 1 : 0);
+            }
+        }
+        return ans;
+    }
 
     // Manacher's Algorithm. Time = O(N); Space = O(N);
     public int countSubstringsI(String s) {
