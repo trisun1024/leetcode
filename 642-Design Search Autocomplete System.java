@@ -85,9 +85,9 @@ class AutocompleteSystem {
         if (cur != null) {
             cur = cur.children[c];
         }
-
-        if (cur == null)
+        if (cur == null) {
             return res;
+        }
         for (TrieNode node : cur.hot) {
             res.add(node.s);
         }

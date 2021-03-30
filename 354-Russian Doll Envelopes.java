@@ -22,20 +22,38 @@ class RussianDollEnvelopes {
         return longestSubsequences(secondDim);
     }
 
-    private int longestSubsequences(int[] nums) {
-        int[] dp = new int[nums.length];
-        int len = 0;
-        for (int num : nums) {
-            int i = Arrays.binarySearch(dp, 0, len, num);
-            if (i < 0) {
-                i = -(i + 1);
+    private int longestSubsequences(int[] arr) {
+        int[] dp = new int[arr.length];
+        int max = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int j = bs(dp, 0, max, arr[i]);
+            if (j < 0) {
+                j = -(j + 1);
             }
-            dp[i] = num;
-            if (i == len) {
-                len++;
+            dp[j] = arr[i];
+            if (j == max) {
+                max++;
             }
         }
-        return len;
+        return max;
+    }
+
+    private int bs(int[] a, int fromIndex, int toIndex, int key) {
+        int low = fromIndex;
+        int high = toIndex - 1;
+
+        while (low <= high) {
+            int mid = (low + high) >>> 1;
+            int midVal = a[mid];
+
+            if (midVal < key)
+                low = mid + 1;
+            else if (midVal > key)
+                high = mid - 1;
+            else
+                return mid; // key found
+        }
+        return -(low + 1); // key not found.
     }
 
     // DP. Time = O(N^2);

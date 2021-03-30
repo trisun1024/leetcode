@@ -1,36 +1,30 @@
 class AndroidUnlockPatterns {
 
-    // use 1D array to test
-
-    private boolean[] used = new boolean[9];
-
+    // 1D array to test.
     public int numberOfPatterns(int m, int n) {
-        int res = 0;
+        int count = 0;
         for (int len = m; len <= n; len++) {
-            res += calculate(-1, len);
-            for (int i = 0; i < 9; i++) {
-                used[i] = false;
-            }
+            count += calculate(-1, len, new boolean[9]);
         }
-        return res;
+        return count;
     }
 
-    private int calculate(int last, int len) {
+    private int calculate(int last, int len, boolean[] used) {
         if (len == 0) {
             return 1;
         }
         int sum = 0;
         for (int i = 0; i < 9; i++) {
-            if (isValid(i, last)) {
+            if (isValid(i, last, used)) {
                 used[i] = true;
-                sum += calculate(i, len - 1);
+                sum += calculate(i, len - 1, used);
                 used[i] = false;
             }
         }
         return sum;
     }
 
-    private boolean isValid(int index, int last) {
+    private boolean isValid(int index, int last, boolean[] used) {
         if (used[index]) {
             return false;
         }
