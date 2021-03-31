@@ -1,7 +1,7 @@
 class StreamChecker {
 
-    TrieNode root;
-    StringBuilder sb;
+    private TrieNode root;
+    private StringBuilder sb;
 
     public StreamChecker(String[] words) {
         this.root = buildTrie(words);
