@@ -7,6 +7,7 @@ class AlienDictionary {
         // build graph
         Map<Character, List<Character>> graph = new HashMap<>();
         Map<Character, Integer> indegrees = new HashMap<>();
+        // find all characters in words
         for (String word : words) {
             for (char c : word.toCharArray()) {
                 indegrees.put(c, 0);
@@ -17,9 +18,11 @@ class AlienDictionary {
         for (int i = 0; i < words.length - 1; i++) {
             String w1 = words[i];
             String w2 = words[i + 1];
+            // words list are
             if (w1.length() > w2.length() && w1.startsWith(w2)) {
                 return "";
             }
+            // add edges
             for (int j = 0; j < Math.min(w1.length(), w2.length()); j++) {
                 if (w1.charAt(j) != w2.charAt(j)) {
                     graph.get(w1.charAt(j)).add(w2.charAt(j));
@@ -145,7 +148,7 @@ class AlienDictionary {
         return sb.toString();
     }
 
-    boolean dfs(boolean[][] adj, int[] visited, StringBuilder sb, int i, int N ) {
+    boolean dfs(boolean[][] adj, int[] visited, StringBuilder sb, int i, int N) {
         visited[i] = 1;
         for (int j = 0; j < N; j++) {
             if (adj[i][j]) {

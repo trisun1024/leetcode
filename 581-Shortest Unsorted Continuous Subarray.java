@@ -6,6 +6,7 @@ class ShortestUnsortedContinuousSubarray {
     public int findUnsortedSubarray(int[] nums) {
         Deque<Integer> stack = new ArrayDeque<Integer>();
         int l = nums.length, r = 0;
+        // find left most point where is the first peak
         for (int i = 0; i < nums.length; i++) {
             while (!stack.isEmpty() && nums[stack.peekFirst()] > nums[i]) {
                 l = Math.min(l, stack.pollFirst());
@@ -13,6 +14,7 @@ class ShortestUnsortedContinuousSubarray {
             stack.offerFirst(i);
         }
         stack.clear();
+        // find right most point where is the last peek
         for (int i = nums.length - 1; i >= 0; i--) {
             while (!stack.isEmpty() && nums[stack.peekFirst()] < nums[i]) {
                 r = Math.max(r, stack.pollFirst());
