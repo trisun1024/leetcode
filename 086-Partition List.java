@@ -1,3 +1,4 @@
+import extensions.ListNode;
 
 class PartitionList {
 
