@@ -24,33 +24,33 @@ class RemoveAllAdjacentDuplicatesInStringII {
 
     // Stack with reconstruction. Time = O(N); Space = O(N);
     public String removeDuplicatesII(String s, int k) {
-        Deque<Pair> counts = new ArrayDeque<>();
-        for (int i = 0; i < s.length(); ++i) {
-            if (counts.isEmpty() || s.charAt(i) != counts.peekFirst().ch) {
-                counts.offerFirst(new Pair(1, s.charAt(i)));
+        Deque<Node> stack = new ArrayDeque<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (stack.isEmpty() || s.charAt(i) != stack.peekFirst().ch) {
+                stack.offerFirst(new Node(s.charAt(i), 1));
             } else {
-                if (++counts.peekFirst().cnt == k) {
-                    counts.pollFirst();
+                if (++stack.peekFirst().count == k) {
+                    stack.pollFirst();
                 }
             }
         }
-        StringBuilder b = new StringBuilder();
-        while (!counts.isEmpty()) {
-            Pair p = counts.pollFirst();
-            for (int i = 0; i < p.cnt; i++) {
-                b.append(p.ch);
+        StringBuilder sb = new StringBuilder();
+        while (!stack.isEmpty()) {
+            Node cur = stack.pollFirst();
+            for (int i = 0; i < cur.count; i++) {
+                sb.append(cur.ch);
             }
         }
-        return b.reverse().toString();
+        return sb.reverse().toString();
     }
 
-    static class Pair {
-        int cnt;
+    static class Node {
         char ch;
+        int count;
 
-        public Pair(int cnt, char ch) {
+        Node(char ch, int count) {
             this.ch = ch;
-            this.cnt = cnt;
+            this.count = count;
         }
     }
 
