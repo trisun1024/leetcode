@@ -1,5 +1,6 @@
 class MedianOfTwoSortedArrays {
 
+    // Recursion + Binary Search. Time = O(log(MIN(M,N)));
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int len = nums1.length + nums2.length;
         if (len % 2 == 0) {

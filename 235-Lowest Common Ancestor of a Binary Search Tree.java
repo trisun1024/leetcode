@@ -1,6 +1,6 @@
 import extensions.TreeNode;
 
-class LCAofBST {
+class LowestCommonAncestorOfBinarySearchTree {
 
     // Recursion.
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {

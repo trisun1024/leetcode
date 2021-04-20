@@ -1,7 +1,8 @@
 import java.util.*;
 import extensions.TreeNode;
+
 class ValidateBinarySearchTree {
- 
+
     // recursion Time = O(N) Space = O(N)
     public boolean isValidBST(TreeNode root) {
         if (root == null) {
@@ -15,16 +16,16 @@ class ValidateBinarySearchTree {
             return true;
         }
         int val = root.val;
-        if (left != null && val <= left)
+        if (left != null && val <= left) {
             return false;
-        if (right != null && val >= right)
+        }
+        if (right != null && val >= right) {
             return false;
-
-        if (!helper(root.right, val, right))
-            return false;
-        if (!helper(root.left, left, val))
-            return false;
-        return true;
+        }
+        boolean res = false;
+        res |= helper(root.left, left, root.val);
+        res &= helper(root.right, root.val, right);
+        return res;
     }
 
     // iteration inorder traversal Time = O(N) Space = O(N)

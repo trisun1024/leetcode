@@ -18,11 +18,11 @@ class SpiralMatrix {
             for (int i = left; i <= right; i++) {
                 res.add(matrix[up][i]);
             }
-            for (int i = up + 1; i <= down - 1; i++) {
+            for (int i = up + 1; i <= down; i++) {
                 res.add(matrix[i][right]);
             }
             if (left < right && up < down) {
-                for (int i = right; i >= left; i--) {
+                for (int i = right - 1; i >= left; i--) {
                     res.add(matrix[down][i]);
                 }
                 for (int i = down - 1; i >= up + 1; i--) {
@@ -34,19 +34,6 @@ class SpiralMatrix {
             up++;
             down--;
         }
-        // post-processing
-        // if (left > right || up > down) {
-        //     return res;
-        // }
-        // if (left == right) {
-        //     for (int i = up; i <= down; i++) {
-        //         res.add(matrix[i][left]);
-        //     }
-        // } else {
-        //     for (int i = left; i <= right; i++) {
-        //         res.add(matrix[up][i]);
-        //     }
-        // }
         return res;
     }
 }
