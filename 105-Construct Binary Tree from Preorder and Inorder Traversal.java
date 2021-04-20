@@ -1,15 +1,7 @@
 import java.util.*;
+import extensions.TreeNode;
 
 class ConstructBinaryTreeFromPreorderAndInorderTraversal {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int v) {
-            this.val = v;
-        }
-    }
 
     // utilizing inorder sequence to determine the size of left or right subtrees
     public TreeNode buildTree(int[] preorder, int[] inorder) {
@@ -51,6 +43,5 @@ class ConstructBinaryTreeFromPreorderAndInorderTraversal {
         root.right = helper(preorder, inorder, pre, in, target);
         return root;
     }
- 
-   
+
 }

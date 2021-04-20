@@ -7,6 +7,8 @@ class WordSearchII {
         boolean isWord;
     }
 
+    // Trie + Backtracking. Time = O(M*(4*3^L)); Space = O(M*N);
+    // not use visited, use in-place Space = O(1); 
     public List<String> findWords(char[][] board, String[] words) {
         int row = board.length;
         int col = board[0].length;
