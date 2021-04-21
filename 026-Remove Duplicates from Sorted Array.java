@@ -12,4 +12,15 @@ class RemoveDuplicates {
         }
         return s;
     }
+
+    public int removeDuplicatesI(int[] nums) {
+        int s = 0, f = 0;
+        while (f < nums.length) {
+            while (f + 1 < nums.length && nums[f] == nums[f + 1]) {
+                f++;
+            }
+            nums[s++] = nums[f++];
+        }
+        return s;
+    }
 }

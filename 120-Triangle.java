@@ -23,7 +23,16 @@ class Triangle {
         }
     }
 
-    // DP Time = O(M*N); Space = O(M);
+    // DP + Bottom to Top. Time = O(M*N); Space = O(M);
+    /*
+     * M[i] represents current triangle level minimum values combine with previous
+     * level.
+     * 4 1 8 3
+     * 7 6 10
+     * 9 10
+     * 11
+     * 
+     */
     public int minimumTotal(List<List<Integer>> triangle) {
         int size = triangle.size();
         int[] dp = new int[size + 1];
@@ -33,5 +42,17 @@ class Triangle {
             }
         }
         return dp[0];
+    }
+
+    // Improve with In-place.
+    public int minimumTotalI(List<List<Integer>> triangle) {
+        int size = triangle.size();
+        for (int r = size - 2; r >= 0; r--) {
+            for (int c = 0; c < triangle.get(r).size(); c++) {
+                int min = Math.min(triangle.get(r + 1).get(c), triangle.get(r + 1).get(c + 1));
+                triangle.get(r).set(c, min + triangle.get(r).get(c));
+            }
+        }
+        return triangle.get(0).get(0);
     }
 }

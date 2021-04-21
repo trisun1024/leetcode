@@ -1,55 +1,70 @@
 
 class WildcardMatching {
 
-    // DP time: O(S*P) space: O(S*P)
+    // DP. Time = O(S*P); Space = O(S*P);
     public boolean isMatch(String s, String p) {
-        int sLen = s.length(), pLen = p.length();
-
-        // base cases
-        if (p.equals(s) || p.equals("*"))
+        // base case
+        if (p.equals(s) || p.equals("*") || (p.length() > 0 && allStar(p))) {
             return true;
-        if (p.isEmpty() || s.isEmpty())
+        }
+        if (p.length() == 0 || s.length() == 0) {
             return false;
+        }
+        int sLen = s.length();
+        int pLen = p.length();
 
         // init all matrix except [0][0] element as False
-        boolean[][] d = new boolean[pLen + 1][sLen + 1];
-        d[0][0] = true;
+        boolean[][] dp = new boolean[pLen + 1][sLen + 1];
+        dp[0][0] = true;
 
         // DP compute
-        for (int pIdx = 1; pIdx < pLen + 1; pIdx++) {
+        for (int pi = 1; pi <= pLen; pi++) {
             // the current character in the pattern is '*'
-            if (p.charAt(pIdx - 1) == '*') {
-                int sIdx = 1;
+            if (p.charAt(pi - 1) == '*') {
+                int si = 1;
                 // d[p_idx - 1][s_idx - 1] is a string-pattern match
                 // on the previous step, i.e. one character before.
                 // Find the first idx in string with the previous math.
-                while ((!d[pIdx - 1][sIdx - 1]) && (sIdx < sLen + 1))
-                    sIdx++;
+                while (!dp[pi - 1][si - 1] && (si <= sLen)) {
+                    si++;
+                }
                 // If (string) matches (pattern),
                 // when (string) matches (pattern)* as well
-                d[pIdx][sIdx - 1] = d[pIdx - 1][sIdx - 1];
+                dp[pi][si - 1] = dp[pi - 1][si - 1];
                 // If (string) matches (pattern),
                 // when (string)(whatever_characters) matches (pattern)* as well
-                while (sIdx < sLen + 1)
-                    d[pIdx][sIdx++] = true;
+                while (si <= sLen) {
+                    dp[pi][si++] = true;
+                }
             }
             // the current character in the pattern is '?'
-            else if (p.charAt(pIdx - 1) == '?') {
-                for (int sIdx = 1; sIdx < sLen + 1; sIdx++)
-                    d[pIdx][sIdx] = d[pIdx - 1][sIdx - 1];
+            else if (p.charAt(pi - 1) == '?') {
+                for (int si = 1; si <= sLen; si++) {
+                    dp[pi][si] = dp[pi - 1][si - 1];
+                }
             }
             // the current character in the pattern is not '*' or '?'
             else {
-                for (int sIdx = 1; sIdx < sLen + 1; sIdx++) {
+                for (int si = 1; si <= sLen; si++) {
                     // Match is possible if there is a previous match
                     // and current characters are the same
-                    d[pIdx][sIdx] = d[pIdx - 1][sIdx - 1] && (p.charAt(pIdx - 1) == s.charAt(sIdx - 1));
+                    dp[pi][si] = dp[pi - 1][si - 1] && (p.charAt(pi - 1) == s.charAt(si - 1));
                 }
             }
         }
-        return d[pLen][sLen];
+        return dp[pLen][sLen];
     }
 
+    private boolean allStar(String p) {
+        for (char c : p.toCharArray()) {
+            if (c != '*') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Two Pointers.
     public boolean isMatchI(String s, String p) {
         int sLen = s.length(), pLen = p.length();
         int sIdx = 0, pIdx = 0;
@@ -89,9 +104,11 @@ class WildcardMatching {
         }
 
         // The remaining characters in the pattern should all be '*' characters
-        for (int i = pIdx; i < pLen; i++)
-            if (p.charAt(i) != '*')
+        for (int i = pIdx; i < pLen; i++) {
+            if (p.charAt(i) != '*') {
                 return false;
+            }
+        }
         return true;
     }
 
