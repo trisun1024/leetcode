@@ -13,4 +13,9 @@ class PowerOfThree {
         }
         return true;
     }
+
+    // Integer Limitation.
+    public boolean isPowerOfThreeI(int n) {
+        return n > 0 && 1162261467 % n == 0;
+    }
 }
