@@ -1,44 +1,7 @@
+import extensions.*;
 import java.util.*;
 
 class ConvertSortedListToBST {
-
-    static class ListNode {
-
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
-    static class TreeNode {
-
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     // Recursion Time = O(N*H); Space = O(H);
     public TreeNode sortedListToBST(ListNode head) {
@@ -73,7 +36,7 @@ class ConvertSortedListToBST {
     // Convert to List
     public TreeNode sortedListToBSTII(ListNode head) {
         List<Integer> list = convertToList(head);
-        System.out.println(list);
+        // System.out.println(list);
         return listToBST(list, 0, list.size() - 1);
     }
 
